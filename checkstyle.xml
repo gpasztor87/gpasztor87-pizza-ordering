@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="Checker">
+    <module name="JavadocPackage"/>
+    <module name="TreeWalker">
+        <module name="JavaDocType"/>
+        <module name="JavaDocMethod">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="JavaDocVariable">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="JavaDocStyle"/>
+    </module>
+</module>
