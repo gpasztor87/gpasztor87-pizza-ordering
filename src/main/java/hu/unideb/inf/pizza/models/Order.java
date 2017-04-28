@@ -36,6 +36,11 @@ public class Order {
     private Collection<Pizza> pizzas;
 
     /**
+     * A rendeléshez tartozó felhasználó.
+     */
+    private User user;
+
+    /**
      * Az osztály paraméter nélküli konstruktora.
      */
     public Order() {
@@ -119,6 +124,26 @@ public class Order {
      */
     public void setIsCompleted(Byte isCompleted) {
         this.isCompleted = isCompleted;
+    }
+
+    /**
+     * Visszaadja a rendeléshez tartozó felhasználót.
+     *
+     * @return A rendeléshez tartozó felhasználó
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Beállítja a rendeléshez a felhasználót.
+     *
+     * @param user A rendeléshez tartozó felhasználó
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**

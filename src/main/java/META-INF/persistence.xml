@@ -3,7 +3,7 @@
 
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>hu.unideb.inf.pizza.models.Customer</class>
+        <class>hu.unideb.inf.pizza.models.User</class>
         <class>hu.unideb.inf.pizza.models.Order</class>
         <class>hu.unideb.inf.pizza.models.Pizza</class>
         <class>hu.unideb.inf.pizza.models.Topping</class>

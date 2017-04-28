@@ -1,5 +1,7 @@
 package hu.unideb.inf.pizza;
 
+import hu.unideb.inf.pizza.views.LoginViewController;
+import hu.unideb.inf.pizza.views.RegisterViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -74,10 +76,14 @@ public final class Main extends Application {
         try {
             AnchorPane loginView = loader.load();
 
+            LoginViewController controller = loader.getController();
+
             Stage dialog = new Stage();
             dialog.setTitle("Belépés");
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
+
+            controller.setStage(dialog);
 
             Scene scene = new Scene(loginView);
             dialog.setScene(scene);
@@ -95,10 +101,14 @@ public final class Main extends Application {
         try {
             AnchorPane registerView = loader.load();
 
+            RegisterViewController controller = loader.getController();
+
             Stage dialog = new Stage();
             dialog.setTitle("Regisztráció");
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.initOwner(primaryStage);
+
+            controller.setStage(dialog);
 
             Scene scene = new Scene(registerView);
             dialog.setScene(scene);

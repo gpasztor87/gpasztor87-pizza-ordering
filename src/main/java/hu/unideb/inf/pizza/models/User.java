@@ -7,56 +7,62 @@ import java.util.Collection;
  * Egy vásárlót reprezentáló osztály.
  */
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "users")
+public class User {
 
     /**
-     * A vásárló egyedi azonosítója.
+     * A felhasználó egyedi azonosítója.
      */
     private int id;
 
     /**
-     * A vásárló neve.
+     * A felhasználó neve.
      */
     private String name;
 
     /**
-     * A vásárló email címe.
+     * A felhasználó email címe.
      */
     private String email;
 
     /**
-     * A vásárló jelszava.
+     * A felhasználó jelszava.
      */
     private String password;
 
     /**
-     * A vásárló címe.
+     * A felhasználó címe.
      */
     private String address;
 
     /**
-     * A vásárló telefonszáma.
+     * A felhasználó telefonszáma.
      */
     private String phone;
 
     /**
+     * A felhasználó rendelései.
+     */
+    @OneToMany(mappedBy = "user")
+    private Collection<Order> orders;
+
+    /**
      * Az osztály paraméter nélküli konstruktora.
      */
-    public Customer() {
+    public User() {
         super();
     }
 
     /**
-     * Konstruktor egy vásárlót reprezentáló objektum létrehozására.
+     * Konstruktor egy felhasználót reprezentáló objektum létrehozására.
      *
-     * @param id        A vásárló egyedi azonosítója
-     * @param name      A vásárló neve
-     * @param email     A vásárló email címe
-     * @param address   A vásárló címe
-     * @param phone     A vásárló telefonszáma
+     * @param id        A felhasználó egyedi azonosítója
+     * @param name      A felhasználó neve
+     * @param email     A felhasználó email címe
+     * @param address   A felhasználó címe
+     * @param phone     A felhasználó telefonszáma
      */
-    public Customer(int id, String name, String email, String address, String phone) {
+    public User(int id, String name, String email, String address, String phone) {
         this.id = id;
 		this.name = name;
 		this.email = email;
@@ -65,15 +71,9 @@ public class Customer {
 	}
 
     /**
-     * A vásárló rendelései.
-     */
-    @OneToMany(mappedBy = "customer")
-    private Collection<Order> orders;
-
-    /**
-     * Visszaadja a vásárló egyedi azonosítóját.
+     * Visszaadja a felhasználó egyedi azonosítóját.
      *
-     * @return A vásárló egyedi azonosítója
+     * @return A felhasználó egyedi azonosítója
      */
     @Id
     @Column(name = "id")
@@ -82,18 +82,18 @@ public class Customer {
     }
 
     /**
-     * Beállítja a vásárló egyedi azonosítóját.
+     * Beállítja a felhasználó egyedi azonosítóját.
      *
-     * @param id A vásárló egyedi azonosítója
+     * @param id A felhasználó egyedi azonosítója
      */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     * Visszaadja a vásárló nevét.
+     * Visszaadja a felhasználó nevét.
      *
-     * @return A vásárló neve
+     * @return A felhasználó neve
      */
     @Basic
     @Column(name = "name")
@@ -102,18 +102,18 @@ public class Customer {
     }
 
     /**
-     * Beállítja a vásárló nevét.
+     * Beállítja a felhasználó nevét.
      *
-     * @param name A vásárló neve
+     * @param name A felhasználó neve
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Visszaadja a vásárló email címét.
+     * Visszaadja a felhasználó email címét.
      *
-     * @return A vásárló email címe
+     * @return A felhasználó email címe
      */
     @Basic
     @Column(name = "email")
@@ -122,18 +122,18 @@ public class Customer {
     }
 
     /**
-     * Beállítja a vásárló email címét.
+     * Beállítja a felhasználó email címét.
      *
-     * @param email A vásárló email címe
+     * @param email A felhasználó email címe
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * Visszaadja a vásárló jelszavát.
+     * Visszaadja a felhasználó jelszavát.
      *
-     * @return A vásárló jelszava
+     * @return A felhasználó jelszava
      */
     @Basic
     @Column(name = "password")
@@ -142,18 +142,18 @@ public class Customer {
     }
 
     /**
-     * Beállítja a vásárló jelszavát.
+     * Beállítja a felhasználó jelszavát.
      *
-     * @param password A vásárló jelszava
+     * @param password A felhasználó jelszava
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * Visszaadja a vásárló címét.
+     * Visszaadja a felhasználó címét.
      *
-     * @return A vásárló címe
+     * @return A felhasználó címe
      */
     @Basic
     @Column(name = "address")
@@ -162,18 +162,18 @@ public class Customer {
     }
 
     /**
-     * Beállítja a vásárló címét.
+     * Beállítja a felhasználó címét.
      *
-     * @param address A vásárló címe
+     * @param address A felhasználó címe
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
     /**
-     * Visszaadja a vásáló telefonszámát.
+     * Visszaadja a felhasználó telefonszámát.
      *
-     * @return A vásáló telefonszáma
+     * @return A felhasználó telefonszáma
      */
     @Basic
     @Column(name = "phone")
@@ -182,7 +182,7 @@ public class Customer {
     }
 
     /**
-     * Beállítja a vásárló telefonszámát.
+     * Beállítja a felhasználó telefonszámát.
      *
      * @param phone A vásáló telefonszáma
      */
@@ -191,9 +191,9 @@ public class Customer {
     }
 
     /**
-     * Visszaadja a vásárló rendeléseit.
+     * Visszaadja a felhasználó rendeléseit.
      *
-     * @return A vásárló rendelései
+     * @return A felhasználó rendelései
      */
     public Collection<Order> getOrders() {
         return orders;
