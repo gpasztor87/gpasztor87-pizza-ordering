@@ -17,9 +17,11 @@
 	</developers>
 
 	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-		<mainClass>hu.unideb.inf.pizza.App</mainClass>
+		<mainClass>hu.unideb.inf.pizza.Main</mainClass>
 	</properties>
 
     <dependencies>

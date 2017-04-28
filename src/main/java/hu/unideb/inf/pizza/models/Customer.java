@@ -3,20 +3,41 @@ package hu.unideb.inf.pizza.models;
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * Egy vásárlót reprezentáló osztály.
+ */
 @Entity
 @Table(name = "customers")
 public class Customer {
 
+    /**
+     * A vásárló egyedi azonosítója.
+     */
     private int id;
 
+    /**
+     * A vásárló neve.
+     */
     private String name;
 
+    /**
+     * A vásárló email címe.
+     */
     private String email;
 
+    /**
+     * A vásárló jelszava.
+     */
     private String password;
 
+    /**
+     * A vásárló címe.
+     */
     private String address;
 
+    /**
+     * A vásárló telefonszáma.
+     */
     private String phone;
 
     /**
@@ -43,6 +64,9 @@ public class Customer {
 		this.phone = phone;
 	}
 
+    /**
+     * A vásárló rendelései.
+     */
     @OneToMany(mappedBy = "customer")
     private Collection<Order> orders;
 
@@ -106,36 +130,71 @@ public class Customer {
         this.email = email;
     }
 
+    /**
+     * Visszaadja a vásárló jelszavát.
+     *
+     * @return A vásárló jelszava
+     */
     @Basic
     @Column(name = "password")
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Beállítja a vásárló jelszavát.
+     *
+     * @param password A vásárló jelszava
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Visszaadja a vásárló címét.
+     *
+     * @return A vásárló címe
+     */
     @Basic
     @Column(name = "address")
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Beállítja a vásárló címét.
+     *
+     * @param address A vásárló címe
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
+    /**
+     * Visszaadja a vásáló telefonszámát.
+     *
+     * @return A vásáló telefonszáma
+     */
     @Basic
     @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
 
+    /**
+     * Beállítja a vásárló telefonszámát.
+     *
+     * @param phone A vásáló telefonszáma
+     */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    /**
+     * Visszaadja a vásárló rendeléseit.
+     *
+     * @return A vásárló rendelései
+     */
     public Collection<Order> getOrders() {
         return orders;
     }
