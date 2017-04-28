@@ -3,10 +3,16 @@ package hu.unideb.inf.pizza.models;
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * Egy rendelést reprezentáló osztály.
+ */
 @Entity
 @Table(name = "orders")
 public class Order {
 
+    /**
+     * A rendelés egyedi azonosítója.
+     */
     private int id;
 
     private String comment;

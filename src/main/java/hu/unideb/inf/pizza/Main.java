@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,8 +74,15 @@ public final class Main extends Application {
         try {
             AnchorPane loginView = loader.load();
 
-            Scene scene = new Scene(loginView);
+            Stage dialog = new Stage();
+            dialog.setTitle("Belépés");
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
 
+            Scene scene = new Scene(loginView);
+            dialog.setScene(scene);
+
+            dialog.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,7 +95,15 @@ public final class Main extends Application {
         try {
             AnchorPane registerView = loader.load();
 
+            Stage dialog = new Stage();
+            dialog.setTitle("Regisztráció");
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(primaryStage);
+
             Scene scene = new Scene(registerView);
+            dialog.setScene(scene);
+
+            dialog.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

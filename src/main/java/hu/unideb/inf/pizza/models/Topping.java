@@ -9,8 +9,14 @@ import javax.persistence.*;
 @Table(name = "toppings")
 public class Topping {
 
+    /**
+     * A feltét egyedi azonosítója.
+     */
     private Integer id;
 
+    /**
+     * A feltét neve.
+     */
     private String name;
 
     /**

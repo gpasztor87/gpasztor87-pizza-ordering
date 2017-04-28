@@ -3,22 +3,46 @@ package hu.unideb.inf.pizza.models;
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * Egy pizzát reprezentáló osztály.
+ */
 @Entity
 @Table(name = "pizzas")
 public class Pizza {
 
+    /**
+     * A pizza egyedi azonosítója.
+     */
     private Integer id;
 
+    /**
+     * A pizza neve.
+     */
     private String name;
 
+    /**
+     * A pizza leírása.
+     */
     private String description;
 
+    /**
+     * A pizza mérete.
+     */
     private String size;
 
+    /**
+     * A pizza ára.
+     */
     private double price;
 
+    /**
+     * A pizza képének helye.
+     */
     private String imageUrl;
 
+    /**
+     * A pizza feltétei.
+     */
     private Collection<Topping> toppings;
 
     private Collection<Order> orders;
@@ -39,41 +63,81 @@ public class Pizza {
 		this.toppings = toppings;
 	}
 
+    /**
+     * Visszaadja a pizza egyedi azonosítóját.
+     *
+     * @return A pizza egyedi azonosítója
+     */
     @Id
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Beállítja a pizza egyedi azonosítóját.
+     *
+     * @param id A pizza egyedi azonosítója
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Viisszaadja apizza nevét.
+     *
+     * @return A pizza neve
+     */
     @Basic
     @Column(name = "name")
     public String getName() {
         return name;
     }
 
+    /**
+     * Beállítja a pizza nevét.
+     *
+     * @param name A pizza neve
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Visszaadja a pizza leírását.
+     *
+     * @return A pizaz leírása
+     */
     @Basic
     @Column(name = "description")
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Beállítja a pizza leírását.
+     *
+     * @param description A pizza leírása
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Visszaadja a pizza méretét.
+     *
+     * @return A pizza mérete
+     */
     @Basic
     @Column(name = "size")
     public String getSize() {
         return size;
     }
 
+    /**
+     * Beállítja a pizza méretét.
+     *
+     * @param size A pizza mérete
+     */
     public void setSize(String size) {
         this.size = size;
     }
