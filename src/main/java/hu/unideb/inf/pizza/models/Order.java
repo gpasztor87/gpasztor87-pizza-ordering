@@ -15,83 +15,128 @@ public class Order {
      */
     private int id;
 
+    /**
+     * A rendeléshez tartozó megjegyzés.
+     */
     private String comment;
 
+    /**
+     * A rendelés végösszege.
+     */
     private double totalPrice;
 
-    private String paymentType;
+    /**
+     * Lezárult-e a rendelés?
+     */
+    private Byte isCompleted;
 
-    private Byte completed;
-
+    /**
+     * A rendeléshez tartozó pizzák.
+     */
     private Collection<Pizza> pizzas;
 
-    private Customer customer;
+    /**
+     * Az osztály paraméter nélküli konstruktora.
+     */
+    public Order() {
+        super();
+    }
 
+    /**
+     * Visszaadja a rendelés egyedi azonosítóját.
+     *
+     * @return A rendelés egyedi azonosítója
+     */
     @Id
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Beállítja a rendelés egyedi azonosítóját.
+     *
+     * @param id A rendelés egyedi azonosítója
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Visszaadja a rendeléshez tartozó megjegyzést.
+     *
+     * @return A megrendeléshez tartozó megjegyzés
+     */
     @Basic
     @Column(name = "comment")
     public String getComment() {
         return comment;
     }
 
+    /**
+     * Beállítja a rendeléshez tartozó megjegyzést.
+     *
+     * @param comment A megrendeléshez tartozó megjegyzés
+     */
     public void setComment(String comment) {
         this.comment = comment;
     }
 
+    /**
+     * Visszaadja a rendelés végösszegét.
+     *
+     * @return A rendelés végösszege
+     */
     @Basic
     @Column(name = "total_price")
     public double getTotalPrice() {
         return totalPrice;
     }
 
+    /**
+     * Beállítja a rendelés végösszegét.
+     *
+     * @param totalPrice A rendelés végösszege
+     */
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
+    /**
+     * Visszaadja, hogy lezárult-e a rendelés.
+     *
+     * @return Lezárt-e a rendelés?
+     */
     @Basic
-    @Column(name = "payment_type")
-    public String getPaymentType() {
-        return paymentType;
+    @Column(name = "is_completed")
+    public Byte getIsCompleted() {
+        return isCompleted;
     }
 
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
+    /**
+     * Beállítja, hogy lezárt-e a rendelés.
+     *
+     * @param isCompleted Lezárt-e a rendelés?
+     */
+    public void setIsCompleted(Byte isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
-    @Basic
-    @Column(name = "completed")
-    public Byte getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Byte completed) {
-        this.completed = completed;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
+    /**
+     * Visszaadja a rendeléshez tartozó pizzákat.
+     *
+     * @return A rendeléshez tartozó pizzák
+     */
     @ManyToMany
     @JoinTable(name = "orders_has_pizzas")
     public Collection<Pizza> getPizzas() {
         return pizzas;
     }
 
+    /**
+     * Beállítja a rendeléshez tartozó pizzákat.
+     *
+     * @param pizzas A rendeléshez tartozó pizzák
+     */
     public void setPizzas(Collection<Pizza> pizzas) {
         this.pizzas = pizzas;
     }

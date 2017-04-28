@@ -36,16 +36,14 @@ public class Pizza {
     private double price;
 
     /**
-     * A pizza képének helye.
+     * A pizza képének az elérési útvonala.
      */
-    private String imageUrl;
+    private String imagePath;
 
     /**
      * A pizza feltétei.
      */
     private Collection<Topping> toppings;
-
-    private Collection<Order> orders;
 
     /**
      * Az osztály paraméter nélküli konstruktora.
@@ -54,12 +52,22 @@ public class Pizza {
         super();
     }
 
-    public Pizza(String name, String description, String size, double price, String imageUrl, Collection<Topping> toppings) {
+    /**
+     * Konstruktor egy pizzát reprezentáló osztály létrehozására.
+     *
+     * @param name A pizza neve
+     * @param description A pizza leírása
+     * @param size A pizza mérete
+     * @param price A pizza ára
+     * @param imagePath A pizza képének elérési útvonala
+     * @param toppings A pizza feltétei
+     */
+    public Pizza(String name, String description, String size, double price, String imagePath, Collection<Topping> toppings) {
 		this.name = name;
 		this.description = description;
 		this.size = size;
 		this.price = price;
-		this.imageUrl = imageUrl;
+		this.imagePath = imagePath;
 		this.toppings = toppings;
 	}
 
@@ -83,7 +91,7 @@ public class Pizza {
     }
 
     /**
-     * Viisszaadja apizza nevét.
+     * Visszaadja a pizza nevét.
      *
      * @return A pizza neve
      */
@@ -105,7 +113,7 @@ public class Pizza {
     /**
      * Visszaadja a pizza leírását.
      *
-     * @return A pizaz leírása
+     * @return A pizza leírása
      */
     @Basic
     @Column(name = "description")
@@ -142,43 +150,64 @@ public class Pizza {
         this.size = size;
     }
 
+    /**
+     * Visszaadja a pizza árát.
+     *
+     * @return A pizza ára
+     */
     @Basic
     @Column(name = "price")
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Beállítja a pizza árát.
+     *
+     * @param price A pizza ára
+     */
     public void setPrice(double price) {
         this.price = price;
     }
 
+    /**
+     * Visszaadja a pizza képének elérési útvonalát.
+     *
+     * @return A pizza képének elérési útvonala
+     */
     @Basic
-    @Column(name = "image_url")
-    public String getImageUrl() {
-        return imageUrl;
+    @Column(name = "image_path")
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    /**
+     * Beállítja a pizza elérési útvonalát.
+     *
+     * @param imagePath A pizza képének elérési útvonala
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
+    /**
+     * Visszaadja a pizza feltéteit.
+     *
+     * @return A pizza feltétei
+     */
     @ManyToMany
     @JoinTable(name = "pizzas_has_toppings")
     public Collection<Topping> getToppings() {
         return toppings;
     }
 
+    /**
+     * Beállítja a pizza feltéteit.
+     *
+     * @param toppings A pizza feltétei
+     */
     public void setToppings(Collection<Topping> toppings) {
         this.toppings = toppings;
-    }
-
-    @ManyToMany(mappedBy = "pizzas")
-    public Collection<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Collection<Order> orders) {
-        this.orders = orders;
     }
 
 }
