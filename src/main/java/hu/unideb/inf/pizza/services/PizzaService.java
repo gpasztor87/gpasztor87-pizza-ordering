@@ -7,18 +7,22 @@ import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
 import java.util.List;
 
 /**
- *
+ * A PizzaService interfészt megvalósító osztály.
  */
 public class PizzaService implements PizzaServiceInterface {
 
-    private static PizzaDao pizzaDao;
+    /**
+     * DAO objektum az adatbázis kezeléséhez.
+     */
+    private PizzaDao pizzaDao = new PizzaDao();
 
-    public PizzaService() {
-        pizzaDao = new PizzaDao();
-    }
-
+    /**
+     * Visszaadja az összes pizzát.
+     *
+     * @return Az összes {@link Pizza} pizza
+     */
+    @Override
     public List<Pizza> getAllPizza() {
         return pizzaDao.findAll();
     }
-
 }

@@ -6,6 +6,7 @@ import hu.unideb.inf.pizza.models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -13,6 +14,9 @@ import java.util.List;
  */
 public class OrderDao implements OrderDaoInterface {
 
+    /**
+     * Az EntityManager egy példánya.
+     */
     private EntityManager entityManager;
 
     @PersistenceContext
@@ -70,6 +74,10 @@ public class OrderDao implements OrderDaoInterface {
      */
     @Override
     public List<Order> findByUser(User user) {
-        return null;
+        TypedQuery<Order> query = getEntityManager().createQuery(
+            "SELECT  o FROM Order o WHERE user.id = :user_id", Order.class
+        );
+
+        return query.setParameter("user_id", user.getId()).getResultList();
     }
 }

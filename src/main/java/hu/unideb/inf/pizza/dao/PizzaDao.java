@@ -9,10 +9,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- *
+ * A Pizza DAO interfészt megvalósító osztály.
  */
 public class PizzaDao implements PizzaDaoInterface {
 
+    /**
+     * Az EntityManager egy példánya.
+     */
     private EntityManager entityManager;
 
     @PersistenceContext

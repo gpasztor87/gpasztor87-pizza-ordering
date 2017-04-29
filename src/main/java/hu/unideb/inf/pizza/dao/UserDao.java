@@ -7,10 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * A User DAO interfészt megvalósító osztály.
  */
 public class UserDao implements UserDaoInterface {
 
+    /**
+     * Az EntityManager egy példánya.
+     */
     private EntityManager entityManager;
 
     @PersistenceContext
