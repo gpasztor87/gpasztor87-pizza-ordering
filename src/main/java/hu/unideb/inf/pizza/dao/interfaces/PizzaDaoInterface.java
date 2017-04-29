@@ -31,6 +31,14 @@ public interface PizzaDaoInterface {
     void delete(Pizza pizza);
 
     /**
+     * Lekér az adatbázisból egy pizzát az egyedi azonosítója alapján.
+     *
+     * @param id A pizza egyedi azonosítója
+     * @return Egy pizzát reprezentáló {@link Pizza} osztály
+     */
+    Pizza findById(int id);
+
+    /**
      * Visszaadja az összes pizzát az adatbázisból.
      *
      * @return Az összes {@link Pizza} pizza

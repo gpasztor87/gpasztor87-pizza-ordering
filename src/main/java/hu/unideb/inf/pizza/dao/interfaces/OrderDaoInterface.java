@@ -32,6 +32,14 @@ public interface OrderDaoInterface {
     void delete(Order order);
 
     /**
+     * Lekér az adatbázisból egy rendelést az egyedi azonosítója alapján.
+     *
+     * @param id A rendelés egyedi azonosítója
+     * @return Egy rendelést reprezentáló {@link Order} osztály
+     */
+    Order findById(int id);
+
+    /**
      * Visszaadja a paraméterül kapott felhasználó rendeléseit.
      *
      * @param user A keresett {@link User} felhasználó
