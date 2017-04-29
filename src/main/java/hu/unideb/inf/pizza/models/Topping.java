@@ -1,13 +1,14 @@
 package hu.unideb.inf.pizza.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Egy feltétet reprezentáló osztály.
  */
 @Entity
 @Table(name = "toppings")
-public class Topping {
+public class Topping implements Serializable {
 
     /**
      * A feltét egyedi azonosítója.

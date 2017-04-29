@@ -2,6 +2,7 @@ package hu.unideb.inf.pizza;
 
 import hu.unideb.inf.pizza.views.LoginViewController;
 import hu.unideb.inf.pizza.views.RegisterViewController;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,12 +53,15 @@ public final class Main extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("PizzaRendelő");
 
-        loadRootView();
+        initRootView();
     }
 
-    private void loadRootView() {
+    /**
+     * Inicializálja a fő layout-ot.
+     */
+    private void initRootView() {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("views/RootView.fxml"));
+        loader.setLocation(Main.class.getResource("/views/RootView.fxml"));
 
         try {
             rootView = (BorderPane) loader.load();
@@ -69,6 +74,9 @@ public final class Main extends Application {
         }
     }
 
+    /**
+     * Betölti a belépési modális ablakot.
+     */
     public void loadLoginView() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("views/LoginView.fxml"));
@@ -94,6 +102,9 @@ public final class Main extends Application {
         }
     }
 
+    /**
+     * Betölti a regisztrációs modális ablakot.
+     */
     public void loadRegisterView() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("views/RegisterView.fxml"));

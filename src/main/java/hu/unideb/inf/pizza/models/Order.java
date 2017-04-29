@@ -1,6 +1,7 @@
 package hu.unideb.inf.pizza.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
 
     /**
      * A rendelés egyedi azonosítója.
