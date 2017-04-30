@@ -2,13 +2,9 @@
 <module name="Checker">
     <module name="JavadocPackage"/>
     <module name="TreeWalker">
-        <module name="JavaDocType"/>
-        <module name="JavaDocMethod">
-            <property name="scope" value="public"/>
-        </module>
-        <module name="JavaDocVariable">
-            <property name="scope" value="public"/>
-        </module>
-        <module name="JavaDocStyle"/>
+        <module name="JavadocType"/>
+        <module name="JavadocMethod"/>
+        <module name="JavadocVariable"/>
+        <module name="JavadocStyle"/>
     </module>
 </module>

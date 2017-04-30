@@ -1,12 +1,12 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.models.Pizza;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -74,6 +75,11 @@ public class MainViewController implements Initializable {
     @FXML
     private MenuItem ordersMenuItem;
 
+    /**
+     * A kosarat tartalmazó lista.
+     */
+    private ArrayList<Pizza> cart = new ArrayList<Pizza>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -84,9 +90,11 @@ public class MainViewController implements Initializable {
     /**
      * Létrehozza és inicializálja a főablakot.
      *
-     * @param stage A szülő stage
+     * @param primaryStage A szülő stage
      */
-    public static void loadView(Stage stage) {
+    public static void loadView(Stage primaryStage) {
+        stage = primaryStage;
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainViewController.class.getResource("/views/MainView.fxml"));
 
@@ -108,20 +116,7 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void loginMenuHandler() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainViewController.class.getResource("/views/LoginView.fxml"));
-
-        try {
-            AnchorPane  loginPane = loader.load();
-
-            Scene scene = new Scene(loginPane);
-
-
-        } catch (IOException e) {
-            logger.error(
-                "IO exception has occurred in " + MainViewController.class + " loading loginDialog: " + e.getMessage()
-            );
-        }
+        LoginViewController.loadView(menuBar.getScene().getWindow());
     }
 
     /**
@@ -129,19 +124,7 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void registerMenuHandler() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainViewController.class.getResource("/views/RegisterView.fxml"));
-
-        try {
-            AnchorPane registerPane = loader.load();
-
-            Scene scene = new Scene(registerPane);
-
-        } catch (IOException e) {
-            logger.error(
-                "IO exception has occurred in " + MainViewController.class + " loading registerDialog: " + e.getMessage()
-            );
-        }
+        RegisterViewController.loadView(menuBar.getScene().getWindow());
     }
 
     /**
@@ -149,9 +132,7 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void profileMenuHandler() {
-        FXMLLoader loader = new FXMLLoader();
-
-        //
+        ProfileViewController.loadView(menuBar.getScene().getWindow());
     }
 
     /**
