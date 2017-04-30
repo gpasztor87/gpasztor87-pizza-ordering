@@ -6,9 +6,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * A regisztrációt biztosító felhasználói felületet vezérlő osztály.
+ * A felhasználói adatokat módosító felhasználói felületet vezérő osztály.
  */
-public class RegisterViewController implements Initializable {
+public class ProfileViewController implements Initializable {
 
 
     @Override

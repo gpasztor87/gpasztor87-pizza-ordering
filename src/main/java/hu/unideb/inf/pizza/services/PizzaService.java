@@ -16,11 +16,6 @@ public class PizzaService implements PizzaServiceInterface {
      */
     private PizzaDao pizzaDao = new PizzaDao();
 
-    /**
-     * Visszaadja az összes pizzát.
-     *
-     * @return Az összes {@link Pizza} pizza
-     */
     @Override
     public List<Pizza> getAllPizza() {
         return pizzaDao.findAll();

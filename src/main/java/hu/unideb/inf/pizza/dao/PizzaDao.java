@@ -23,46 +23,26 @@ public class PizzaDao implements PizzaDaoInterface {
         return entityManager;
     }
 
-    /**
-     *
-     * @param pizza A menteni kívánt {@link Pizza} pizza
-     */
+    @Override
     public void create(Pizza pizza) {
         getEntityManager().persist(pizza);
     }
 
-    /**
-     *
-     * @param pizza A módosítandó {@link Pizza} pizza
-     */
+    @Override
     public void update(Pizza pizza) {
         getEntityManager().merge(pizza);
     }
 
-    /**
-     *
-     * @param pizza A törlendő {@link Pizza} pizza
-     */
+    @Override
     public void delete(Pizza pizza) {
         getEntityManager().remove(pizza);
     }
 
-    /**
-     * Lekér az adatbázisból egy pizzát az egyedi azonosítója alapján.
-     *
-     * @param id A pizza egyedi azonosítója
-     * @return Egy pizzát reprezentáló {@link Pizza} osztály
-     */
     @Override
     public Pizza findById(int id) {
         return getEntityManager().find(Pizza.class, id);
     }
 
-    /**
-     * Visszaadja az összes pizzát az adatbázisból.
-     *
-     * @return Az összes {@link Pizza} pizza
-     */
     @Override
     public List<Pizza> findAll() {
         Query query = getEntityManager().createQuery("SELECT p FROM Pizza as p");

@@ -21,40 +21,22 @@ public class UserDao implements UserDaoInterface {
         return entityManager;
     }
 
-    /**
-     * Elmenti a paraméterül kapott felhasználó az adatbázisba.
-     *
-     * @param user A menteni kívánt {@link User} felhasználó
-     */
+    @Override
     public void create(User user) {
         getEntityManager().persist(user);
     }
 
-    /**
-     * Módosítja a paraméterül kapott felhasználó adatait.
-     *
-     * @param user A módosítandó {@link User} felhasználó
-     */
+    @Override
     public void update(User user) {
         getEntityManager().merge(user);
     }
 
-    /**
-     * Lekér az adatbázisból egy felhasználót az email címe alapján.
-     *
-     * @param email A felhasználó email címe
-     * @return Egy felhasználót reprezentáló {@link User} osztály
-     */
+    @Override
     public User findByEmail(String email) {
         return getEntityManager().find(User.class, email);
     }
 
-    /**
-     * Lekér az adatbázisból egy felhasználót az egyedi azonosítója alapján.
-     *
-     * @param id A felhasználó egyedi azonosítója
-     * @return Egy felhasználót reprezentáló {@link User} osztály
-     */
+    @Override
     public User findById(int id) {
         return getEntityManager().find(User.class, id);
     }

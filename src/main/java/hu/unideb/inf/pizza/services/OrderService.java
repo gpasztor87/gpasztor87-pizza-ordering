@@ -17,12 +17,6 @@ public class OrderService implements OrderServiceInterface {
      */
     private OrderDao orderDao = new OrderDao();
 
-    /**
-     * Visszaadja a paraméterül kapott felhasználó rendeléseit.
-     *
-     * @param user Egy {@link User} felhasználó
-     * @return A felhasználó {@link Order} rendelései
-     */
     @Override
     public List<Order> getUserOrders(User user) {
         return orderDao.findByUser(user);
