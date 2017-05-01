@@ -34,7 +34,7 @@ public class Pizza implements Serializable {
     /**
      * A pizza ára.
      */
-    private double price;
+    private int price;
 
     /**
      * A pizza képének az elérési útvonala.
@@ -63,8 +63,8 @@ public class Pizza implements Serializable {
      * @param imagePath A pizza képének elérési útvonala
      * @param toppings A pizza feltétei
      */
-    public Pizza(String name, String description, String size, double price, String imagePath, Collection<Topping> toppings) {
-		this.name = name;
+    public Pizza(String name, String description, String size, int price, String imagePath, Collection<Topping> toppings) {
+        this.name = name;
 		this.description = description;
 		this.size = size;
 		this.price = price;
@@ -158,7 +158,7 @@ public class Pizza implements Serializable {
      */
     @Basic
     @Column(name = "price")
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -167,7 +167,7 @@ public class Pizza implements Serializable {
      *
      * @param price A pizza ára
      */
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
