@@ -2,7 +2,6 @@ package hu.unideb.inf.pizza.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * Egy pizzát reprezentáló osztály.
@@ -27,11 +26,6 @@ public class Pizza implements Serializable {
     private String description;
 
     /**
-     * A pizza mérete.
-     */
-    private String size;
-
-    /**
      * A pizza ára.
      */
     private int price;
@@ -40,11 +34,6 @@ public class Pizza implements Serializable {
      * A pizza képének az elérési útvonala.
      */
     private String imagePath;
-
-    /**
-     * A pizza feltétei.
-     */
-    private Collection<Topping> toppings;
 
     /**
      * Az osztály paraméter nélküli konstruktora.
@@ -58,18 +47,14 @@ public class Pizza implements Serializable {
      *
      * @param name A pizza neve
      * @param description A pizza leírása
-     * @param size A pizza mérete
      * @param price A pizza ára
      * @param imagePath A pizza képének elérési útvonala
-     * @param toppings A pizza feltétei
      */
-    public Pizza(String name, String description, String size, int price, String imagePath, Collection<Topping> toppings) {
+    public Pizza(String name, String description, int price, String imagePath) {
         this.name = name;
 		this.description = description;
-		this.size = size;
 		this.price = price;
 		this.imagePath = imagePath;
-		this.toppings = toppings;
 	}
 
     /**
@@ -132,26 +117,6 @@ public class Pizza implements Serializable {
     }
 
     /**
-     * Visszaadja a pizza méretét.
-     *
-     * @return A pizza mérete
-     */
-    @Basic
-    @Column(name = "size")
-    public String getSize() {
-        return size;
-    }
-
-    /**
-     * Beállítja a pizza méretét.
-     *
-     * @param size A pizza mérete
-     */
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    /**
      * Visszaadja a pizza árát.
      *
      * @return A pizza ára
@@ -190,25 +155,4 @@ public class Pizza implements Serializable {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-
-    /**
-     * Visszaadja a pizza feltéteit.
-     *
-     * @return A pizza feltétei
-     */
-    @ManyToMany
-    @JoinTable(name = "pizzas_has_toppings")
-    public Collection<Topping> getToppings() {
-        return toppings;
-    }
-
-    /**
-     * Beállítja a pizza feltéteit.
-     *
-     * @param toppings A pizza feltétei
-     */
-    public void setToppings(Collection<Topping> toppings) {
-        this.toppings = toppings;
-    }
-
 }
