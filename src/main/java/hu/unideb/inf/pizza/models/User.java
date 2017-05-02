@@ -2,7 +2,7 @@ package hu.unideb.inf.pizza.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Egy vásárlót reprezentáló osztály.
@@ -44,8 +44,7 @@ public class User implements Serializable {
     /**
      * A felhasználó rendelései.
      */
-    @OneToMany(mappedBy = "user")
-    private Collection<Order> orders;
+    private List<Order> orders;
 
     /**
      * Az osztály paraméter nélküli konstruktora.
@@ -78,6 +77,7 @@ public class User implements Serializable {
      */
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -196,8 +196,17 @@ public class User implements Serializable {
      *
      * @return A felhasználó rendelései
      */
-    public Collection<Order> getOrders() {
+    @OneToMany(mappedBy = "user")
+    public List<Order> getOrders() {
         return orders;
     }
 
+    /**
+     * Beállítja a felhasználó rendeléseit.
+     *
+     * @param orders A felhasználó rendelései
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }

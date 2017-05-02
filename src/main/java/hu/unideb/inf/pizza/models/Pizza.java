@@ -63,6 +63,8 @@ public class Pizza implements Serializable {
      * @return A pizza egyedi azonosítója
      */
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

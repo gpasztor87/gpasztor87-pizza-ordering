@@ -54,6 +54,8 @@ public class Order implements Serializable {
      * @return A rendelés egyedi azonosítója
      */
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
