@@ -21,6 +21,10 @@ public class UserDao implements UserDaoInterface {
         return entityManager;
     }
 
+    public UserDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
     public void create(User user) {
         getEntityManager().persist(user);

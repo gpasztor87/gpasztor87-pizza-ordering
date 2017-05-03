@@ -24,6 +24,10 @@ public class OrderDao implements OrderDaoInterface {
         return entityManager;
     }
 
+    public OrderDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
     public void create(Order order) {
         getEntityManager().persist(order);
