@@ -4,7 +4,6 @@ import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
 import hu.unideb.inf.pizza.models.Pizza;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -18,38 +17,33 @@ public class PizzaDao implements PizzaDaoInterface {
      */
     private EntityManager entityManager;
 
-    @PersistenceContext
-    private EntityManager getEntityManager() {
-        return entityManager;
-    }
-
     public PizzaDao(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     public void create(Pizza pizza) {
-        getEntityManager().persist(pizza);
+        entityManager.persist(pizza);
     }
 
     @Override
     public void update(Pizza pizza) {
-        getEntityManager().merge(pizza);
+        entityManager.merge(pizza);
     }
 
     @Override
     public void delete(Pizza pizza) {
-        getEntityManager().remove(pizza);
+        entityManager.remove(pizza);
     }
 
     @Override
     public Pizza findById(int id) {
-        return getEntityManager().find(Pizza.class, id);
+        return entityManager.find(Pizza.class, id);
     }
 
     @Override
     public List<Pizza> findAll() {
-        TypedQuery<Pizza> query = getEntityManager().createQuery("SELECT p FROM Pizza as p", Pizza.class);
+        TypedQuery<Pizza> query = entityManager.createQuery("SELECT p FROM Pizza as p", Pizza.class);
         return query.getResultList();
     }
 

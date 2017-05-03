@@ -4,7 +4,6 @@ import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
 import hu.unideb.inf.pizza.models.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  * A User DAO interfészt megvalósító osztály.
@@ -16,33 +15,28 @@ public class UserDao implements UserDaoInterface {
      */
     private EntityManager entityManager;
 
-    @PersistenceContext
-    private EntityManager getEntityManager() {
-        return entityManager;
-    }
-
     public UserDao(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     public void create(User user) {
-        getEntityManager().persist(user);
+        entityManager.persist(user);
     }
 
     @Override
     public void update(User user) {
-        getEntityManager().merge(user);
+        entityManager.merge(user);
     }
 
     @Override
     public User findByEmail(String email) {
-        return getEntityManager().find(User.class, email);
+        return entityManager.find(User.class, email);
     }
 
     @Override
     public User findById(int id) {
-        return getEntityManager().find(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
 }

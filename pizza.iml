@@ -14,6 +14,7 @@
         <datasource-mapping>
           <factory-entry name="Entities" value="cc32201f-137f-4112-bfb7-f5de3263729c" />
           <factory-entry name="production" value="67832109-f5eb-4363-927a-fd6bd5445e18" />
+          <factory-entry name="testing" value="44134cef-d43f-428d-8ed7-c9c97a7a139d" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

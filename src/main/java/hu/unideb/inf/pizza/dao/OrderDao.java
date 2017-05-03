@@ -5,7 +5,6 @@ import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -19,38 +18,33 @@ public class OrderDao implements OrderDaoInterface {
      */
     private EntityManager entityManager;
 
-    @PersistenceContext
-    private EntityManager getEntityManager() {
-        return entityManager;
-    }
-
     public OrderDao(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     public void create(Order order) {
-        getEntityManager().persist(order);
+        entityManager.persist(order);
     }
 
     @Override
     public void update(Order order) {
-        getEntityManager().merge(order);
+        entityManager.merge(order);
     }
 
     @Override
     public void delete(Order order) {
-        getEntityManager().remove(order);
+        entityManager.remove(order);
     }
 
     @Override
     public Order findById(int id) {
-        return getEntityManager().find(Order.class, id);
+        return entityManager.find(Order.class, id);
     }
 
     @Override
     public List<Order> findByUser(User user) {
-        TypedQuery<Order> query = getEntityManager().createQuery(
+        TypedQuery<Order> query = entityManager.createQuery(
             "SELECT  o FROM Order o WHERE user.id = :user_id", Order.class
         );
 

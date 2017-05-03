@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.pizza.views.MainViewController">
    <top>
@@ -43,7 +48,25 @@
                              AnchorPane.topAnchor="0.0"/>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <children>
+                    <TableView layoutX="13.0" layoutY="207.0" prefHeight="200.0" prefWidth="289.0">
+                        <columns>
+                            <TableColumn prefWidth="75.0" text="Pizza"/>
+                            <TableColumn prefWidth="75.0" text="Ár"/>
+                        </columns>
+                    </TableView>
+                    <Label layoutX="14.0" layoutY="181.0" text="A kosár tartalma:"/>
+                    <Label layoutX="85.0" layoutY="70.0" text="Rocket Pizza">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="100.0" layoutY="427.0" text="0 Ft"/>
+                    <Button layoutX="196.0" layoutY="422.0" mnemonicParsing="false" text="Megrendelelm"/>
+                    <Label layoutX="14.0" layoutY="427.0" text="Végösszeg:"/>
+                </children>
+            </AnchorPane>
         </items>
       </SplitPane>
    </center>
