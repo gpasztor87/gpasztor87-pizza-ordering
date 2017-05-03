@@ -12,29 +12,33 @@
    <top>
       <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+            <Menu mnemonicParsing="false" text="Fájl">
             <items>
-                <MenuItem fx:id="loginMenuItem" mnemonicParsing="false" text="Belépés" onAction="#loginMenuHandler" />
-                <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" text="Regisztráció" onAction="#registerMenuHandler" />
-                <MenuItem fx:id="profileMenuItem" mnemonicParsing="false" text="Profilom" onAction="#profileMenuHandler" />
-                <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" text="Kijelentkezés" onAction="#logoutMenuHandler" />
-                <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" text="Kilépés" onAction="#exitMenuHandler" />
+                <MenuItem fx:id="loginMenuItem" mnemonicParsing="false" onAction="#loginMenuHandler" text="Belépés"/>
+                <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" onAction="#registerMenuHandler"
+                          text="Regisztráció"/>
+                <MenuItem fx:id="profileMenuItem" mnemonicParsing="false" onAction="#profileMenuHandler"
+                          text="Profilom"/>
+                <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logoutMenuHandler"
+                          text="Kijelentkezés"/>
+                <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#exitMenuHandler" text="Kilépés"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Rendelések">
             <items>
-              <MenuItem mnemonicParsing="false" text="Rendeléseim" />
+                <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Rendeléseim"/>
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
-      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+       <SplitPane dividerPositions="0.600250626566416" prefHeight="160.0" prefWidth="200.0"
+                  BorderPane.alignment="CENTER">
         <items>
             <AnchorPane fx:id="pizzaListPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                   <ListView fx:id="pizzaListView" layoutX="-3.0" layoutY="-2.0" prefHeight="470.0" prefWidth="400.0"
+                   <ListView fx:id="pizzaListView" layoutX="-3.0" layoutY="-2.0" prefHeight="470.0" prefWidth="500.0"
                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0"
                              AnchorPane.topAnchor="0.0"/>
                </children>
