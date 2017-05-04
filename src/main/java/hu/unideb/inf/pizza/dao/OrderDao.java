@@ -4,7 +4,11 @@ import hu.unideb.inf.pizza.dao.interfaces.OrderDaoInterface;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -12,6 +16,11 @@ import java.util.List;
  * Az Order DAO interfészt megvalósító osztály.
  */
 public class OrderDao implements OrderDaoInterface {
+
+    /**
+     * A logger egy példánya.
+     */
+    private static Logger logger = LoggerFactory.getLogger(OrderDao.class);
 
     /**
      * Az EntityManager egy példánya.
@@ -48,6 +57,11 @@ public class OrderDao implements OrderDaoInterface {
             "SELECT  o FROM Order o WHERE user.id = :user_id", Order.class
         );
 
-        return query.setParameter("user_id", user.getId()).getResultList();
+        try {
+            return query.setParameter("user_id", user.getId()).getResultList();
+        } catch (NoResultException e) {
+            logger.error("No query result for the given user.");
+            return null;
+        }
     }
 }

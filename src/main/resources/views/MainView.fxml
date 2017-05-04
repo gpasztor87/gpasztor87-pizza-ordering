@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.pizza.views.MainViewController">
    <top>
-      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+       <MenuBar prefHeight="25.0" prefWidth="800.0" fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
             <Menu mnemonicParsing="false" text="Fájl">
             <items>
@@ -24,36 +24,31 @@
                           text="Regisztráció"/>
                 <MenuItem fx:id="profileMenuItem" mnemonicParsing="false" onAction="#profileMenuHandler"
                           text="Profilom"/>
+                <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Rendeléseim"/>
                 <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logoutMenuHandler"
                           text="Kijelentkezés"/>
                 <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#exitMenuHandler" text="Kilépés"/>
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Rendelések">
-            <items>
-                <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Rendeléseim"/>
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
-       <SplitPane dividerPositions="0.600250626566416" prefHeight="160.0" prefWidth="200.0"
-                  BorderPane.alignment="CENTER">
+       <SplitPane prefHeight="475.0" dividerPositions="0.600250626566416" BorderPane.alignment="CENTER">
         <items>
-            <AnchorPane fx:id="pizzaListPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane fx:id="pizzaListPane" minHeight="0.0" minWidth="0.0">
                <children>
-                   <ListView fx:id="pizzaListView" layoutX="-3.0" layoutY="-2.0" prefHeight="470.0" prefWidth="500.0"
-                             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0"
+                   <ListView fx:id="pizzaListView" prefHeight="475.0" prefWidth="480.0" layoutX="-3.0" layoutY="-2.0"
+                             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                              AnchorPane.topAnchor="0.0"/>
                </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0">
                 <children>
-                    <TableView layoutX="13.0" layoutY="207.0" prefHeight="200.0" prefWidth="289.0">
+                    <TableView fx:id="cartTable" layoutX="13.0" layoutY="207.0" prefHeight="200.0" prefWidth="289.0">
                         <columns>
-                            <TableColumn prefWidth="75.0" text="Pizza"/>
-                            <TableColumn prefWidth="75.0" text="Ár"/>
+                            <TableColumn fx:id="pizzaNameColumn" prefWidth="100.0" text="Pizza"/>
+                            <TableColumn fx:id="pizzaPriceColumn" prefWidth="100.0" text="Ár"/>
                         </columns>
                     </TableView>
                     <Label layoutX="14.0" layoutY="181.0" text="A kosár tartalma:"/>
@@ -62,7 +57,7 @@
                             <Font size="24.0"/>
                         </font>
                     </Label>
-                    <Label layoutX="100.0" layoutY="427.0" text="0 Ft"/>
+                    <Label fx:id="orderSumAttribute" layoutX="100.0" layoutY="427.0" text="0 Ft"/>
                     <Button layoutX="196.0" layoutY="422.0" mnemonicParsing="false" text="Megrendelelm"/>
                     <Label layoutX="14.0" layoutY="427.0" text="Végösszeg:"/>
                 </children>

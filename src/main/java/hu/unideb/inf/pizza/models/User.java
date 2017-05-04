@@ -152,6 +152,16 @@ public class User implements Serializable {
     }
 
     /**
+     * Ellenőrzi, hogy a megadott jelszó és a felhasználó jelszava megegyezik-e.
+     *
+     * @param password Az ellenőrzendő jelszó
+     * @return Igaz, ha a megadott jelszó megegyezik a felhasználó jelszavával
+     */
+    public boolean checkPassword(String password) {
+        return (this.password != null && this.password.equals(password));
+    }
+
+    /**
      * Visszaadja a felhasználó címét.
      *
      * @return A felhasználó címe

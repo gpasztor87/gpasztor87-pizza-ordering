@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,9 +32,39 @@ public class RegisterViewController implements Initializable {
      */
     private static Stage stage;
 
+    /**
+     * Név beviteli mező.
+     */
+    @FXML
+    private TextField nameField;
+
+    /**
+     * Email beviteli mező.
+     */
+    @FXML
+    private TextField emailField;
+
+    /**
+     * Jelszó beviteli mező.
+     */
+    @FXML
+    private TextField passwordField;
+
+    /**
+     * Cím beviteli mező.
+     */
+    @FXML
+    private TextField addressField;
+
+    /**
+     * Hibaüzeneteket tartalmazó címke.
+     */
+    @FXML
+    private Label messageLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        messageLabel.setText("");
     }
 
     static void loadView(Window window) {

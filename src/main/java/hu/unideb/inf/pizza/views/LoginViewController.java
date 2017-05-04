@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.services.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -72,7 +73,6 @@ public class LoginViewController implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
             logger.error(
                 "IO exception has occurred in " + LoginViewController.class + " loading loginDialog: " + e.getMessage()
             );
@@ -81,11 +81,22 @@ public class LoginViewController implements Initializable {
 
     @FXML
     private void loginButtonHandler() {
+        if (!authenticate(emailField.getText(), passwordField.getText())) {
+            messageLabel.setText("Rossz email cím vagy jelszó.");
+        } else {
 
+            logger.info("User has logged in with the following email address: " + emailField.getText());
+            stage.close();
+        }
     }
 
     @FXML
     private void cancelButtonHandler() {
         stage.close();
+    }
+
+    private boolean authenticate(String email, String password) {
+        UserService userService = new UserService();
+        return userService.validate(email, password);
     }
 }
