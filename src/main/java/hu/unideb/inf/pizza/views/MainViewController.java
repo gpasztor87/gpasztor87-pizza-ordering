@@ -190,7 +190,7 @@ public class MainViewController implements Initializable {
 
                                     logger.info("A pizza has been added to the cart: " + getItem().getName());
 
-                                    updateOrderSummaryAttribute();
+                                    updateCartSummaryAttribute();
                                 }
                             });
 
@@ -269,7 +269,7 @@ public class MainViewController implements Initializable {
         getCart().clear();
         cartTable.getItems().clear();
 
-        updateOrderSummaryAttribute();
+        updateCartSummaryAttribute();
     }
 
     /**
@@ -324,7 +324,7 @@ public class MainViewController implements Initializable {
     /**
      * Frissíti a végösszeg címkét.
      */
-    private void updateOrderSummaryAttribute() {
+    private void updateCartSummaryAttribute() {
         int cartSummary = cart.stream().mapToInt(p -> p.getPrice()).sum();
         cartSumAttribute.setText(String.format("%d Ft", cartSummary));
     }
