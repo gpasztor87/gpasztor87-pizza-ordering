@@ -5,9 +5,6 @@ import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 /**
@@ -20,11 +17,11 @@ public class OrderService implements OrderServiceInterface {
      */
     private OrderDao orderDao;
 
+    /**
+     * Az osztály paraméter nélküli konstruktora.
+     */
     public OrderService() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("production");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        orderDao = new OrderDao(entityManager);
+        orderDao = new OrderDao();
     }
 
     @Override

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -27,23 +28,29 @@ public class OrderDao implements OrderDaoInterface {
      */
     private EntityManager entityManager;
 
-    public OrderDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public OrderDao() {
+        entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
     }
 
     @Override
     public void create(Order order) {
+        entityManager.getTransaction().begin();
         entityManager.persist(order);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public void update(Order order) {
+        entityManager.getTransaction().begin();
         entityManager.merge(order);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public void delete(Order order) {
+        entityManager.getTransaction().begin();
         entityManager.remove(order);
+        entityManager.getTransaction().commit();
     }
 
     @Override

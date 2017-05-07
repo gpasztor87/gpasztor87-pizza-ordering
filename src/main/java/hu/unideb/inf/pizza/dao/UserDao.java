@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
@@ -25,18 +26,22 @@ public class UserDao implements UserDaoInterface {
      */
     private EntityManager entityManager;
 
-    public UserDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public UserDao() {
+        entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
     }
 
     @Override
     public void create(User user) {
+        entityManager.getTransaction().begin();
         entityManager.persist(user);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public void update(User user) {
+        entityManager.getTransaction().begin();
         entityManager.merge(user);
+        entityManager.getTransaction().commit();
     }
 
     @Override

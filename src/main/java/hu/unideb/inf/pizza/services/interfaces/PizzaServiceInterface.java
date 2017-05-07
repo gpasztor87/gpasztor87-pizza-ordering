@@ -5,7 +5,7 @@ import hu.unideb.inf.pizza.models.Pizza;
 import java.util.List;
 
 /**
- *
+ * A pizzák kezelését végző osztály interfésze.
  */
 public interface PizzaServiceInterface {
 

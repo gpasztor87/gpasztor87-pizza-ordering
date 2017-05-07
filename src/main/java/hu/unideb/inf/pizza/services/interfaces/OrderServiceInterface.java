@@ -6,7 +6,7 @@ import hu.unideb.inf.pizza.models.User;
 import java.util.List;
 
 /**
- * Az orders controller
+ * A rendelések kezelését végző osztály interfésze.
  */
 public interface OrderServiceInterface {
 
