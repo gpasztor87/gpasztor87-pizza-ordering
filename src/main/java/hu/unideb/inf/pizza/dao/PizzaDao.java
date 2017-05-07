@@ -18,6 +18,9 @@ public class PizzaDao implements PizzaDaoInterface {
      */
     private EntityManager entityManager;
 
+    /**
+     * Az osztály paraméter nélküli konstruktora inicializálja az entitymanagert.
+     */
     public PizzaDao() {
         entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
     }

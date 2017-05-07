@@ -28,6 +28,9 @@ public class OrderDao implements OrderDaoInterface {
      */
     private EntityManager entityManager;
 
+    /**
+     * Az osztály paraméter nélküli konstruktora inicializálja az entitymanagert.
+     */
     public OrderDao() {
         entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
     }

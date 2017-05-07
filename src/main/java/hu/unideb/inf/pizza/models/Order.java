@@ -163,7 +163,6 @@ public class Order implements Serializable {
      */
     @Basic
     @Column(name = "order_date")
-    @CreationTimestamp
     public LocalDate getOrder_date() {
         return order_date;
     }

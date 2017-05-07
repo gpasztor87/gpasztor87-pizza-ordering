@@ -26,6 +26,9 @@ public class UserDao implements UserDaoInterface {
      */
     private EntityManager entityManager;
 
+    /**
+     * Az osztály paraméter nélküli konstruktora inicializálja az entitymanagert.
+     */
     public UserDao() {
         entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
     }

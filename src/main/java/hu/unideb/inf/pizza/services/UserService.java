@@ -1,17 +1,21 @@
 package hu.unideb.inf.pizza.services;
 
 import hu.unideb.inf.pizza.dao.UserDao;
+import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 
 import static org.apache.commons.codec.digest.DigestUtils.*;
 
+/**
+ * A UserService interfészt megvalósító osztály.
+ */
 public class UserService implements UserServiceInterface {
 
     /**
-     * DAO objektum az adatbázis kezeléséhez.
+     * A {@link UserDaoInterface} interfész egy implementációjának példánya.
      */
-    private UserDao userDao;
+    private UserDaoInterface userDao;
 
     /**
      * Az osztály paraméter nélküli konstruktora.

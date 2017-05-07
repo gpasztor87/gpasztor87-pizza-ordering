@@ -1,6 +1,7 @@
 package hu.unideb.inf.pizza.services;
 
 import hu.unideb.inf.pizza.dao.PizzaDao;
+import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
 
@@ -12,9 +13,9 @@ import java.util.List;
 public class PizzaService implements PizzaServiceInterface {
 
     /**
-     * DAO objektum az adatbázis kezeléséhez.
+     * A {@link PizzaDaoInterface} interfész egy implementációjának példánya.
      */
-    private PizzaDao pizzaDao;
+    private PizzaDaoInterface pizzaDao;
 
     /**
      * Az osztály paraméter nélküli konstruktora.
