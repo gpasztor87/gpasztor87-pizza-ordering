@@ -45,16 +45,22 @@ public class RegisterViewController implements Initializable {
     private TextField emailField;
 
     /**
-     * Jelszó beviteli mező.
+     * Telefonszám beviteli mező.
      */
     @FXML
-    private TextField passwordField;
+    private TextField phoneField;
 
     /**
      * Cím beviteli mező.
      */
     @FXML
     private TextField addressField;
+
+    /**
+     * Jelszó beviteli mező.
+     */
+    @FXML
+    private TextField passwordField;
 
     /**
      * Hibaüzeneteket tartalmazó címke.

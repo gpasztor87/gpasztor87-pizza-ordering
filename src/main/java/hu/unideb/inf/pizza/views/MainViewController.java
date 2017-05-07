@@ -255,6 +255,11 @@ public class MainViewController implements Initializable {
         ProfileViewController.loadView(menuBar.getScene().getWindow());
     }
 
+    /**
+     * Visszaadja a kosár tartalmát.
+     *
+     * @return A kosárban levő pizzákat tartalmazó lista
+     */
     private ObservableList<Pizza> getCart() {
         return cart;
     }
