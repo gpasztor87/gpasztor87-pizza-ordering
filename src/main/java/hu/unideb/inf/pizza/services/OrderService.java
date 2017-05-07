@@ -2,9 +2,11 @@ package hu.unideb.inf.pizza.services;
 
 import hu.unideb.inf.pizza.dao.OrderDao;
 import hu.unideb.inf.pizza.models.Order;
+import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,6 +24,15 @@ public class OrderService implements OrderServiceInterface {
      */
     public OrderService() {
         orderDao = new OrderDao();
+    }
+
+    public void create(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas) {
+        Order order = new Order();
+        order.setComment(comment);
+        order.setTotalPrice(totalPrice);
+        order.setPizzas(pizzas);
+
+        orderDao.create(order);
     }
 
     @Override

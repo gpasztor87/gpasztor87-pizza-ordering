@@ -270,23 +270,19 @@ public class MainViewController implements Initializable {
     }
 
     /**
-     * Törli a kosár tartalmát.
-     */
-    @FXML
-    private void clearCartButtonHandler() {
-        getCart().clear();
-        cartTable.getItems().clear();
-
-        updateCartSummaryAttribute();
-        payButton.setDisable(true);
-    }
-
-    /**
      * Betölti a fizetési felüetet.
      */
     @FXML
     private void payButtonHandler() {
-        // TODO
+        PayViewController.loadView(menuBar.getScene().getWindow(), this);
+    }
+
+    /**
+     * Törli a kosár tartalmát.
+     */
+    @FXML
+    private void clearCartButtonHandler() {
+        clearCart();
     }
 
     /**
@@ -294,7 +290,7 @@ public class MainViewController implements Initializable {
      *
      * @return A kosárban levő pizzákat tartalmazó lista
      */
-    private ObservableList<Pizza> getCart() {
+    ObservableList<Pizza> getCart() {
         return cart;
     }
 
@@ -331,10 +327,30 @@ public class MainViewController implements Initializable {
     }
 
     /**
+     * Visszaadja a kosár tartalmának végösszegét.
+     *
+     * @return A kosár végösszege
+     */
+    int getCartSummary() {
+        return cart.stream().mapToInt(p -> p.getPrice()).sum();
+    }
+
+    /**
+     * Törli a kosár tartalmát.
+     */
+    void clearCart() {
+        getCart().clear();
+        cartTable.getItems().clear();
+
+        updateCartSummaryAttribute();
+        payButton.setDisable(true);
+    }
+
+    /**
      * Frissíti a végösszeg címkét.
      */
     private void updateCartSummaryAttribute() {
-        int cartSummary = cart.stream().mapToInt(p -> p.getPrice()).sum();
+        int cartSummary = getCartSummary();
         cartSumAttribute.setText(String.format("%d Ft", cartSummary));
     }
 

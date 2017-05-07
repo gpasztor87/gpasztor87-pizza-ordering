@@ -1,5 +1,7 @@
 package hu.unideb.inf.pizza.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,6 +23,11 @@ public class Order implements Serializable {
      * A rendeléshez tartozó megjegyzés.
      */
     private String comment;
+
+    /**
+     * A rendeléshez tartozó cím.
+     */
+    private String address;
 
     /**
      * A rendelés végösszege.
@@ -53,13 +60,15 @@ public class Order implements Serializable {
      * Konstruktor egy rendelést reprezentáló osztály létrehozására.
      *
      * @param comment    A rendeléshez tartozó megjegyzés
+     * @param address    A rendeléshez tartozó cím
      * @param totalPrice A rendelés végösszege
      * @param order_date A rendelés dátuma
      * @param pizzas     A rendeléshez tartozó pizzák
      * @param user       A rendeléshez tartozó felhasználó
      */
-    public Order(String comment, double totalPrice, LocalDate order_date, Collection<Pizza> pizzas, User user) {
+    public Order(String comment, String address, double totalPrice, LocalDate order_date, Collection<Pizza> pizzas, User user) {
         this.comment = comment;
+        this.address = address;
         this.totalPrice = totalPrice;
         this.order_date = order_date;
         this.pizzas = pizzas;
@@ -108,6 +117,26 @@ public class Order implements Serializable {
     }
 
     /**
+     * Visszaadja a rendeléshez tartozó címet.
+     *
+     * @return A rendeléshez tartozó cím
+     */
+    @Basic
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Beállítja a rendeléshez tartozó címet.
+     *
+     * @param address A rendeléshez tartozó cím
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
      * Visszaadja a rendelés végösszegét.
      *
      * @return A rendelés végösszege
@@ -134,6 +163,7 @@ public class Order implements Serializable {
      */
     @Basic
     @Column(name = "order_date")
+    @CreationTimestamp
     public LocalDate getOrder_date() {
         return order_date;
     }
