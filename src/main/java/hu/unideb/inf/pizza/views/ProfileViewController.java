@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -76,6 +77,8 @@ public class ProfileViewController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    private User currentUser;
+
     /**
      * A {@link UserServiceInterface} interfész egy implementációjának példánya.
      */
@@ -85,7 +88,7 @@ public class ProfileViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
 
-        User currentUser = mainViewController.getCurrentUser();
+        currentUser = mainViewController.getCurrentUser();
 
         nameField.setText(currentUser.getName());
         emailField.setText(currentUser.getEmail());
@@ -122,9 +125,21 @@ public class ProfileViewController implements Initializable {
 
     @FXML
     private void updateButtonHandler() {
-        // TODO
+        if (nameField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
+            messageLabel.setText("Minden mező kitöltése kötelező.");
+        } else {
+            userService.update(
+                    currentUser.getId(),
+                    nameField.getText(),
+                    passwordField.getText(),
+                    addressField.getText(),
+                    phoneField.getText()
+            );
 
-        stage.close();
+            logger.info("The current user has been updated.");
+
+            stage.close();
+        }
     }
 
     @FXML

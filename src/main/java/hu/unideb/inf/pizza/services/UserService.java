@@ -21,7 +21,7 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public void save(String name, String email, String password, String address, String phone) {
+    public User create(String name, String email, String password, String address, String phone) {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
@@ -32,6 +32,24 @@ public class UserService implements UserServiceInterface {
         user.setPassword(encryptedPassword);
 
         userDao.create(user);
+
+        return user;
+    }
+
+    @Override
+    public User update(int id, String name, String password, String address, String phone) {
+        User user = userDao.findById(id);
+
+        user.setName(name);
+        user.setPhone(phone);
+        user.setAddress(address);
+
+        String encryptedPassword = sha256Hex(password);
+        user.setPassword(encryptedPassword);
+
+        userDao.update(user);
+
+        return user;
     }
 
     @Override

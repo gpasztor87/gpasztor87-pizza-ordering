@@ -23,6 +23,7 @@
                 <Button mnemonicParsing="false" onAction="#cancelButtonHandler" text="Vissza"/>
             </buttons>
         </ButtonBar>
-        <Label fx:id="messageLabel" layoutX="125.0" layoutY="174.0" textAlignment="CENTER" textFill="RED"/>
+        <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="174.0"
+               prefHeight="17.0" prefWidth="340.0" textAlignment="CENTER" textFill="RED"/>
     </children>
 </AnchorPane>

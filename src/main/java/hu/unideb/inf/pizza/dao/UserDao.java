@@ -57,4 +57,9 @@ public class UserDao implements UserDaoInterface {
             return null;
         }
     }
+
+    @Override
+    public User findById(int id) {
+        return entityManager.find(User.class, id);
+    }
 }

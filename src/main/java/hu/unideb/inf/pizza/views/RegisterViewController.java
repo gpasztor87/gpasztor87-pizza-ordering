@@ -83,6 +83,7 @@ public class RegisterViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
+        emailField.setEditable(false);
 
         userService = new UserService();
     }
@@ -114,22 +115,25 @@ public class RegisterViewController implements Initializable {
 
     @FXML
     private void registerButtonHandler() {
-        if (userService.getUserByEmail(emailField.getText()) != null) {
-            messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
-
+        if (nameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
+            messageLabel.setText("Minden mező kitöltése kötelező.");
         } else {
-            userService.save(
+            if (userService.getUserByEmail(emailField.getText()) != null) {
+                messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
+            } else {
+                userService.create(
                     nameField.getText(),
                     emailField.getText(),
                     passwordField.getText(),
                     addressField.getText(),
                     phoneField.getText()
-            );
+                );
 
-            mainViewController.switchMenuLoggedIn();
+                mainViewController.switchMenuLoggedIn();
 
-            logger.info("A user has been registered with this email: " + emailField.getText());
-            stage.close();
+                logger.info("A user has been registered with this email: " + emailField.getText());
+                stage.close();
+            }
         }
     }
 

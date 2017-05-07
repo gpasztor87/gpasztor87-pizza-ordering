@@ -28,4 +28,12 @@ public interface UserDaoInterface {
      * @return Egy felhasználót reprezentáló {@link User} osztály
      */
     User findByEmail(String email);
+
+    /**
+     * Lekér az adatbázisból egy felhasználót az egyedi azonosítója alapján.
+     *
+     * @param id A felhasználó egyedi azonosítója
+     * @return Egy felhasználót reprezentáló {@link User} osztály
+     */
+    User findById(int id);
 }
