@@ -2,6 +2,7 @@ package hu.unideb.inf.pizza.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collection;
 
 /**
@@ -27,9 +28,9 @@ public class Order implements Serializable {
     private double totalPrice;
 
     /**
-     * Lezárult-e a rendelés?
+     * Rendelés leadásának ideje.
      */
-    private Byte isCompleted;
+    private LocalDate order_date;
 
     /**
      * A rendeléshez tartozó pizzák.
@@ -46,6 +47,23 @@ public class Order implements Serializable {
      */
     public Order() {
         super();
+    }
+
+    /**
+     * Konstruktor egy rendelést reprezentáló osztály létrehozására.
+     *
+     * @param comment    A rendeléshez tartozó megjegyzés
+     * @param totalPrice A rendelés végösszege
+     * @param order_date A rendelés dátuma
+     * @param pizzas     A rendeléshez tartozó pizzák
+     * @param user       A rendeléshez tartozó felhasználó
+     */
+    public Order(String comment, double totalPrice, LocalDate order_date, Collection<Pizza> pizzas, User user) {
+        this.comment = comment;
+        this.totalPrice = totalPrice;
+        this.order_date = order_date;
+        this.pizzas = pizzas;
+        this.user = user;
     }
 
     /**
@@ -110,23 +128,23 @@ public class Order implements Serializable {
     }
 
     /**
-     * Visszaadja, hogy lezárult-e a rendelés.
+     * Visszaadja a rendelés időpontját.
      *
-     * @return Lezárt-e a rendelés?
+     * @return A rendelés időpontja
      */
     @Basic
-    @Column(name = "is_completed")
-    public Byte getIsCompleted() {
-        return isCompleted;
+    @Column(name = "order_date")
+    public LocalDate getOrder_date() {
+        return order_date;
     }
 
     /**
-     * Beállítja, hogy lezárt-e a rendelés.
+     * Beállítja a rendelés időpontját.
      *
-     * @param isCompleted Lezárt-e a rendelés?
+     * @param order_date A rendelés időpontja
      */
-    public void setIsCompleted(Byte isCompleted) {
-        this.isCompleted = isCompleted;
+    public void setOrder_date(LocalDate order_date) {
+        this.order_date = order_date;
     }
 
     /**

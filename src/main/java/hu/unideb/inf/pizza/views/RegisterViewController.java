@@ -35,6 +35,11 @@ public class RegisterViewController implements Initializable {
     private static Stage stage;
 
     /**
+     * A fő ablak stage-e.
+     */
+    private static MainViewController mainViewController;
+
+    /**
      * Név beviteli mező.
      */
     @FXML
@@ -70,6 +75,9 @@ public class RegisterViewController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    /**
+     * A {@link UserServiceInterface} interfész egy implementációjának példánya.
+     */
     private UserServiceInterface userService;
 
     @Override
@@ -79,7 +87,9 @@ public class RegisterViewController implements Initializable {
         userService = new UserService();
     }
 
-    static void loadView(Window window) {
+    static void loadView(Window window, MainViewController controller) {
+        mainViewController = controller;
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainViewController.class.getResource("/views/RegisterView.fxml"));
 
@@ -115,6 +125,8 @@ public class RegisterViewController implements Initializable {
                     addressField.getText(),
                     phoneField.getText()
             );
+
+            mainViewController.switchMenuLoggedIn();
 
             logger.info("A user has been registered with this email: " + emailField.getText());
             stage.close();

@@ -1,14 +1,22 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.models.User;
+import hu.unideb.inf.pizza.services.UserService;
+import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,6 +36,17 @@ public class ProfileViewController implements Initializable {
     private static Stage stage;
 
     /**
+     * A fő ablak stage-e.
+     */
+    private static MainViewController mainViewController;
+
+    /**
+     * Név beviteli mező.
+     */
+    @FXML
+    private TextField nameField;
+
+    /**
      * Email beviteli mező.
      */
     @FXML
@@ -40,17 +59,76 @@ public class ProfileViewController implements Initializable {
     private TextField passwordField;
 
     /**
+     * Telefonszám beviteli mező.
+     */
+    @FXML
+    private TextField phoneField;
+
+    /**
+     * Cím beviteli mező.
+     */
+    @FXML
+    private TextField addressField;
+
+    /**
      * Hibaüzeneteket tartalmazó címke.
      */
     @FXML
     private Label messageLabel;
 
+    /**
+     * A {@link UserServiceInterface} interfész egy implementációjának példánya.
+     */
+    private UserServiceInterface userService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
+
+        User currentUser = mainViewController.getCurrentUser();
+
+        nameField.setText(currentUser.getName());
+        emailField.setText(currentUser.getEmail());
+        addressField.setText(currentUser.getAddress());
+        phoneField.setText(currentUser.getPhone());
+
+        userService = new UserService();
     }
 
-    static void loadView(Window window) {
+    static void loadView(Window window, MainViewController controller) {
+        mainViewController = controller;
 
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainViewController.class.getResource("/views/ProfileView.fxml"));
+
+        try {
+            AnchorPane registerPane = loader.load();
+
+            Scene scene = new Scene(registerPane);
+
+            stage = new Stage();
+            stage.setTitle("Adatok módosítása");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(window);
+            stage.setScene(scene);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            logger.error(
+                    "IO exception has occurred in " + ProfileViewController.class + " loading profileDialog: " + e.getMessage()
+            );
+        }
+    }
+
+    @FXML
+    private void updateButtonHandler() {
+        // TODO
+
+        stage.close();
+    }
+
+    @FXML
+    private void cancelButtonHandler() {
+        stage.close();
     }
 }

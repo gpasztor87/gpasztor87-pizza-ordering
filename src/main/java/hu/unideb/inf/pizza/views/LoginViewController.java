@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.UserService;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import javafx.fxml.FXML;
@@ -35,6 +36,11 @@ public class LoginViewController implements Initializable {
     private static Stage stage;
 
     /**
+     * A fő ablak stage-e.
+     */
+    private static MainViewController mainViewController;
+
+    /**
      * Email beviteli mező.
      */
     @FXML
@@ -64,7 +70,9 @@ public class LoginViewController implements Initializable {
         userService = new UserService();
     }
 
-    static void loadView(Window window) {
+    static void loadView(Window window, MainViewController controller) {
+        mainViewController = controller;
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainViewController.class.getResource("/views/LoginView.fxml"));
 
@@ -92,6 +100,9 @@ public class LoginViewController implements Initializable {
         if (!authenticate(emailField.getText(), passwordField.getText())) {
             messageLabel.setText("Rossz email cím vagy jelszó.");
         } else {
+            User user = userService.getUserByEmail(emailField.getText());
+            mainViewController.setCurrentUser(user);
+            mainViewController.switchMenuLoggedIn();
 
             logger.info("User has logged in with the following email address: " + emailField.getText());
             stage.close();

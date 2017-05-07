@@ -1,6 +1,7 @@
 package hu.unideb.inf.pizza.views;
 
 import hu.unideb.inf.pizza.models.Pizza;
+import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.PizzaService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -117,6 +118,11 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private Label cartSumAttribute;
+
+    /**
+     * A bejelentkezett felhasználó.
+     */
+    private User currentUser = null;
 
     /**
      * A pizzákat tartalmazó listanézet adatforrása.
@@ -236,7 +242,7 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void loginMenuHandler() {
-        LoginViewController.loadView(menuBar.getScene().getWindow());
+        LoginViewController.loadView(menuBar.getScene().getWindow(), this);
     }
 
     /**
@@ -244,7 +250,7 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void registerMenuHandler() {
-        RegisterViewController.loadView(menuBar.getScene().getWindow());
+        RegisterViewController.loadView(menuBar.getScene().getWindow(), this);
     }
 
     /**
@@ -252,7 +258,7 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void profileMenuHandler() {
-        ProfileViewController.loadView(menuBar.getScene().getWindow());
+        ProfileViewController.loadView(menuBar.getScene().getWindow(), this);
     }
 
     /**
@@ -294,7 +300,7 @@ public class MainViewController implements Initializable {
     /**
      * Beállítja a menu itemek láthatóságát a bejelentkezett felhasználóhoz.
      */
-    private void switchMenuLoggedIn() {
+    void switchMenuLoggedIn() {
         profileMenuItem.setVisible(true);
         logoutMenuItem.setVisible(true);
         ordersMenuItem.setVisible(true);
@@ -306,7 +312,7 @@ public class MainViewController implements Initializable {
     /**
      * Beállítja a menu itemek láthatóságát a be nem jelentkezett felhasználóhoz.
      */
-    private void switchMenuLoggedOut() {
+    void switchMenuLoggedOut() {
         profileMenuItem.setVisible(false);
         logoutMenuItem.setVisible(false);
         ordersMenuItem.setVisible(false);
@@ -329,5 +335,23 @@ public class MainViewController implements Initializable {
     @FXML
     private void exitMenuHandler() {
         System.exit(1);
+    }
+
+    /**
+     * Visszaadja a bejelentkezett felhasználót.
+     *
+     * @return A bejelentkezett felhasználó
+     */
+    User getCurrentUser() {
+        return currentUser;
+    }
+
+    /**
+     * Beállítja a bejelentkezett felhasználót.
+     *
+     * @param currentUser A bejelentkezett felhasználó
+     */
+    void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 }

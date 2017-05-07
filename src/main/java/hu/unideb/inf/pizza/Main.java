@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 /**
  * A belépési pontot tartalmazó osztály.
  */
-public final class Main extends Application {
+public class Main extends Application {
 
     /**
      * A naplózó egy példánya.
