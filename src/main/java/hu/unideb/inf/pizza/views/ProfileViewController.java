@@ -77,6 +77,9 @@ public class ProfileViewController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    /**
+     * A bejelentkezett felhasználó.
+     */
     private User currentUser;
 
     /**

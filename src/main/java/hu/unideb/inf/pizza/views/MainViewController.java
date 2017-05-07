@@ -120,6 +120,12 @@ public class MainViewController implements Initializable {
     private Label cartSumAttribute;
 
     /**
+     * A megrendelést elindító gomb.
+     */
+    @FXML
+    private Button payButton;
+
+    /**
      * A bejelentkezett felhasználó.
      */
     private User currentUser = null;
@@ -138,6 +144,7 @@ public class MainViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         switchMenuLoggedOut();
+        payButton.setDisable(true);
 
         PizzaService pizzaService = new PizzaService();
 
@@ -191,6 +198,7 @@ public class MainViewController implements Initializable {
                                     logger.info("A pizza has been added to the cart: " + getItem().getName());
 
                                     updateCartSummaryAttribute();
+                                    payButton.setDisable(false);
                                 }
                             });
 
@@ -270,6 +278,7 @@ public class MainViewController implements Initializable {
         cartTable.getItems().clear();
 
         updateCartSummaryAttribute();
+        payButton.setDisable(true);
     }
 
     /**

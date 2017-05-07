@@ -70,7 +70,8 @@
                             <buttons>
                                 <Button mnemonicParsing="false" onAction="#clearCartButtonHandler"
                                         text="Kosár ürítése"/>
-                                <Button mnemonicParsing="false" onAction="#payButtonHandler" text="Megrendelelm"/>
+                                <Button fx:id="payButton" mnemonicParsing="false" onAction="#payButtonHandler"
+                                        text="Megrendelelm"/>
                             </buttons>
                         </ButtonBar>
                     </children>
