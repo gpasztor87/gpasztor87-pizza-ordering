@@ -116,7 +116,7 @@ public class MainViewController implements Initializable {
      * A kosár végösszegét tartalmazó címke.
      */
     @FXML
-    private Label orderSumAttribute;
+    private Label cartSumAttribute;
 
     /**
      * A pizzákat tartalmazó listanézet adatforrása.
@@ -131,9 +131,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        profileMenuItem.setVisible(false);
-        logoutMenuItem.setVisible(false);
-        ordersMenuItem.setVisible(false);
+        switchMenuLoggedOut();
 
         PizzaService pizzaService = new PizzaService();
 
@@ -185,6 +183,8 @@ public class MainViewController implements Initializable {
                                     cartTable.getItems().add(getItem());
 
                                     logger.info("A pizza has been added to the cart: " + getItem().getName());
+
+                                    updateOrderSummaryAttribute();
                                 }
                             });
 
@@ -256,6 +256,25 @@ public class MainViewController implements Initializable {
     }
 
     /**
+     * Törli a kosár tartalmát.
+     */
+    @FXML
+    private void clearCartButtonHandler() {
+        getCart().clear();
+        cartTable.getItems().clear();
+
+        updateOrderSummaryAttribute();
+    }
+
+    /**
+     * Betölti a fizetési felüetet.
+     */
+    @FXML
+    private void payButtonHandler() {
+        // TODO
+    }
+
+    /**
      * Visszaadja a kosár tartalmát.
      *
      * @return A kosárban levő pizzákat tartalmazó lista
@@ -269,9 +288,39 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void logoutMenuHandler() {
+        switchMenuLoggedOut();
+    }
+
+    /**
+     * Beállítja a menu itemek láthatóságát a bejelentkezett felhasználóhoz.
+     */
+    private void switchMenuLoggedIn() {
+        profileMenuItem.setVisible(true);
+        logoutMenuItem.setVisible(true);
+        ordersMenuItem.setVisible(true);
+
+        loginMenuItem.setVisible(false);
+        registerMenuItem.setVisible(false);
+    }
+
+    /**
+     * Beállítja a menu itemek láthatóságát a be nem jelentkezett felhasználóhoz.
+     */
+    private void switchMenuLoggedOut() {
         profileMenuItem.setVisible(false);
         logoutMenuItem.setVisible(false);
         ordersMenuItem.setVisible(false);
+
+        loginMenuItem.setVisible(true);
+        registerMenuItem.setVisible(true);
+    }
+
+    /**
+     * Frissíti a végösszeg címkét.
+     */
+    private void updateOrderSummaryAttribute() {
+        int cartSummary = cart.stream().mapToInt(p -> p.getPrice()).sum();
+        cartSumAttribute.setText(String.format("%d Ft", cartSummary));
     }
 
     /**

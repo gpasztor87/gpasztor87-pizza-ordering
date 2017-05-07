@@ -64,11 +64,13 @@
                             </font>
                         </Label>
                         <Label layoutX="141.0" layoutY="383.0" text="Végösszeg:"/>
-                        <Label fx:id="orderSumAttribute" layoutX="276.0" layoutY="383.0" text="0 Ft"/>
+                        <Label fx:id="cartSumAttribute" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="218.0"
+                               layoutY="383.0" prefHeight="17.0" prefWidth="83.0" text="0 Ft"/>
                         <ButtonBar layoutX="12.0" layoutY="415.0" prefHeight="40.0" prefWidth="289.0">
                             <buttons>
-                                <Button mnemonicParsing="false" text="Kosár ürítése"/>
-                                <Button mnemonicParsing="false" text="Megrendelelm"/>
+                                <Button mnemonicParsing="false" onAction="#clearCartButtonHandler"
+                                        text="Kosár ürítése"/>
+                                <Button mnemonicParsing="false" onAction="#payButtonHandler" text="Megrendelelm"/>
                             </buttons>
                         </ButtonBar>
                     </children>

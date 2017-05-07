@@ -1,6 +1,7 @@
 package hu.unideb.inf.pizza.views;
 
 import hu.unideb.inf.pizza.services.UserService;
+import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,9 +52,16 @@ public class LoginViewController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    /**
+     * A {@link UserServiceInterface} interfész egy implementációjának példánya.
+     */
+    private UserServiceInterface userService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
+
+        userService = new UserService();
     }
 
     static void loadView(Window window) {
@@ -96,7 +104,6 @@ public class LoginViewController implements Initializable {
     }
 
     private boolean authenticate(String email, String password) {
-        UserService userService = new UserService();
         return userService.validate(email, password);
     }
 }

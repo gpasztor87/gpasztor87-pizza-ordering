@@ -1,5 +1,7 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.services.UserService;
+import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -68,9 +70,13 @@ public class RegisterViewController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    private UserServiceInterface userService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
+
+        userService = new UserService();
     }
 
     static void loadView(Window window) {
@@ -98,7 +104,21 @@ public class RegisterViewController implements Initializable {
 
     @FXML
     private void registerButtonHandler() {
+        if (userService.getUserByEmail(emailField.getText()) != null) {
+            messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
 
+        } else {
+            userService.save(
+                    nameField.getText(),
+                    emailField.getText(),
+                    passwordField.getText(),
+                    addressField.getText(),
+                    phoneField.getText()
+            );
+
+            logger.info("A user has been registered with this email: " + emailField.getText());
+            stage.close();
+        }
     }
 
     @FXML
