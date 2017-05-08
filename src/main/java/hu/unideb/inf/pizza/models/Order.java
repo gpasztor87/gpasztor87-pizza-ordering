@@ -35,7 +35,7 @@ public class Order implements Serializable {
     /**
      * Rendelés leadásának ideje.
      */
-    private Date order_date;
+    private Date orderDate;
 
     /**
      * A rendeléshez tartozó pizzák.
@@ -61,16 +61,16 @@ public class Order implements Serializable {
      * @param comment    A rendeléshez tartozó megjegyzés
      * @param address    A rendeléshez tartozó cím
      * @param totalPrice A rendelés végösszege
-     * @param order_date A rendelés dátuma
+     * @param orderDate A rendelés dátuma
      * @param pizzas     A rendeléshez tartozó pizzák
      * @param user       A rendeléshez tartozó felhasználó
      */
-    public Order(int id, String comment, String address, double totalPrice, Date order_date, Collection<Pizza> pizzas, User user) {
+    public Order(int id, String comment, String address, double totalPrice, Date orderDate, Collection<Pizza> pizzas, User user) {
         this.id = id;
         this.comment = comment;
         this.address = address;
         this.totalPrice = totalPrice;
-        this.order_date = order_date;
+        this.orderDate = orderDate;
         this.pizzas = pizzas;
         this.user = user;
     }
@@ -164,8 +164,8 @@ public class Order implements Serializable {
     @Basic
     @Column(name = "order_date")
 
-    public Date getOrder_date() {
-        return order_date;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
     /**
@@ -173,8 +173,8 @@ public class Order implements Serializable {
      *
      * @param order_date A rendelés időpontja
      */
-    public void setOrder_date(Date order_date) {
-        this.order_date = order_date;
+    public void setOrderDate(Date order_date) {
+        this.orderDate = order_date;
     }
 
     /**
@@ -226,6 +226,6 @@ public class Order implements Serializable {
      */
     @PrePersist
     protected void onCreate() {
-        this.order_date = new Date();
+        this.orderDate = new Date();
     }
 }

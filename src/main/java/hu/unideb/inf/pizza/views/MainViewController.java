@@ -3,6 +3,7 @@ package hu.unideb.inf.pizza.views;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.PizzaService;
+import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -107,9 +108,15 @@ public class MainViewController implements Initializable {
     @FXML
     private TableView<Pizza> cartTable;
 
+    /**
+     * A kosárban levő pizzák neveit tartalmazó oszlop.
+     */
     @FXML
     private TableColumn<Pizza, String> pizzaNameColumn;
 
+    /**
+     * A kosárban levő pizzák árát tartalmazó oszlop.
+     */
     @FXML
     private TableColumn<Pizza, Integer> pizzaPriceColumn;
 
@@ -140,13 +147,18 @@ public class MainViewController implements Initializable {
      */
     private ObservableList<Pizza> cart = FXCollections.observableArrayList();
 
+    /**
+     * A {@link PizzaServiceInterface} interfész egy implementációjának példánya.
+     */
+    private PizzaServiceInterface pizzaService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         switchMenuLoggedOut();
         payButton.setDisable(true);
 
-        PizzaService pizzaService = new PizzaService();
+        pizzaService = new PizzaService();
 
         listData.addAll(pizzaService.findAllPizza());
 
@@ -267,6 +279,14 @@ public class MainViewController implements Initializable {
     @FXML
     private void profileMenuHandler() {
         ProfileViewController.loadView(menuBar.getScene().getWindow(), this);
+    }
+
+    /**
+     * Betölti a bejelentkezett felhasználó korábbi rendeléseit.
+     */
+    @FXML
+    private void ordersMenuItemHandler() {
+        OrdersViewController.loadView(menuBar.getScene().getWindow(), this);
     }
 
     /**

@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.UserService;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import javafx.fxml.FXML;
@@ -120,7 +121,7 @@ public class RegisterViewController implements Initializable {
             if (userService.getUserByEmail(emailField.getText()) != null) {
                 messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
             } else {
-                userService.createUser(
+                User user = userService.createUser(
                     nameField.getText(),
                     emailField.getText(),
                     passwordField.getText(),
@@ -129,6 +130,7 @@ public class RegisterViewController implements Initializable {
                 );
 
                 mainViewController.switchMenuLoggedIn();
+                mainViewController.setCurrentUser(user);
 
                 logger.info("A user has been registered with this email: " + emailField.getText());
                 stage.close();

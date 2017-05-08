@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
+            prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hu.unideb.inf.pizza.views.OrdersViewController">
+    <children>
+        <TableView fx:id="orderTableView" layoutX="14.0" layoutY="32.0" prefHeight="230.0" prefWidth="340.0"
+                   AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+            <columns>
+                <TableColumn fx:id="orderDateTableColumn" prefWidth="152.0" text="Rendelés dátuma"/>
+                <TableColumn fx:id="orderPriceTableColumn" prefWidth="120.0" text="Végösszeg(Ft)"/>
+                <TableColumn fx:id="orderAddressTableColumn" prefWidth="166.0" text="Cím"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

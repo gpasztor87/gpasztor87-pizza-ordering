@@ -28,7 +28,8 @@
                                   text="Regisztráció"/>
                         <MenuItem fx:id="profileMenuItem" mnemonicParsing="false" onAction="#profileMenuHandler"
                                   text="Profilom"/>
-                        <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" text="Rendeléseim"/>
+                        <MenuItem fx:id="ordersMenuItem" mnemonicParsing="false" onAction="#ordersMenuItemHandler"
+                                  text="Rendeléseim"/>
                         <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logoutMenuHandler"
                                   text="Kijelentkezés"/>
                         <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#exitMenuHandler"
