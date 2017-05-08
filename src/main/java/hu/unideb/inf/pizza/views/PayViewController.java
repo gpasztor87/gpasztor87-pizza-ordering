@@ -78,6 +78,7 @@ public class PayViewController implements Initializable {
         currentUser = mainViewController.getCurrentUser();
 
         addressField.setText(currentUser.getAddress());
+        totalPriceLabel.setText(String.format("%d Ft", mainViewController.getCartSummary()));
 
         orderService = new OrderService();
     }

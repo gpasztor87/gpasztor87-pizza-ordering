@@ -11,7 +11,7 @@
             prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="hu.unideb.inf.pizza.views.LoginViewController">
     <children>
-        <Label layoutX="18.0" layoutY="32.0" text="Email cím:" AnchorPane.leftAnchor="30.0"/>
+        <Label layoutX="18.0" layoutY="30.0" text="Email cím:" AnchorPane.leftAnchor="30.0"/>
         <Label layoutX="30.0" layoutY="105.0" text="Jelszó:" AnchorPane.leftAnchor="30.0"/>
         <TextField fx:id="emailField" layoutX="30.0" layoutY="55.0" prefHeight="27.0" prefWidth="365.0"
                    AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0"/>
@@ -23,7 +23,7 @@
                 <Button mnemonicParsing="false" onAction="#cancelButtonHandler" text="Vissza"/>
             </buttons>
         </ButtonBar>
-        <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="174.0"
+        <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="174.0"
                prefHeight="17.0" prefWidth="340.0" textAlignment="CENTER" textFill="RED"/>
     </children>
 </AnchorPane>

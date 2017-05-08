@@ -90,6 +90,7 @@ public class ProfileViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
+        emailField.setEditable(false);
 
         currentUser = mainViewController.getCurrentUser();
 

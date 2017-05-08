@@ -83,7 +83,6 @@ public class RegisterViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
-        emailField.setEditable(false);
 
         userService = new UserService();
     }

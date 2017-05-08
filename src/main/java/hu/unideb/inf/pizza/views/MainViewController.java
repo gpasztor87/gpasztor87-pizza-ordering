@@ -274,7 +274,11 @@ public class MainViewController implements Initializable {
      */
     @FXML
     private void payButtonHandler() {
-        PayViewController.loadView(menuBar.getScene().getWindow(), this);
+        if (currentUser == null) {
+            LoginViewController.loadView(menuBar.getScene().getWindow(), this);
+        } else {
+            PayViewController.loadView(menuBar.getScene().getWindow(), this);
+        }
     }
 
     /**

@@ -1,11 +1,9 @@
 package hu.unideb.inf.pizza.models;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Egy rendelést reprezentáló osztály.
@@ -37,7 +35,7 @@ public class Order implements Serializable {
     /**
      * Rendelés leadásának ideje.
      */
-    private LocalDate order_date;
+    private Date order_date;
 
     /**
      * A rendeléshez tartozó pizzák.
@@ -59,6 +57,7 @@ public class Order implements Serializable {
     /**
      * Konstruktor egy rendelést reprezentáló osztály létrehozására.
      *
+     * @param id         A rendelés egyedi azonosítója
      * @param comment    A rendeléshez tartozó megjegyzés
      * @param address    A rendeléshez tartozó cím
      * @param totalPrice A rendelés végösszege
@@ -66,7 +65,8 @@ public class Order implements Serializable {
      * @param pizzas     A rendeléshez tartozó pizzák
      * @param user       A rendeléshez tartozó felhasználó
      */
-    public Order(String comment, String address, double totalPrice, LocalDate order_date, Collection<Pizza> pizzas, User user) {
+    public Order(int id, String comment, String address, double totalPrice, Date order_date, Collection<Pizza> pizzas, User user) {
+        this.id = id;
         this.comment = comment;
         this.address = address;
         this.totalPrice = totalPrice;
@@ -163,7 +163,8 @@ public class Order implements Serializable {
      */
     @Basic
     @Column(name = "order_date")
-    public LocalDate getOrder_date() {
+
+    public Date getOrder_date() {
         return order_date;
     }
 
@@ -172,7 +173,7 @@ public class Order implements Serializable {
      *
      * @param order_date A rendelés időpontja
      */
-    public void setOrder_date(LocalDate order_date) {
+    public void setOrder_date(Date order_date) {
         this.order_date = order_date;
     }
 
@@ -202,7 +203,11 @@ public class Order implements Serializable {
      * @return A rendeléshez tartozó pizzák
      */
     @ManyToMany
-    @JoinTable(name = "orders_has_pizzas")
+    @JoinTable(
+            name = "orders_has_pizzas",
+            joinColumns = @JoinColumn(name = "orders_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "pizzas_id", referencedColumnName = "id")
+    )
     public Collection<Pizza> getPizzas() {
         return pizzas;
     }
@@ -214,5 +219,13 @@ public class Order implements Serializable {
      */
     public void setPizzas(Collection<Pizza> pizzas) {
         this.pizzas = pizzas;
+    }
+
+    /**
+     * Létrehozáskor beállítja az order_date mező értékét az aktuális időpontra.
+     */
+    @PrePersist
+    protected void onCreate() {
+        this.order_date = new Date();
     }
 }

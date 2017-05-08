@@ -27,8 +27,11 @@ public class OrderService implements OrderServiceInterface {
         orderDao = new OrderDao();
     }
 
+    @Override
     public void create(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas) {
         Order order = new Order();
+        order.setUser(user);
+        order.setAddress(address);
         order.setComment(comment);
         order.setTotalPrice(totalPrice);
         order.setPizzas(pizzas);
