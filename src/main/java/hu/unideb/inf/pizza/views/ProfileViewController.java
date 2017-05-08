@@ -132,7 +132,7 @@ public class ProfileViewController implements Initializable {
         if (nameField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
             messageLabel.setText("Minden mező kitöltése kötelező.");
         } else {
-            userService.update(
+            userService.updateUser(
                     currentUser.getId(),
                     nameField.getText(),
                     passwordField.getText(),

@@ -17,7 +17,7 @@ public interface UserServiceInterface {
      * @param phone    A felhasználó telefonszáma
      * @return User Visszaadja a {@link User} felhasználót
      */
-    User create(String name, String email, String password, String address, String phone);
+    User createUser(String name, String email, String password, String address, String phone);
 
     /**
      * Módosítja a felhasználó adatait a paraméterül kapott adatokkal.
@@ -29,7 +29,7 @@ public interface UserServiceInterface {
      * @param phone    A felhasználó telefonszáma
      * @return User Visszaadja a {@link User} felhasználót
      */
-    User update(int id, String name, String password, String address, String phone);
+    User updateUser(int id, String name, String password, String address, String phone);
 
     /**
      * Visszaadja a paraméterül kapott emailhez tartozó {@link User} felhasználót.
@@ -46,5 +46,5 @@ public interface UserServiceInterface {
      * @param password A felhasználó jelszava
      * @return Sikeres-e a hitelesítés
      */
-    boolean validate(String email, String password);
+    boolean validateUser(String email, String password);
 }

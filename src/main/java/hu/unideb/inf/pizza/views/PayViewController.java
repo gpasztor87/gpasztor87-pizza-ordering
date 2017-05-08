@@ -59,11 +59,6 @@ public class PayViewController implements Initializable {
     private Label totalPriceLabel;
 
     /**
-     * A rendelés végösszege.
-     */
-    private int totalPrice;
-
-    /**
      * A bejelentkezett felhasználó.
      */
     private User currentUser;
@@ -110,7 +105,7 @@ public class PayViewController implements Initializable {
 
     @FXML
     private void payButtonHandler() {
-        orderService.create(
+        orderService.createOrder(
                 currentUser,
                 addressField.getText(),
                 messageField.getText(),

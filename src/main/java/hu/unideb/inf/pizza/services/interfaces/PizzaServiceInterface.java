@@ -14,6 +14,6 @@ public interface PizzaServiceInterface {
      *
      * @return Az összes {@link Pizza} pizza
      */
-    List<Pizza> getAllPizza();
+    List<Pizza> findAllPizza();
 
 }

@@ -148,7 +148,7 @@ public class MainViewController implements Initializable {
 
         PizzaService pizzaService = new PizzaService();
 
-        listData.addAll(pizzaService.getAllPizza());
+        listData.addAll(pizzaService.findAllPizza());
 
         pizzaListView = new ListView<Pizza>(listData);
 

@@ -28,7 +28,7 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public void create(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas) {
+    public void createOrder(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas) {
         Order order = new Order();
         order.setUser(user);
         order.setAddress(address);

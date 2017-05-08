@@ -119,6 +119,6 @@ public class LoginViewController implements Initializable {
     }
 
     private boolean authenticate(String email, String password) {
-        return userService.validate(email, password);
+        return userService.validateUser(email, password);
     }
 }

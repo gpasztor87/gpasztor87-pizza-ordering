@@ -21,7 +21,7 @@ public interface OrderServiceInterface {
      * @param totalPrice A rendelés végösszege
      * @param pizzas     A megrendelt pizzák
      */
-    void create(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas);
+    void createOrder(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas);
 
     /**
      * Visszaadja a paraméterül kapott felhasználó rendeléseit.

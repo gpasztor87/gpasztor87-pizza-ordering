@@ -120,7 +120,7 @@ public class RegisterViewController implements Initializable {
             if (userService.getUserByEmail(emailField.getText()) != null) {
                 messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
             } else {
-                userService.create(
+                userService.createUser(
                     nameField.getText(),
                     emailField.getText(),
                     passwordField.getText(),
