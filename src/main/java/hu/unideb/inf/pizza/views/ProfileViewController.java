@@ -102,6 +102,12 @@ public class ProfileViewController implements Initializable {
         userService = new UserService();
     }
 
+    /**
+     * Létrehozza és inicializálja a profil ablakot.
+     *
+     * @param window     A szülő ablak
+     * @param controller A fő ablak vezérlőjének egy példánya
+     */
     static void loadView(Window window, MainViewController controller) {
         mainViewController = controller;
 
@@ -127,6 +133,10 @@ public class ProfileViewController implements Initializable {
         }
     }
 
+    /**
+     * Lekezeli a mentés gomb eseményét.
+     * Módosítja a felhasználó adatait.
+     */
     @FXML
     private void updateButtonHandler() {
         if (nameField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
@@ -146,6 +156,9 @@ public class ProfileViewController implements Initializable {
         }
     }
 
+    /**
+     * Lekezeli a vissza gomb eseményét.
+     */
     @FXML
     private void cancelButtonHandler() {
         stage.close();

@@ -5,6 +5,7 @@ import hu.unideb.inf.pizza.models.Pizza;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class PizzaDao implements PizzaDaoInterface {
     /**
      * Az EntityManager egy példánya.
      */
+    @PersistenceContext
     private EntityManager entityManager;
 
     /**

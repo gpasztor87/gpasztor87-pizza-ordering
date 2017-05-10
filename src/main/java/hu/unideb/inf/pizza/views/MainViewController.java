@@ -174,6 +174,11 @@ public class MainViewController implements Initializable {
         pizzaPriceColumn.setCellValueFactory(new PropertyValueFactory<Pizza, Integer>("price"));
     }
 
+    /**
+     * Összeállítja a pizzák listáját tartalmazó lista nézetet.
+     *
+     * @return A lista callback-je
+     */
     private Callback<ListView<Pizza>, ListCell<Pizza>> listCellFactory() {
         return new Callback<ListView<Pizza>, ListCell<Pizza>>() {
 

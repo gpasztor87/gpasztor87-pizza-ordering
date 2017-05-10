@@ -6,10 +6,7 @@ import hu.unideb.inf.pizza.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 /**
  * A User DAO interfészt megvalósító osztály.
@@ -24,6 +21,7 @@ public class UserDao implements UserDaoInterface {
     /**
      * Az EntityManager egy példánya.
      */
+    @PersistenceContext
     private EntityManager entityManager;
 
     /**

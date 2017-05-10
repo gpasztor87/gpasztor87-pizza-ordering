@@ -88,6 +88,12 @@ public class RegisterViewController implements Initializable {
         userService = new UserService();
     }
 
+    /**
+     * Létrehozza és inicializálja a regisztrációs ablakot.
+     *
+     * @param window     A szülő ablak
+     * @param controller A fő ablak vezérlőjének egy példánya
+     */
     static void loadView(Window window, MainViewController controller) {
         mainViewController = controller;
 
@@ -108,11 +114,15 @@ public class RegisterViewController implements Initializable {
             stage.showAndWait();
         } catch (IOException e) {
             logger.error(
-                "IO exception has occurred in " + RegisterViewController.class + " loading registerDialog: " + e.getMessage()
+                    "IO exception has occurred in " + RegisterViewController.class + " loading registerDialog: " + e.getMessage()
             );
         }
     }
 
+    /**
+     * Lekezeli a regisztráció gomb eseményét.
+     * Beregisztrálja a felhasználót.
+     */
     @FXML
     private void registerButtonHandler() {
         if (nameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
@@ -122,11 +132,11 @@ public class RegisterViewController implements Initializable {
                 messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
             } else {
                 User user = userService.createUser(
-                    nameField.getText(),
-                    emailField.getText(),
-                    passwordField.getText(),
-                    addressField.getText(),
-                    phoneField.getText()
+                        nameField.getText(),
+                        emailField.getText(),
+                        passwordField.getText(),
+                        addressField.getText(),
+                        phoneField.getText()
                 );
 
                 mainViewController.switchMenuLoggedIn();
@@ -138,6 +148,9 @@ public class RegisterViewController implements Initializable {
         }
     }
 
+    /**
+     * Lekezeli a vissza gomb eseményét.
+     */
     @FXML
     private void cancelButtonHandler() {
         stage.close();

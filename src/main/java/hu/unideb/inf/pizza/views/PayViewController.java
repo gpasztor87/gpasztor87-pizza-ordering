@@ -78,6 +78,12 @@ public class PayViewController implements Initializable {
         orderService = new OrderService();
     }
 
+    /**
+     * Létrehozza és inicializálja a fizetés ablakot.
+     *
+     * @param window     A szülő ablak
+     * @param controller A fő ablak vezérlőjének egy példánya
+     */
     static void loadView(Window window, MainViewController controller) {
         mainViewController = controller;
 
@@ -103,6 +109,10 @@ public class PayViewController implements Initializable {
         }
     }
 
+    /**
+     * Lekezeli a rendelés gomb eseményét.
+     * Létrehozza a rendelést.
+     */
     @FXML
     private void payButtonHandler() {
         orderService.createOrder(
@@ -118,6 +128,9 @@ public class PayViewController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Lekezeli a vissza gomb eseményét.
+     */
     @FXML
     private void cancelButtonHandler() {
         stage.close();

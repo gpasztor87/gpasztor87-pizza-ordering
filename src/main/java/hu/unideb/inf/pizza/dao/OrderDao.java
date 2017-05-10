@@ -7,10 +7,7 @@ import hu.unideb.inf.pizza.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -26,6 +23,7 @@ public class OrderDao implements OrderDaoInterface {
     /**
      * Az EntityManager egy példánya.
      */
+    @PersistenceContext
     private EntityManager entityManager;
 
     /**

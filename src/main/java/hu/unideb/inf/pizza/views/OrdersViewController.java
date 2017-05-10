@@ -98,6 +98,12 @@ public class OrdersViewController implements Initializable {
         orderAddressTableColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("address"));
     }
 
+    /**
+     * Létrehozza és inicializálja a rendeléseim ablakot.
+     *
+     * @param window     A szülő ablak
+     * @param controller A fő ablak vezérlőjének egy példánya
+     */
     static void loadView(Window window, MainViewController controller) {
         mainViewController = controller;
 

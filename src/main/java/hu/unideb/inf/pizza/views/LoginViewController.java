@@ -70,6 +70,12 @@ public class LoginViewController implements Initializable {
         userService = new UserService();
     }
 
+    /**
+     * Létrehozza és inicializálja a bejelentkezési ablakot.
+     *
+     * @param window     A szülő ablak
+     * @param controller A fő ablak vezérlőjének egy példánya
+     */
     static void loadView(Window window, MainViewController controller) {
         mainViewController = controller;
 
@@ -90,11 +96,15 @@ public class LoginViewController implements Initializable {
             stage.showAndWait();
         } catch (IOException e) {
             logger.error(
-                "IO exception has occurred in " + LoginViewController.class + " loading loginDialog: " + e.getMessage()
+                    "IO exception has occurred in " + LoginViewController.class + " loading loginDialog: " + e.getMessage()
             );
         }
     }
 
+    /**
+     * Lekezeli a belépés gomb eseményét.
+     * Bejelentkezteti a felhasználót.
+     */
     @FXML
     private void loginButtonHandler() {
         if (emailField.getText().isEmpty() || passwordField.getText().isEmpty()) {
@@ -113,11 +123,22 @@ public class LoginViewController implements Initializable {
         }
     }
 
+    /**
+     * Lekezeli a vissza gomb eseményét.
+     */
     @FXML
     private void cancelButtonHandler() {
         stage.close();
     }
 
+    /**
+     * Hitelesíti a felhasználót.
+     * Sikeres hitelesítés esetén igaz értékkel tér vissza.
+     *
+     * @param email Email címe
+     * @param password Jelszó
+     * @return Igaz, ha sikeres a hitelesítés
+     */
     private boolean authenticate(String email, String password) {
         return userService.validateUser(email, password);
     }
