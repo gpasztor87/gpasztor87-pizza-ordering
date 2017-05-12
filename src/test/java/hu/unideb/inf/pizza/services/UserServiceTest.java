@@ -1,14 +1,11 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.UserDao;
-import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,17 +14,11 @@ public class UserServiceTest {
 
     private EntityManagerFactory entityManagerFactory;
 
-    @Mock
-    private UserDaoInterface userDao;
-
-    @Mock
     private UserServiceInterface userService;
 
     @Before
     public void init() {
         entityManagerFactory = Persistence.createEntityManagerFactory("test");
-        userDao = new UserDao();
-
         userService = new UserService();
     }
 
