@@ -24,6 +24,14 @@ public interface UserServiceInterface {
     User updateUser(User user);
 
     /**
+     * Visszaadja a paraméterül kapott egyedi azonosítóhoz tartozó {@link User} felhasználót.
+     *
+     * @param id A felhasználó egyedi azonosítója
+     * @return A keresett felhasználó
+     */
+    User getUserById(int id);
+
+    /**
      * Visszaadja a paraméterül kapott emailhez tartozó {@link User} felhasználót.
      *
      * @param email A felhasználó email címe

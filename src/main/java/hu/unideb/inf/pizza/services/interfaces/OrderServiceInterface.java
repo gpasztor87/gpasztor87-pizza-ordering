@@ -13,15 +13,11 @@ import java.util.List;
 public interface OrderServiceInterface {
 
     /**
-     * Elmenti a rendelést a paraméterül kapott adatokkal.
+     * Elmenti a paraméterül kapott rendelést.
      *
-     * @param user       A bejelentkezett felhasználó
-     * @param address    A bejelentkezett felhasználó címe
-     * @param comment    A rendeléshez tartozó megjegyzés
-     * @param totalPrice A rendelés végösszege
-     * @param pizzas     A megrendelt pizzák
+     * @param order A létrehozandó {@link Order} rendelés
      */
-    void createOrder(User user, String address, String comment, int totalPrice, Collection<Pizza> pizzas);
+    void createOrder(Order order);
 
     /**
      * Visszaadja a paraméterül kapott felhasználó rendeléseit.

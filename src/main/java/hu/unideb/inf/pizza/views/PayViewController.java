@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.OrderService;
 import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
@@ -115,13 +116,16 @@ public class PayViewController implements Initializable {
      */
     @FXML
     private void payButtonHandler() {
-        orderService.createOrder(
-                currentUser,
-                addressField.getText(),
-                messageField.getText(),
-                mainViewController.getCartSummary(),
-                mainViewController.getCart()
-        );
+        Order order = new Order();
+        order.setUser(currentUser);
+        order.setAddress(addressField.getText());
+        order.setComment(messageField.getText());
+        order.setTotalPrice(mainViewController.getCartSummary());
+        order.setPizzas(mainViewController.getCart());
+
+        orderService.createOrder(order);
+
+        logger.info("An order has been created by: " + currentUser.getName());
 
         mainViewController.clearCart();
 

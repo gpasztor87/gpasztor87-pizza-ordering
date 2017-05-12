@@ -312,7 +312,7 @@ public class MainViewController implements Initializable {
     @FXML
     private void clearCartButtonHandler() {
         clearCart();
-        logger.info("The car has been ");
+        logger.info("The cart has been emptied.");
     }
 
     /**
