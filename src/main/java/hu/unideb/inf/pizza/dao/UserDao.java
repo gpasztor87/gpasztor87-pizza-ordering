@@ -11,43 +11,16 @@ import javax.persistence.*;
 /**
  * A User DAO interfészt megvalósító osztály.
  */
-public class UserDao implements UserDaoInterface {
+public class UserDao extends GenericDao<User, Integer> implements UserDaoInterface {
 
     /**
      * A logger egy példánya.
      */
     private static Logger logger = LoggerFactory.getLogger(UserDao.class);
 
-    /**
-     * Az EntityManager egy példánya.
-     */
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    /**
-     * Az osztály paraméter nélküli konstruktora inicializálja az entitymanagert.
-     */
-    public UserDao() {
-        entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
-    }
-
-    @Override
-    public void create(User user) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
-    }
-
-    @Override
-    public void update(User user) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(user);
-        entityManager.getTransaction().commit();
-    }
-
     @Override
     public User findByEmail(String email) {
-        TypedQuery<User> query = entityManager.createQuery(
+        TypedQuery<User> query = getEntityManager().createQuery(
                 "select u from User u where email = :email", User.class
         );
 
@@ -59,8 +32,4 @@ public class UserDao implements UserDaoInterface {
         }
     }
 
-    @Override
-    public User findById(int id) {
-        return entityManager.find(User.class, id);
-    }
 }
