@@ -25,7 +25,7 @@ public class PizzaService implements PizzaServiceInterface {
     }
 
     @Override
-    public List<Pizza> findAllPizza() {
+    public List<Pizza> getAllPizza() {
         return pizzaDao.findAll();
     }
 }

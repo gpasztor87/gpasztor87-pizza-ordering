@@ -160,7 +160,7 @@ public class MainViewController implements Initializable {
 
         pizzaService = new PizzaService();
 
-        listData.addAll(pizzaService.findAllPizza());
+        listData.addAll(pizzaService.getAllPizza());
 
         pizzaListView = new ListView<Pizza>(listData);
 
@@ -312,6 +312,7 @@ public class MainViewController implements Initializable {
     @FXML
     private void clearCartButtonHandler() {
         clearCart();
+        logger.info("The car has been ");
     }
 
     /**

@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -142,13 +141,12 @@ public class ProfileViewController implements Initializable {
         if (nameField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
             messageLabel.setText("Minden mező kitöltése kötelező.");
         } else {
-            userService.updateUser(
-                    currentUser.getId(),
-                    nameField.getText(),
-                    passwordField.getText(),
-                    addressField.getText(),
-                    phoneField.getText()
-            );
+            currentUser.setName(nameField.getText());
+            currentUser.setPhone(phoneField.getText());
+            currentUser.setAddress(addressField.getText());
+            currentUser.setPassword(passwordField.getText());
+
+            userService.updateUser(currentUser);
 
             logger.info("The current user has been updated.");
 

@@ -8,28 +8,20 @@ import hu.unideb.inf.pizza.models.User;
 public interface UserServiceInterface {
 
     /**
-     * Elmenti a felhasználót a paraméterül kapott adatokkal.
+     * Elmenti a paraméterül kapott felhasználót.
      *
-     * @param name     A felhasználó neve
-     * @param email    A felhasználó email címe
-     * @param password A felhasználó jelszava
-     * @param address  A felhasználó címe
-     * @param phone    A felhasználó telefonszáma
+     * @param user  A létrehozandó {@link User} felhasználó
      * @return User Visszaadja a {@link User} felhasználót
      */
-    User createUser(String name, String email, String password, String address, String phone);
+    User createUser(User user);
 
     /**
-     * Módosítja a felhasználó adatait a paraméterül kapott adatokkal.
+     * Módosítja a paraméterül kapott felhasználó adatait.
      *
-     * @param id       A felhasználó egyedi azonosítója
-     * @param name     A felhasználó neve
-     * @param password A felhasználó jelszava
-     * @param address  A felhasználó címe
-     * @param phone    A felhasználó telefonszáma
+     * @param user  A módosítandó {@link User} felhasználó
      * @return User Visszaadja a {@link User} felhasználót
      */
-    User updateUser(int id, String name, String password, String address, String phone);
+    User updateUser(User user);
 
     /**
      * Visszaadja a paraméterül kapott emailhez tartozó {@link User} felhasználót.

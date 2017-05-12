@@ -131,13 +131,15 @@ public class RegisterViewController implements Initializable {
             if (userService.getUserByEmail(emailField.getText()) != null) {
                 messageLabel.setText("Ezzel az email címmel már létezik felhasználó.");
             } else {
-                User user = userService.createUser(
-                        nameField.getText(),
-                        emailField.getText(),
-                        passwordField.getText(),
-                        addressField.getText(),
-                        phoneField.getText()
-                );
+                User user = new User();
+
+                user.setName(nameField.getText());
+                user.setEmail(emailField.getText());
+                user.setAddress(addressField.getText());
+                user.setPhone(phoneField.getText());
+                user.setPassword(passwordField.getText());
+
+                userService.createUser(user);
 
                 mainViewController.switchMenuLoggedIn();
                 mainViewController.setCurrentUser(user);

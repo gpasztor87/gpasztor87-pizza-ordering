@@ -25,14 +25,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public User createUser(String name, String email, String password, String address, String phone) {
-        User user = new User();
-        user.setName(name);
-        user.setEmail(email);
-        user.setAddress(address);
-        user.setPhone(phone);
-
-        String encryptedPassword = sha256Hex(password);
+    public User createUser(User user) {
+        String encryptedPassword = sha256Hex(user.getPassword());
         user.setPassword(encryptedPassword);
 
         userDao.create(user);
@@ -41,14 +35,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public User updateUser(int id, String name, String password, String address, String phone) {
-        User user = userDao.findById(id);
-
-        user.setName(name);
-        user.setPhone(phone);
-        user.setAddress(address);
-
-        String encryptedPassword = sha256Hex(password);
+    public User updateUser(User user) {
+        String encryptedPassword = sha256Hex(user.getPassword());
         user.setPassword(encryptedPassword);
 
         userDao.update(user);
