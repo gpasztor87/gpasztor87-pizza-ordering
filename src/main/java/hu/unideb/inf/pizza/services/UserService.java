@@ -2,6 +2,7 @@ package hu.unideb.inf.pizza.services;
 
 import hu.unideb.inf.pizza.dao.UserDao;
 import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
+import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 
@@ -18,10 +19,18 @@ public class UserService implements UserServiceInterface {
     private UserDaoInterface userDao;
 
     /**
-     * Az osztály paraméter nélküli konstruktora.
+     * A {@link ConnectionManager} interfész egy implementációjának példánya.
      */
-    public UserService() {
-        userDao = new UserDao();
+    private ConnectionManager connectionManager;
+
+    /**
+     * Az osztály konstruktora inicializálja a userDao objektumot.
+     *
+     * @param connectionManager A connectionManager
+     */
+    public UserService(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        userDao = new UserDao(connectionManager.getEntityManager());
     }
 
     @Override
@@ -29,7 +38,13 @@ public class UserService implements UserServiceInterface {
         String encryptedPassword = sha256Hex(user.getPassword());
         user.setPassword(encryptedPassword);
 
-        userDao.create(user);
+        try {
+            connectionManager.beginTransaction();
+            userDao.create(user);
+            connectionManager.commit();
+        } catch (Exception e) {
+            connectionManager.rollback();
+        }
 
         return user;
     }
@@ -39,7 +54,13 @@ public class UserService implements UserServiceInterface {
         String encryptedPassword = sha256Hex(user.getPassword());
         user.setPassword(encryptedPassword);
 
-        userDao.update(user);
+        try {
+            connectionManager.beginTransaction();
+            userDao.update(user);
+            connectionManager.commit();
+        } catch (Exception e) {
+            connectionManager.rollback();
+        }
 
         return user;
     }

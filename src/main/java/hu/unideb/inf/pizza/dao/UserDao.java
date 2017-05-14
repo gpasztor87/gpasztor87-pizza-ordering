@@ -25,24 +25,22 @@ public class UserDao implements UserDaoInterface {
     private EntityManager entityManager;
 
     /**
-     * Az osztály paraméter nélküli konstruktora inicializálja az entitymanagert.
+     * Az osztály konstruktora inicializálja az entitymanagert.
+     *
+     * @param entityManager Az entityManager
      */
-    public UserDao() {
-        entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
+    public UserDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
     public void create(User user) {
-        entityManager.getTransaction().begin();
         entityManager.persist(user);
-        entityManager.getTransaction().commit();
     }
 
     @Override
     public void update(User user) {
-        entityManager.getTransaction().begin();
         entityManager.merge(user);
-        entityManager.getTransaction().commit();
     }
 
     @Override

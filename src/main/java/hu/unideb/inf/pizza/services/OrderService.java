@@ -2,12 +2,11 @@ package hu.unideb.inf.pizza.services;
 
 import hu.unideb.inf.pizza.dao.OrderDao;
 import hu.unideb.inf.pizza.dao.interfaces.OrderDaoInterface;
+import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
-import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,15 +20,29 @@ public class OrderService implements OrderServiceInterface {
     private OrderDaoInterface orderDao;
 
     /**
-     * Az osztály paraméter nélküli konstruktora.
+     * A {@link ConnectionManager} interfész egy implementációjának példánya.
      */
-    public OrderService() {
-        orderDao = new OrderDao();
+    private ConnectionManager connectionManager;
+
+    /**
+     * Az osztály konstruktora inicializálja az orderDao objektumot.
+     *
+     * @param connectionManager A connectionManager
+     */
+    public OrderService(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        orderDao = new OrderDao(connectionManager.getEntityManager());
     }
 
     @Override
     public void createOrder(Order order) {
-        orderDao.create(order);
+        try {
+            connectionManager.beginTransaction();
+            orderDao.create(order);
+            connectionManager.commit();
+        } catch (Exception e) {
+            connectionManager.rollback();
+        }
     }
 
     @Override

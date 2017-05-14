@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.UserService;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
@@ -98,7 +99,8 @@ public class ProfileViewController implements Initializable {
         addressField.setText(currentUser.getAddress());
         phoneField.setText(currentUser.getPhone());
 
-        userService = new UserService();
+        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        userService = new UserService(connectionManager);
     }
 
     /**

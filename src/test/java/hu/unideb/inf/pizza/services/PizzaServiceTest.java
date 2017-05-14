@@ -1,5 +1,7 @@
 package hu.unideb.inf.pizza.services;
 
+import hu.unideb.inf.pizza.managers.ConnectionManager;
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
 import org.junit.After;
@@ -13,23 +15,23 @@ import java.util.List;
 
 public class PizzaServiceTest {
 
-    private EntityManagerFactory entityManagerFactory;
+    private ConnectionManager connectionManager;
 
     private PizzaServiceInterface pizzaService;
 
     @Before
     public void init() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("test");
-        pizzaService = new PizzaService();
+        connectionManager = new JpaConnectionManager("test");
+        pizzaService = new PizzaService(connectionManager);
     }
 
     @After
     public void destroy() {
-        entityManagerFactory.close();
+        connectionManager.close();
     }
 
     @Test
-    public void testGetAllPizza() {
+    public void getAllPizza() {
         // Given
         this.createTestPizza();
 

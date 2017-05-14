@@ -2,6 +2,7 @@ package hu.unideb.inf.pizza.services;
 
 import hu.unideb.inf.pizza.dao.PizzaDao;
 import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
+import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
 
@@ -18,10 +19,18 @@ public class PizzaService implements PizzaServiceInterface {
     private PizzaDaoInterface pizzaDao;
 
     /**
-     * Az osztály paraméter nélküli konstruktora.
+     * A {@link ConnectionManager} interfész egy implementációjának példánya.
      */
-    public PizzaService() {
-        pizzaDao = new PizzaDao();
+    private ConnectionManager connectionManager;
+
+    /**
+     * Az osztály konstruktora inicializálja a pizzaDao objektumot.
+     *
+     * @param connectionManager A connectionManager
+     */
+    public PizzaService(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        pizzaDao = new PizzaDao(connectionManager.getEntityManager());
     }
 
     @Override

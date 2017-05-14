@@ -1,5 +1,7 @@
 package hu.unideb.inf.pizza.services;
 
+import hu.unideb.inf.pizza.managers.ConnectionManager;
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import org.junit.After;
@@ -12,23 +14,23 @@ import javax.persistence.Persistence;
 
 public class UserServiceTest {
 
-    private EntityManagerFactory entityManagerFactory;
+    private ConnectionManager connectionManager;
 
     private UserServiceInterface userService;
 
     @Before
     public void init() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("test");
-        userService = new UserService();
+        connectionManager = new JpaConnectionManager("test");
+        userService = new UserService(connectionManager);
     }
 
     @After
     public void destroy() {
-        entityManagerFactory.close();
+        connectionManager.close();
     }
 
     @Test
-    public void testCreateUser() {
+    public void createUser() {
         // Given
         User user = this.createTestUser();
 
@@ -42,7 +44,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testGetUserByEmail() {
+    public void getUserByEmail() {
         // Given
         User user = this.createTestUser();
 
@@ -54,7 +56,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testUpdateUser() {
+    public void updateUser() {
         // Given
         User user = this.createTestUser();
 

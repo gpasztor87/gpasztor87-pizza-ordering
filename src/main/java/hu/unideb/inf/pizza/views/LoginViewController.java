@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.UserService;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
@@ -67,7 +68,8 @@ public class LoginViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
 
-        userService = new UserService();
+        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        userService = new UserService(connectionManager);
     }
 
     /**

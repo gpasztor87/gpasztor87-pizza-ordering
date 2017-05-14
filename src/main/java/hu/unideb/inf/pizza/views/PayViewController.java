@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.OrderService;
@@ -76,7 +77,8 @@ public class PayViewController implements Initializable {
         addressField.setText(currentUser.getAddress());
         totalPriceLabel.setText(String.format("%d Ft", mainViewController.getCartSummary()));
 
-        orderService = new OrderService();
+        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        orderService = new OrderService(connectionManager);
     }
 
     /**

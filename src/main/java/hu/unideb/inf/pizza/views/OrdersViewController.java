@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.OrderService;
@@ -88,7 +89,8 @@ public class OrdersViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         currentUser = mainViewController.getCurrentUser();
 
-        orderService = new OrderService();
+        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        orderService = new OrderService(connectionManager);
 
         userOrders.addAll(orderService.getUserOrders(currentUser));
         orderTableView.setItems(userOrders);

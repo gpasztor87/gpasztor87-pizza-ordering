@@ -27,31 +27,27 @@ public class OrderDao implements OrderDaoInterface {
     private EntityManager entityManager;
 
     /**
-     * Az osztály paraméter nélküli konstruktora inicializálja az entitymanagert.
+     * Az osztály konstruktora inicializálja az entitymanagert.
+     *
+     * @param entityManager Az entityManager
      */
-    public OrderDao() {
-        entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
+    public OrderDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
     public void create(Order order) {
-        entityManager.getTransaction().begin();
         entityManager.persist(order);
-        entityManager.getTransaction().commit();
     }
 
     @Override
     public void update(Order order) {
-        entityManager.getTransaction().begin();
         entityManager.merge(order);
-        entityManager.getTransaction().commit();
     }
 
     @Override
     public void delete(Order order) {
-        entityManager.getTransaction().begin();
         entityManager.remove(order);
-        entityManager.getTransaction().commit();
     }
 
     @Override

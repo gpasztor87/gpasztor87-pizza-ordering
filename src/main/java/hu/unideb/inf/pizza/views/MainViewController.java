@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.PizzaService;
@@ -158,7 +159,8 @@ public class MainViewController implements Initializable {
         switchMenuLoggedOut();
         payButton.setDisable(true);
 
-        pizzaService = new PizzaService();
+        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        pizzaService = new PizzaService(connectionManager);
 
         listData.addAll(pizzaService.getAllPizza());
 
