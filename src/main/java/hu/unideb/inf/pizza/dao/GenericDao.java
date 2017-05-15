@@ -43,8 +43,6 @@ public abstract class GenericDao<T, PK extends Serializable> implements GenericD
 
     @Override
     public List<T> findAll() {
-        System.out.println(getTypeClass().getName());
-
         return entityManager.createQuery("FROM " + getTypeClass().getName()).getResultList();
     }
 
