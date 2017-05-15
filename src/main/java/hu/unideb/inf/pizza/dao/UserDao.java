@@ -18,6 +18,10 @@ public class UserDao extends GenericDao<User, Integer> implements UserDaoInterfa
      */
     private static Logger logger = LoggerFactory.getLogger(UserDao.class);
 
+    public UserDao(EntityManager entityManager) {
+        super(entityManager);
+    }
+
     @Override
     public User findByEmail(String email) {
         TypedQuery<User> query = getEntityManager().createQuery(

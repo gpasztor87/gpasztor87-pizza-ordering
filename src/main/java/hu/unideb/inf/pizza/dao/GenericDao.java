@@ -4,25 +4,21 @@ package hu.unideb.inf.pizza.dao;
 import hu.unideb.inf.pizza.dao.interfaces.GenericDaoInterface;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class GenericDao<T, PK extends Serializable> implements GenericDaoInterface<T, PK> {
+@SuppressWarnings("unchecked")
+public abstract class GenericDao<T, PK extends Serializable> implements GenericDaoInterface<T, PK> {
 
     private EntityManager entityManager;
 
-    GenericDao() {
-        entityManager = Persistence.createEntityManagerFactory("production").createEntityManager();
+    GenericDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     public EntityManager getEntityManager() {
         return entityManager;
-    }
-
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
     }
 
     @Override
@@ -47,12 +43,13 @@ public class GenericDao<T, PK extends Serializable> implements GenericDaoInterfa
 
     @Override
     public List<T> findAll() {
+        System.out.println(getTypeClass().getName());
+
         return entityManager.createQuery("FROM " + getTypeClass().getName()).getResultList();
     }
 
     private Class<?> getTypeClass() {
-        Class<?> classType = (Class<?>) ((ParameterizedType) this.getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[1];
-        return classType;
+        return (Class<?>) ((ParameterizedType) this.getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0];
     }
 }

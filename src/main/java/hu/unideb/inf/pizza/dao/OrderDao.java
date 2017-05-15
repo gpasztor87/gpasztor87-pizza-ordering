@@ -20,6 +20,10 @@ public class OrderDao extends GenericDao<Order, Integer> implements OrderDaoInte
      */
     private static Logger logger = LoggerFactory.getLogger(OrderDao.class);
 
+    public OrderDao(EntityManager entityManager) {
+        super(entityManager);
+    }
+
     @Override
     public List<Order> findByUser(User user) {
         TypedQuery<Order> query = getEntityManager().createQuery(

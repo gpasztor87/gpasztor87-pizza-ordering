@@ -1,6 +1,5 @@
 package hu.unideb.inf.pizza.dao.interfaces;
 
-import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
