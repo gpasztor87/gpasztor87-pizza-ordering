@@ -13,51 +13,16 @@ import java.util.List;
 /**
  * Az Order DAO interfészt megvalósító osztály.
  */
-public class OrderDao implements OrderDaoInterface {
+public class OrderDao extends GenericDao<Order, Integer> implements OrderDaoInterface {
 
     /**
      * A logger egy példánya.
      */
     private static Logger logger = LoggerFactory.getLogger(OrderDao.class);
 
-    /**
-     * Az EntityManager egy példánya.
-     */
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    /**
-     * Az osztály konstruktora inicializálja az entitymanagert.
-     *
-     * @param entityManager Az entityManager
-     */
-    public OrderDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    @Override
-    public void create(Order order) {
-        entityManager.persist(order);
-    }
-
-    @Override
-    public void update(Order order) {
-        entityManager.merge(order);
-    }
-
-    @Override
-    public void delete(Order order) {
-        entityManager.remove(order);
-    }
-
-    @Override
-    public Order findById(int id) {
-        return entityManager.find(Order.class, id);
-    }
-
     @Override
     public List<Order> findByUser(User user) {
-        TypedQuery<Order> query = entityManager.createQuery(
+        TypedQuery<Order> query = getEntityManager().createQuery(
             "SELECT  o FROM Order o WHERE user.id = :user_id", Order.class
         );
 

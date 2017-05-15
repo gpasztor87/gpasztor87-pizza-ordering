@@ -5,21 +5,7 @@ import hu.unideb.inf.pizza.models.User;
 /**
  * A felhasználók DAO interfésze.
  */
-public interface UserDaoInterface {
-
-    /**
-     * Elmenti a paraméterül kapott felhasználót az adatbázisba.
-     *
-     * @param user A menteni kívánt {@link User} felhasználó
-     */
-    void create(User user);
-
-    /**
-     * Módosítja a paraméterül kapott felhasználó adatait.
-     *
-     * @param user A módosítandó {@link User} felhasználó
-     */
-    void update(User user);
+public interface UserDaoInterface extends GenericDaoInterface<User, Integer> {
 
     /**
      * Lekér az adatbázisból egy felhasználót az email címe alapján.
@@ -29,11 +15,4 @@ public interface UserDaoInterface {
      */
     User findByEmail(String email);
 
-    /**
-     * Lekér az adatbázisból egy felhasználót az egyedi azonosítója alapján.
-     *
-     * @param id A felhasználó egyedi azonosítója
-     * @return Egy felhasználót reprezentáló {@link User} osztály
-     */
-    User findById(int id);
 }
