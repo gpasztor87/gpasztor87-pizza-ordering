@@ -33,7 +33,7 @@ public class PizzaServiceTest {
     @Test
     public void getAllPizza() {
         // Given
-        this.createTestPizza();
+        pizzaService.createPizza(this.createTestPizza());
 
         // When
         List<Pizza> pizzaList = pizzaService.getAllPizza();

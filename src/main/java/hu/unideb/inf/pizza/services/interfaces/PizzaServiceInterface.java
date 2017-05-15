@@ -10,6 +10,13 @@ import java.util.List;
 public interface PizzaServiceInterface {
 
     /**
+     * Elmenti a paraméterül kapott pizzát.
+     *
+     * @param pizza A létrehozandó {@link Pizza} pizza
+     */
+    void createPizza(Pizza pizza);
+
+    /**
      * Visszaadja az összes pizzát.
      *
      * @return Az összes {@link Pizza} pizza

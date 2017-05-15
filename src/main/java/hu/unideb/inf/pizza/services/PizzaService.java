@@ -34,6 +34,17 @@ public class PizzaService implements PizzaServiceInterface {
     }
 
     @Override
+    public void createPizza(Pizza pizza) {
+        try {
+            connectionManager.beginTransaction();
+            pizzaDao.create(pizza);
+            connectionManager.commit();
+        } catch (Exception e) {
+            connectionManager.rollback();
+        }
+    }
+
+    @Override
     public List<Pizza> getAllPizza() {
         return pizzaDao.findAll();
     }
