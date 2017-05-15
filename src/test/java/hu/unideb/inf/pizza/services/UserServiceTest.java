@@ -9,9 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 public class UserServiceTest {
 
     private ConnectionManager connectionManager;
