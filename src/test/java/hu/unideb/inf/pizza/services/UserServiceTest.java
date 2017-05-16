@@ -1,10 +1,9 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +11,7 @@ import org.mockito.Mockito;
 
 public class UserServiceTest {
 
-    private UserDaoInterface userDao;
+    private UserDao userDao;
 
     private ConnectionManager connectionManager;
 
@@ -22,7 +21,7 @@ public class UserServiceTest {
 
     @Before
     public void setUp() {
-        userDao = Mockito.mock(UserDaoInterface.class);
+        userDao = Mockito.mock(UserDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
         user = new User(1, "Teszt Elek", "teszt@elek.org", "Debrecen", "06201234567");

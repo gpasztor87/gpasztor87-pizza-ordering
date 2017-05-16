@@ -1,6 +1,7 @@
 package hu.unideb.inf.pizza.views;
 
-import hu.unideb.inf.pizza.dao.UserDao;
+import hu.unideb.inf.pizza.dao.UserDaoImpl;
+import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.UserService;
@@ -70,7 +71,7 @@ public class LoginViewController implements Initializable {
         messageLabel.setText("");
 
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
-        UserDao userDao = new UserDao(connectionManager.getEntityManager());
+        UserDao userDao = new UserDaoImpl(connectionManager.getEntityManager());
 
         userService = new UserService(connectionManager, userDao);
     }

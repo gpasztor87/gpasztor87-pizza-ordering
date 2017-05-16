@@ -1,7 +1,6 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.PizzaDao;
-import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
@@ -14,9 +13,9 @@ import java.util.List;
 public class PizzaService implements PizzaServiceInterface {
 
     /**
-     * A {@link PizzaDaoInterface} interfész egy implementációjának példánya.
+     * A {@link PizzaDao} interfész egy implementációjának példánya.
      */
-    private PizzaDaoInterface pizzaDao;
+    private PizzaDao pizzaDao;
 
     /**
      * A {@link ConnectionManager} interfész egy implementációjának példánya.
@@ -29,7 +28,7 @@ public class PizzaService implements PizzaServiceInterface {
      * @param connectionManager A connectionManager interfész egy implementációjának példánya
      * @param pizzaDao A pizzaDao niterfész egy implementációjának példánya
      */
-    public PizzaService(ConnectionManager connectionManager, PizzaDaoInterface pizzaDao) {
+    public PizzaService(ConnectionManager connectionManager, PizzaDao pizzaDao) {
         this.connectionManager = connectionManager;
         this.pizzaDao = pizzaDao;
     }

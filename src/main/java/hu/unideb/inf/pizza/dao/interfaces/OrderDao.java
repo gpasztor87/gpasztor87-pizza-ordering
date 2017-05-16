@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * A rendelések DAO interfésze.
  */
-public interface OrderDaoInterface {
+public interface OrderDao {
 
     /**
      * Elmenti a paraméterül kapott rendelést az adatbázisba.

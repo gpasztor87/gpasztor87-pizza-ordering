@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * A pizzák DAO interfésze.
  */
-public interface PizzaDaoInterface {
+public interface PizzaDao {
 
     /**
      * Elmenti a paraméterül kapott pizzát az adatbázisba.

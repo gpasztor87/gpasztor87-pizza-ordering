@@ -1,7 +1,6 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.OrderDao;
-import hu.unideb.inf.pizza.dao.interfaces.OrderDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.OrderDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
@@ -15,9 +14,9 @@ import java.util.List;
 public class OrderService implements OrderServiceInterface {
 
     /**
-     * A {@link OrderDaoInterface} interfész egy implementációjának példánya.
+     * A {@link OrderDao} interfész egy implementációjának példánya.
      */
-    private OrderDaoInterface orderDao;
+    private OrderDao orderDao;
 
     /**
      * A {@link ConnectionManager} interfész egy implementációjának példánya.
@@ -30,7 +29,7 @@ public class OrderService implements OrderServiceInterface {
      * @param connectionManager A connectionManager interfész egy implementációjnak példánya
      * @param orderDao Az orderDao interfész egy implementációjának példánya
      */
-    public OrderService(ConnectionManager connectionManager, OrderDaoInterface orderDao) {
+    public OrderService(ConnectionManager connectionManager, OrderDao orderDao) {
         this.connectionManager = connectionManager;
         this.orderDao = orderDao;
     }

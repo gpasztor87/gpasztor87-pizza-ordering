@@ -1,6 +1,6 @@
 package hu.unideb.inf.pizza.dao;
 
-import hu.unideb.inf.pizza.dao.interfaces.OrderDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.OrderDao;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 
@@ -13,12 +13,12 @@ import java.util.List;
 /**
  * Az Order DAO interfészt megvalósító osztály.
  */
-public class OrderDao implements OrderDaoInterface {
+public class OrderDaoImpl implements OrderDao {
 
     /**
      * A logger egy példánya.
      */
-    private static Logger logger = LoggerFactory.getLogger(OrderDao.class);
+    private static Logger logger = LoggerFactory.getLogger(OrderDaoImpl.class);
 
     /**
      * Az EntityManager egy példánya.
@@ -31,7 +31,7 @@ public class OrderDao implements OrderDaoInterface {
      *
      * @param entityManager Az entityManager
      */
-    public OrderDao(EntityManager entityManager) {
+    public OrderDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

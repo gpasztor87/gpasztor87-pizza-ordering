@@ -1,7 +1,6 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.UserDao;
-import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
@@ -14,9 +13,9 @@ import static org.apache.commons.codec.digest.DigestUtils.*;
 public class UserService implements UserServiceInterface {
 
     /**
-     * A {@link UserDaoInterface} interfész egy implementációjának példánya.
+     * A {@link UserDao} interfész egy implementációjának példánya.
      */
-    private UserDaoInterface userDao;
+    private UserDao userDao;
 
     /**
      * A {@link ConnectionManager} interfész egy implementációjának példánya.
@@ -29,7 +28,7 @@ public class UserService implements UserServiceInterface {
      * @param connectionManager A connectionManager interfész egy implementációjának példánya
      * @param userDao A userDao interfész egy implementációjának példánya
      */
-    public UserService(ConnectionManager connectionManager, UserDaoInterface userDao) {
+    public UserService(ConnectionManager connectionManager, UserDao userDao) {
         this.connectionManager = connectionManager;
         this.userDao = userDao;
     }

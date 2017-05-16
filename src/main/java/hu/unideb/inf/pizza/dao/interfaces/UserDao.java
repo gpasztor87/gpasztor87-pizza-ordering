@@ -5,7 +5,7 @@ import hu.unideb.inf.pizza.models.User;
 /**
  * A felhasználók DAO interfésze.
  */
-public interface UserDaoInterface {
+public interface UserDao {
 
     /**
      * Elmenti a paraméterül kapott felhasználót az adatbázisba.

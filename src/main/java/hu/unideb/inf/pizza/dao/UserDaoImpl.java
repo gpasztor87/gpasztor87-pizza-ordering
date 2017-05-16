@@ -1,6 +1,6 @@
 package hu.unideb.inf.pizza.dao;
 
-import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.models.User;
 
 import org.slf4j.Logger;
@@ -11,12 +11,12 @@ import javax.persistence.*;
 /**
  * A User DAO interfészt megvalósító osztály.
  */
-public class UserDao implements UserDaoInterface {
+public class UserDaoImpl implements UserDao {
 
     /**
      * A logger egy példánya.
      */
-    private static Logger logger = LoggerFactory.getLogger(UserDao.class);
+    private static Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
     /**
      * Az EntityManager egy példánya.
@@ -29,7 +29,7 @@ public class UserDao implements UserDaoInterface {
      *
      * @param entityManager Az entityManager
      */
-    public UserDao(EntityManager entityManager) {
+    public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

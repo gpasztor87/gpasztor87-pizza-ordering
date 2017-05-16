@@ -1,6 +1,7 @@
 package hu.unideb.inf.pizza.views;
 
-import hu.unideb.inf.pizza.dao.OrderDao;
+import hu.unideb.inf.pizza.dao.OrderDaoImpl;
+import hu.unideb.inf.pizza.dao.interfaces.OrderDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
@@ -79,7 +80,7 @@ public class PayViewController implements Initializable {
         totalPriceLabel.setText(String.format("%d Ft", mainViewController.getCartSummary()));
 
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
-        OrderDao orderDao = new OrderDao(connectionManager.getEntityManager());
+        OrderDao orderDao = new OrderDaoImpl(connectionManager.getEntityManager());
 
         orderService = new OrderService(connectionManager, orderDao);
     }

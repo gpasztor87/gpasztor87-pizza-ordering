@@ -1,6 +1,6 @@
 package hu.unideb.inf.pizza.dao;
 
-import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.models.Pizza;
 
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * A Pizza DAO interfészt megvalósító osztály.
  */
-public class PizzaDao implements PizzaDaoInterface {
+public class PizzaDaoImpl implements PizzaDao {
 
     /**
      * Az EntityManager egy példánya.
@@ -24,7 +24,7 @@ public class PizzaDao implements PizzaDaoInterface {
      *
      * @param entityManager Az entityManager
      */
-    public PizzaDao(EntityManager entityManager) {
+    public PizzaDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

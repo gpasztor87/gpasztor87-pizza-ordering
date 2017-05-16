@@ -1,11 +1,9 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
-import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +13,7 @@ import java.util.Arrays;
 
 public class PizzaServiceTest {
 
-    private PizzaDaoInterface pizzaDao;
+    private PizzaDao pizzaDao;
 
     private ConnectionManager connectionManager;
 
@@ -23,7 +21,7 @@ public class PizzaServiceTest {
 
     @Before
     public void setUp() {
-        pizzaDao = Mockito.mock(PizzaDaoInterface.class);
+        pizzaDao = Mockito.mock(PizzaDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
         Pizza margarita = new Pizza("Margarita", "", 1550, "margarita.jpg");

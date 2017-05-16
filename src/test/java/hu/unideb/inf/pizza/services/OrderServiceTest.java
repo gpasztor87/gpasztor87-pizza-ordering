@@ -1,12 +1,11 @@
 package hu.unideb.inf.pizza.services;
 
-import hu.unideb.inf.pizza.dao.interfaces.OrderDaoInterface;
+import hu.unideb.inf.pizza.dao.interfaces.OrderDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +15,7 @@ import java.util.*;
 
 public class OrderServiceTest {
 
-    private OrderDaoInterface orderDao;
+    private OrderDao orderDao;
 
     private ConnectionManager connectionManager;
 
@@ -30,7 +29,7 @@ public class OrderServiceTest {
 
     @Before
     public void setUp() {
-        orderDao = Mockito.mock(OrderDaoInterface.class);
+        orderDao = Mockito.mock(OrderDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
         user = new User(1, "Teszt Elek", "teszt@elek.org", "Debrecen", "");
