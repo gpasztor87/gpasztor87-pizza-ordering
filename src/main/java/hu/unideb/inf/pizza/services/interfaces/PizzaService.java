@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * A pizzák kezelését végző osztály interfésze.
  */
-public interface PizzaServiceInterface {
+public interface PizzaService {
 
     /**
      * Visszaadja az összes pizzát.

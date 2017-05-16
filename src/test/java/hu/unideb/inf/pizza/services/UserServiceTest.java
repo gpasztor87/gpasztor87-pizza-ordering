@@ -3,7 +3,7 @@ package hu.unideb.inf.pizza.services;
 import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.User;
-import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
+import hu.unideb.inf.pizza.services.interfaces.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class UserServiceTest {
 
     private ConnectionManager connectionManager;
 
-    private UserServiceInterface userService;
+    private UserService userService;
 
     private User user;
 
@@ -30,7 +30,7 @@ public class UserServiceTest {
         Mockito.when(userDao.findByEmail("teszt@elek.org")).thenReturn(user);
         Mockito.when(userDao.findById(1)).thenReturn(user);
 
-        userService = new UserService(connectionManager, userDao);
+        userService = new UserServiceImpl(connectionManager, userDao);
     }
 
     @Test

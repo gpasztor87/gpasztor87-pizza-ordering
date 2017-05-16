@@ -4,8 +4,8 @@ import hu.unideb.inf.pizza.dao.UserDaoImpl;
 import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
-import hu.unideb.inf.pizza.services.UserService;
-import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
+import hu.unideb.inf.pizza.services.UserServiceImpl;
+import hu.unideb.inf.pizza.services.interfaces.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -62,9 +62,9 @@ public class LoginViewController implements Initializable {
     private Label messageLabel;
 
     /**
-     * A {@link UserServiceInterface} interfész egy implementációjának példánya.
+     * A {@link UserService} interfész egy implementációjának példánya.
      */
-    private UserServiceInterface userService;
+    private UserService userService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,7 +73,7 @@ public class LoginViewController implements Initializable {
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
         UserDao userDao = new UserDaoImpl(connectionManager.getEntityManager());
 
-        userService = new UserService(connectionManager, userDao);
+        userService = new UserServiceImpl(connectionManager, userDao);
     }
 
     /**

@@ -4,14 +4,14 @@ import hu.unideb.inf.pizza.dao.interfaces.OrderDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
-import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
+import hu.unideb.inf.pizza.services.interfaces.OrderService;
 
 import java.util.List;
 
 /**
- * Az OrderService interfészt megvalósító osztály.
+ * Az OrderServiceImpl interfészt megvalósító osztály.
  */
-public class OrderService implements OrderServiceInterface {
+public class OrderServiceImpl implements OrderService {
 
     /**
      * A {@link OrderDao} interfész egy implementációjának példánya.
@@ -29,7 +29,7 @@ public class OrderService implements OrderServiceInterface {
      * @param connectionManager A connectionManager interfész egy implementációjnak példánya
      * @param orderDao Az orderDao interfész egy implementációjának példánya
      */
-    public OrderService(ConnectionManager connectionManager, OrderDao orderDao) {
+    public OrderServiceImpl(ConnectionManager connectionManager, OrderDao orderDao) {
         this.connectionManager = connectionManager;
         this.orderDao = orderDao;
     }

@@ -3,7 +3,7 @@ package hu.unideb.inf.pizza.services;
 import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
-import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
+import hu.unideb.inf.pizza.services.interfaces.PizzaService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class PizzaServiceTest {
 
     private ConnectionManager connectionManager;
 
-    private PizzaServiceInterface pizzaService;
+    private PizzaService pizzaService;
 
     @Before
     public void setUp() {
@@ -29,7 +29,7 @@ public class PizzaServiceTest {
 
         Mockito.when(pizzaDao.findAll()).thenReturn(Arrays.asList(margarita, szalamis));
 
-        pizzaService = new PizzaService(connectionManager, pizzaDao);
+        pizzaService = new PizzaServiceImpl(connectionManager, pizzaDao);
     }
 
     @Test

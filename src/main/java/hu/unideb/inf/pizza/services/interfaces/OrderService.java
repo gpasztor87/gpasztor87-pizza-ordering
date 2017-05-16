@@ -1,16 +1,14 @@
 package hu.unideb.inf.pizza.services.interfaces;
 
 import hu.unideb.inf.pizza.models.Order;
-import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
  * A rendelések kezelését végző osztály interfésze.
  */
-public interface OrderServiceInterface {
+public interface OrderService {
 
     /**
      * Elmenti a paraméterül kapott rendelést.

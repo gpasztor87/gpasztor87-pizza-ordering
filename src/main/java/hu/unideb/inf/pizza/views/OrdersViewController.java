@@ -5,8 +5,8 @@ import hu.unideb.inf.pizza.dao.interfaces.OrderDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
-import hu.unideb.inf.pizza.services.OrderService;
-import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
+import hu.unideb.inf.pizza.services.OrderServiceImpl;
+import hu.unideb.inf.pizza.services.interfaces.OrderService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -83,9 +83,9 @@ public class OrdersViewController implements Initializable {
     private ObservableList<Order> userOrders = FXCollections.observableArrayList();
 
     /**
-     * A {@link OrderServiceInterface} interfész egy implementációjának példánya.
+     * A {@link OrderService} interfész egy implementációjának példánya.
      */
-    private OrderServiceInterface orderService;
+    private OrderService orderService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -94,7 +94,7 @@ public class OrdersViewController implements Initializable {
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
         OrderDao orderDao = new OrderDaoImpl(connectionManager.getEntityManager());
 
-        orderService = new OrderService(connectionManager, orderDao);
+        orderService = new OrderServiceImpl(connectionManager, orderDao);
 
         userOrders.addAll(orderService.getUserOrders(currentUser));
         orderTableView.setItems(userOrders);

@@ -5,7 +5,7 @@ import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
-import hu.unideb.inf.pizza.services.interfaces.OrderServiceInterface;
+import hu.unideb.inf.pizza.services.interfaces.OrderService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class OrderServiceTest {
 
     private ConnectionManager connectionManager;
 
-    private OrderServiceInterface orderService;
+    private OrderService orderService;
 
     private User user;
 
@@ -43,7 +43,7 @@ public class OrderServiceTest {
         Mockito.when(orderDao.findByUser(user)).thenReturn(Collections.singletonList(order));
         Mockito.when(orderDao.findById(1)).thenReturn(order);
 
-        orderService = new OrderService(connectionManager, orderDao);
+        orderService = new OrderServiceImpl(connectionManager, orderDao);
     }
 
     @Test

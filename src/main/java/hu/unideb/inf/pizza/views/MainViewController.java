@@ -5,8 +5,8 @@ import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
-import hu.unideb.inf.pizza.services.PizzaService;
-import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
+import hu.unideb.inf.pizza.services.PizzaServiceImpl;
+import hu.unideb.inf.pizza.services.interfaces.PizzaService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -151,9 +151,9 @@ public class MainViewController implements Initializable {
     private ObservableList<Pizza> cart = FXCollections.observableArrayList();
 
     /**
-     * A {@link PizzaServiceInterface} interfész egy implementációjának példánya.
+     * A {@link PizzaService} interfész egy implementációjának példánya.
      */
-    private PizzaServiceInterface pizzaService;
+    private PizzaService pizzaService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -164,7 +164,7 @@ public class MainViewController implements Initializable {
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
         PizzaDao pizzaDao = new PizzaDaoImpl(connectionManager.getEntityManager());
 
-        pizzaService = new PizzaService(connectionManager, pizzaDao);
+        pizzaService = new PizzaServiceImpl(connectionManager, pizzaDao);
 
         listData.addAll(pizzaService.getAllPizza());
 

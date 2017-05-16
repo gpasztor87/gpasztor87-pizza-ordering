@@ -3,14 +3,14 @@ package hu.unideb.inf.pizza.services;
 import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
-import hu.unideb.inf.pizza.services.interfaces.PizzaServiceInterface;
+import hu.unideb.inf.pizza.services.interfaces.PizzaService;
 
 import java.util.List;
 
 /**
- * A PizzaService interfészt megvalósító osztály.
+ * A PizzaServiceImpl interfészt megvalósító osztály.
  */
-public class PizzaService implements PizzaServiceInterface {
+public class PizzaServiceImpl implements PizzaService {
 
     /**
      * A {@link PizzaDao} interfész egy implementációjának példánya.
@@ -28,7 +28,7 @@ public class PizzaService implements PizzaServiceInterface {
      * @param connectionManager A connectionManager interfész egy implementációjának példánya
      * @param pizzaDao A pizzaDao niterfész egy implementációjának példánya
      */
-    public PizzaService(ConnectionManager connectionManager, PizzaDao pizzaDao) {
+    public PizzaServiceImpl(ConnectionManager connectionManager, PizzaDao pizzaDao) {
         this.connectionManager = connectionManager;
         this.pizzaDao = pizzaDao;
     }

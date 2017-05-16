@@ -5,7 +5,7 @@ import hu.unideb.inf.pizza.models.User;
 /**
  * A felhasználók kezelését végző osztály interfésze.
  */
-public interface UserServiceInterface {
+public interface UserService {
 
     /**
      * Elmenti a paraméterül kapott felhasználót.
