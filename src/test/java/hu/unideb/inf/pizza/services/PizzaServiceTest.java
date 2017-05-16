@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.services;
 
+import hu.unideb.inf.pizza.dao.interfaces.PizzaDaoInterface;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
@@ -8,44 +9,39 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class PizzaServiceTest {
+
+    private PizzaDaoInterface pizzaDao;
 
     private ConnectionManager connectionManager;
 
     private PizzaServiceInterface pizzaService;
 
     @Before
-    public void init() {
-        connectionManager = new JpaConnectionManager("test");
-        pizzaService = new PizzaService(connectionManager);
+    public void setUp() {
+        pizzaDao = Mockito.mock(PizzaDaoInterface.class);
+        connectionManager = Mockito.mock(ConnectionManager.class);
+
+        Pizza margarita = new Pizza("Margarita", "", 1550, "margarita.jpg");
+        Pizza szalamis = new Pizza("Szalámis", "", 1350, "szalamis.jpg");
+
+        Mockito.when(pizzaDao.findAll()).thenReturn(Arrays.asList(margarita, szalamis));
+
+        pizzaService = new PizzaService(connectionManager, pizzaDao);
     }
 
-    @After
-    public void destroy() {
-        connectionManager.close();
+    @Test
+    public void testMockCreation() {
+        Assert.assertNotNull(pizzaDao);
+        Assert.assertNotNull(pizzaService);
     }
 
     @Test
     public void getAllPizza() {
-        // Given
-        pizzaService.createPizza(this.createTestPizza());
-
-        // When
-        List<Pizza> pizzaList = pizzaService.getAllPizza();
-
-        // Then
-        Assert.assertEquals(1, pizzaList.size());
-    }
-
-    private Pizza createTestPizza() {
-        Pizza pizza = new Pizza();
-        pizza.setName("Margarita");
-        pizza.setPrice(1350);
-        pizza.setDescription("description");
-
-        return pizza;
+        Assert.assertEquals(2, pizzaService.getAllPizza().size());
     }
 }

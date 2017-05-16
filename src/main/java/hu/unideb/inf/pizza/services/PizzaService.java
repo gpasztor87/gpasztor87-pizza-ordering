@@ -26,22 +26,12 @@ public class PizzaService implements PizzaServiceInterface {
     /**
      * Az osztály konstruktora inicializálja a pizzaDao objektumot.
      *
-     * @param connectionManager A connectionManager
+     * @param connectionManager A connectionManager interfész egy implementációjának példánya
+     * @param pizzaDao A pizzaDao niterfész egy implementációjának példánya
      */
-    public PizzaService(ConnectionManager connectionManager) {
+    public PizzaService(ConnectionManager connectionManager, PizzaDaoInterface pizzaDao) {
         this.connectionManager = connectionManager;
-        pizzaDao = new PizzaDao(connectionManager.getEntityManager());
-    }
-
-    @Override
-    public void createPizza(Pizza pizza) {
-        try {
-            connectionManager.beginTransaction();
-            pizzaDao.create(pizza);
-            connectionManager.commit();
-        } catch (Exception e) {
-            connectionManager.rollback();
-        }
+        this.pizzaDao = pizzaDao;
     }
 
     @Override

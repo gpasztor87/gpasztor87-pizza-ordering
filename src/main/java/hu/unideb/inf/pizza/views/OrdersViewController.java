@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.dao.OrderDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
@@ -90,7 +91,9 @@ public class OrdersViewController implements Initializable {
         currentUser = mainViewController.getCurrentUser();
 
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
-        orderService = new OrderService(connectionManager);
+        OrderDao orderDao = new OrderDao(connectionManager.getEntityManager());
+
+        orderService = new OrderService(connectionManager, orderDao);
 
         userOrders.addAll(orderService.getUserOrders(currentUser));
         orderTableView.setItems(userOrders);

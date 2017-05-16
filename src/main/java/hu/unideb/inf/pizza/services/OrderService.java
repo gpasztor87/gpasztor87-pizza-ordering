@@ -27,11 +27,12 @@ public class OrderService implements OrderServiceInterface {
     /**
      * Az osztály konstruktora inicializálja az orderDao objektumot.
      *
-     * @param connectionManager A connectionManager
+     * @param connectionManager A connectionManager interfész egy implementációjnak példánya
+     * @param orderDao Az orderDao interfész egy implementációjának példánya
      */
-    public OrderService(ConnectionManager connectionManager) {
+    public OrderService(ConnectionManager connectionManager, OrderDaoInterface orderDao) {
         this.connectionManager = connectionManager;
-        orderDao = new OrderDao(connectionManager.getEntityManager());
+        this.orderDao = orderDao;
     }
 
     @Override

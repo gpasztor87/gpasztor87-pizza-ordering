@@ -26,11 +26,12 @@ public class UserService implements UserServiceInterface {
     /**
      * Az osztály konstruktora inicializálja a userDao objektumot.
      *
-     * @param connectionManager A connectionManager
+     * @param connectionManager A connectionManager interfész egy implementációjának példánya
+     * @param userDao A userDao interfész egy implementációjának példánya
      */
-    public UserService(ConnectionManager connectionManager) {
+    public UserService(ConnectionManager connectionManager, UserDaoInterface userDao) {
         this.connectionManager = connectionManager;
-        userDao = new UserDao(connectionManager.getEntityManager());
+        this.userDao = userDao;
     }
 
     @Override

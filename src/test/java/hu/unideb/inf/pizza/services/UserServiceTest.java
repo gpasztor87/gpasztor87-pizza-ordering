@@ -1,89 +1,65 @@
 package hu.unideb.inf.pizza.services;
 
+import hu.unideb.inf.pizza.dao.interfaces.UserDaoInterface;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
-import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserServiceInterface;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class UserServiceTest {
+
+    private UserDaoInterface userDao;
 
     private ConnectionManager connectionManager;
 
     private UserServiceInterface userService;
 
-    @Before
-    public void init() {
-        connectionManager = new JpaConnectionManager("test");
-        userService = new UserService(connectionManager);
-    }
+    private User user;
 
-    @After
-    public void destroy() {
-        connectionManager.close();
+    @Before
+    public void setUp() {
+        userDao = Mockito.mock(UserDaoInterface.class);
+        connectionManager = Mockito.mock(ConnectionManager.class);
+
+        user = new User(1, "Teszt Elek", "teszt@elek.org", "Debrecen", "06201234567");
+        user.setPassword("123456");
+
+        Mockito.when(userDao.findByEmail("teszt@elek.org")).thenReturn(user);
+        Mockito.when(userDao.findById(1)).thenReturn(user);
+
+        userService = new UserService(connectionManager, userDao);
     }
 
     @Test
-    public void createUser() {
-        // Given
-        User user = this.createTestUser();
-
-        // When
-        User savedUser = userService.createUser(user);
-
-        // Then
-        User expectedUser = userService.getUserById(savedUser.getId());
-
-        Assert.assertEquals(expectedUser.getEmail(), user.getEmail());
+    public void testMockCreation() {
+        Assert.assertNotNull(userDao);
+        Assert.assertNotNull(userService);
     }
 
     @Test
     public void getUserByEmail() {
-        // Given
-        User user = this.createTestUser();
+        Assert.assertEquals(1, userService.getUserByEmail("teszt@elek.org").getId());
+    }
 
-        // When
+    @Test
+    public void getUserById() {
+        Assert.assertEquals(1, userService.getUserById(1).getId());
+    }
+
+    @Test
+    public void createUser() {
         userService.createUser(user);
-
-        // Then
-        Assert.assertEquals(userService.getUserByEmail(user.getEmail()).getId(), user.getId());
+        Mockito.verify(userDao).create(user);
     }
 
     @Test
     public void updateUser() {
-        // Given
-        User user = this.createTestUser();
-
-        // When
-        userService.createUser(user);
-        user.setName("Teszt Elek");
-        user.setEmail("teszt.elek@example.org");
-        user.setPassword("123456");
-        user.setPhone("012345678");
-        user.setAddress("Budapest");
         userService.updateUser(user);
-
-        // Then
-        User expectedUser = userService.getUserById(user.getId());
-
-        Assert.assertEquals(expectedUser.getName(), user.getName());
-        Assert.assertEquals(expectedUser.getEmail(), user.getEmail());
-        Assert.assertEquals(expectedUser.getPassword(), user.getPassword());
-        Assert.assertEquals(expectedUser.getPhone(), user.getPhone());
-        Assert.assertEquals(expectedUser.getAddress(), user.getAddress());
+        Mockito.verify(userDao).update(user);
     }
 
-    private User createTestUser() {
-        User user = new User();
-        user.setName("Gipsz Jakab");
-        user.setPhone("06201234567");
-        user.setAddress("Debrecen");
-        user.setEmail("gipsz.jakab@example.org");
-        user.setPassword("password");
-
-        return user;
-    }
 }

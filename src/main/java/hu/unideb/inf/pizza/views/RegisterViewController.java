@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.dao.UserDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.UserService;
@@ -87,7 +88,9 @@ public class RegisterViewController implements Initializable {
         messageLabel.setText("");
 
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
-        userService = new UserService(connectionManager);
+        UserDao userDao = new UserDao(connectionManager.getEntityManager());
+
+        userService = new UserService(connectionManager, userDao);
     }
 
     /**

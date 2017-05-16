@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.views;
 
+import hu.unideb.inf.pizza.dao.PizzaDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
@@ -160,7 +161,9 @@ public class MainViewController implements Initializable {
         payButton.setDisable(true);
 
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
-        pizzaService = new PizzaService(connectionManager);
+        PizzaDao pizzaDao = new PizzaDao(connectionManager.getEntityManager());
+
+        pizzaService = new PizzaService(connectionManager, pizzaDao);
 
         listData.addAll(pizzaService.getAllPizza());
 
