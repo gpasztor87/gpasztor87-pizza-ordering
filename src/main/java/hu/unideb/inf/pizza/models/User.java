@@ -1,6 +1,10 @@
 package hu.unideb.inf.pizza.models;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -98,6 +102,7 @@ public class User implements Serializable {
      */
     @Basic
     @Column(name = "name")
+    @NotNull(message = "A név mező nem lehet üres.")
     public String getName() {
         return name;
     }
@@ -117,7 +122,8 @@ public class User implements Serializable {
      * @return A felhasználó email címe
      */
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
+    @Email(message = "Helytelen email címet adott meg.")
     public String getEmail() {
         return email;
     }
@@ -138,6 +144,7 @@ public class User implements Serializable {
      */
     @Basic
     @Column(name = "password")
+    @Length(min = 5, message = "Minimum 5 karakter hosszú jelszót válasszon.")
     public String getPassword() {
         return password;
     }
@@ -168,6 +175,7 @@ public class User implements Serializable {
      */
     @Basic
     @Column(name = "address")
+    @NotNull(message = "A cím mező nem lehet üres.")
     public String getAddress() {
         return address;
     }

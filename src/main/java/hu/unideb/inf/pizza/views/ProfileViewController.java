@@ -19,6 +19,7 @@ import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.ValidationException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -152,11 +153,15 @@ public class ProfileViewController implements Initializable {
             currentUser.setAddress(addressField.getText());
             currentUser.setPassword(passwordField.getText());
 
-            userService.updateUser(currentUser);
+            try {
+                userService.updateUser(currentUser);
 
-            logger.info("The current user has been updated.");
-
-            stage.close();
+                logger.info("The current user has been updated.");
+                stage.close();
+            } catch (ValidationException e) {
+                messageLabel.setText(e.getMessage());
+                logger.error(e.getMessage());
+            }
         }
     }
 

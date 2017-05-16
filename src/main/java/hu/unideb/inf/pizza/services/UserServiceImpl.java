@@ -5,6 +5,10 @@ import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserService;
 
+import javax.validation.*;
+
+import java.util.Set;
+
 import static org.apache.commons.codec.digest.DigestUtils.*;
 
 /**
@@ -34,32 +38,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public User createUser(User user) throws ValidationException {
         String encryptedPassword = sha256Hex(user.getPassword());
         user.setPassword(encryptedPassword);
 
-        try {
-            connectionManager.beginTransaction();
+        connectionManager.beginTransaction();
+
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
+
+        if (constraintViolations.isEmpty()) {
             userDao.create(user);
             connectionManager.commit();
-        } catch (Exception e) {
-            connectionManager.rollback();
+        } else {
+            throw new ValidationException(constraintViolations.iterator().next().getMessage());
         }
 
         return user;
     }
 
     @Override
-    public User updateUser(User user) {
+    public User updateUser(User user) throws ValidationException {
         String encryptedPassword = sha256Hex(user.getPassword());
         user.setPassword(encryptedPassword);
 
-        try {
-            connectionManager.beginTransaction();
+        connectionManager.beginTransaction();
+
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
+
+        if (constraintViolations.isEmpty()) {
             userDao.update(user);
             connectionManager.commit();
-        } catch (Exception e) {
-            connectionManager.rollback();
+        } else {
+            throw new ValidationException(constraintViolations.iterator().next().getMessage());
         }
 
         return user;

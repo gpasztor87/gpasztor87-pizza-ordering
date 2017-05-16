@@ -18,6 +18,7 @@ import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.ValidationException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -144,13 +145,18 @@ public class RegisterViewController implements Initializable {
                 user.setPhone(phoneField.getText());
                 user.setPassword(passwordField.getText());
 
-                userService.createUser(user);
+                try {
+                    userService.createUser(user);
 
-                mainViewController.switchMenuLoggedIn();
-                mainViewController.setCurrentUser(user);
+                    mainViewController.switchMenuLoggedIn();
+                    mainViewController.setCurrentUser(user);
 
-                logger.info("A user has been registered with this email: " + emailField.getText());
-                stage.close();
+                    logger.info("A user has been registered with this email: " + emailField.getText());
+                    stage.close();
+                } catch (ValidationException e) {
+                    messageLabel.setText(e.getMessage());
+                    logger.error(e.getMessage());
+                }
             }
         }
     }
