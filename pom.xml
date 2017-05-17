@@ -7,6 +7,23 @@
     <groupId>hu.unideb.inf</groupId>
     <artifactId>pizza</artifactId>
     <version>1.0</version>
+	<name>PizzaRendelő alkalmazás</name>
+	<description>
+
+	</description>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License v3.0</name>
+			<url>http://www.gnu.org/copyleft/gpl.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/gpasztor87/pizza-ordering</url>
+		<connection>scm:git:git://github.com/gpasztor87/pizza-ordering.git</connection>
+		<developerConnection>scm:git:git@github.com:gpasztor87/pizza-ordering.git</developerConnection>
+	</scm>
 
 	<developers>
 		<developer>
@@ -74,16 +91,38 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.10.19</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<version>1.8.</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -138,6 +177,16 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.7</version>
             </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+			</plugin>
 		</plugins>
 	</reporting>
 
