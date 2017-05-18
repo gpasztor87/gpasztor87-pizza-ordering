@@ -5,7 +5,9 @@ import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
+import hu.unideb.inf.pizza.services.CartServiceImpl;
 import hu.unideb.inf.pizza.services.PizzaServiceImpl;
+import hu.unideb.inf.pizza.services.interfaces.CartService;
 import hu.unideb.inf.pizza.services.interfaces.PizzaService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +35,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -146,20 +149,22 @@ public class MainViewController implements Initializable {
     private ObservableList<Pizza> listData = FXCollections.observableArrayList();
 
     /**
-     * A kosár tartalmát tartalmazó lista.
-     */
-    private ObservableList<Pizza> cart = FXCollections.observableArrayList();
-
-    /**
      * A {@link PizzaService} interfész egy implementációjának példánya.
      */
     private PizzaService pizzaService;
+
+    /**
+     * A {@link CartService} interfész egy implementációjának példánya.
+     */
+    private CartService cartService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         switchMenuLoggedOut();
         payButton.setDisable(true);
+
+        cartService = new CartServiceImpl();
 
         JpaConnectionManager connectionManager = new JpaConnectionManager("production");
         PizzaDao pizzaDao = new PizzaDaoImpl(connectionManager.getEntityManager());
@@ -215,7 +220,7 @@ public class MainViewController implements Initializable {
 
                                 @Override
                                 public void handle(MouseEvent event) {
-                                    getCart().add(getItem());
+                                    cartService.add(getItem());
                                     cartTable.getItems().add(getItem());
 
                                     logger.info("A pizza has been added to the cart: " + getItem().getName());
@@ -326,8 +331,8 @@ public class MainViewController implements Initializable {
      *
      * @return A kosárban levő pizzákat tartalmazó lista
      */
-    ObservableList<Pizza> getCart() {
-        return cart;
+    List<Pizza> getCart() {
+        return cartService.getCart();
     }
 
     /**
@@ -368,14 +373,14 @@ public class MainViewController implements Initializable {
      * @return A kosár végösszege
      */
     int getCartSummary() {
-        return cart.stream().mapToInt(p -> p.getPrice()).sum();
+        return cartService.sum();
     }
 
     /**
      * Törli a kosár tartalmát.
      */
     void clearCart() {
-        getCart().clear();
+        cartService.clear();
         cartTable.getItems().clear();
 
         updateCartSummaryAttribute();
@@ -386,7 +391,7 @@ public class MainViewController implements Initializable {
      * Frissíti a végösszeg címkét.
      */
     private void updateCartSummaryAttribute() {
-        int cartSummary = getCartSummary();
+        int cartSummary = cartService.sum();
         cartSumAttribute.setText(String.format("%d Ft", cartSummary));
     }
 

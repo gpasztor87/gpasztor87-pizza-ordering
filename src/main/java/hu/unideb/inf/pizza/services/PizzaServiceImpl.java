@@ -8,7 +8,7 @@ import hu.unideb.inf.pizza.services.interfaces.PizzaService;
 import java.util.List;
 
 /**
- * A PizzaServiceImpl interfészt megvalósító osztály.
+ * A PizzaService interfészt megvalósító osztály.
  */
 public class PizzaServiceImpl implements PizzaService {
 

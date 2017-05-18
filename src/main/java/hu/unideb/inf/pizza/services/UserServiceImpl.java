@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.apache.commons.codec.digest.DigestUtils.*;
 
 /**
- * A UserServiceImpl interfészt megvalósító osztály.
+ * A UserService interfészt megvalósító osztály.
  */
 public class UserServiceImpl implements UserService {
 

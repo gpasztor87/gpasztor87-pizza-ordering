@@ -9,7 +9,7 @@ import hu.unideb.inf.pizza.services.interfaces.OrderService;
 import java.util.List;
 
 /**
- * Az OrderServiceImpl interfészt megvalósító osztály.
+ * Az OrderService interfészt megvalósító osztály.
  */
 public class OrderServiceImpl implements OrderService {
 
