@@ -20,11 +20,12 @@ public class UserServiceTest {
     private User user;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         userDao = Mockito.mock(UserDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
-        user = new User(1, "Teszt Elek", "teszt@elek.org", "Debrecen", "06201234567");
+        user = new User("Teszt Elek", "teszt@elek.org", "Debrecen", "06201234567");
+        user.setId(1);
         user.setPassword("123456");
 
         Mockito.when(userDao.findByEmail("teszt@elek.org")).thenReturn(user);
@@ -34,29 +35,29 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testMockCreation() {
+    public void testMockCreation() throws Exception {
         Assert.assertNotNull(userDao);
         Assert.assertNotNull(userService);
     }
 
     @Test
-    public void getUserByEmail() {
+    public void getUserByEmail() throws Exception {
         Assert.assertEquals(1, userService.getUserByEmail("teszt@elek.org").getId());
     }
 
     @Test
-    public void getUserById() {
+    public void getUserById() throws Exception {
         Assert.assertEquals(1, userService.getUserById(1).getId());
     }
 
     @Test
-    public void createUser() {
+    public void createUser() throws Exception {
         userService.createUser(user);
         Mockito.verify(userDao).create(user);
     }
 
     @Test
-    public void updateUser() {
+    public void updateUser() throws Exception {
         userService.updateUser(user);
         Mockito.verify(userDao).update(user);
     }

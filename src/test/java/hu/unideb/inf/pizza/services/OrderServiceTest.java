@@ -28,17 +28,17 @@ public class OrderServiceTest {
     private Order order;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         orderDao = Mockito.mock(OrderDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
-        user = new User(1, "Teszt Elek", "teszt@elek.org", "Debrecen", "");
+        user = new User("Teszt Elek", "teszt@elek.org", "Debrecen", "");
         cart = Arrays.asList(
                 new Pizza("Margarita", "", 1550, "margarita.jpg"),
                 new Pizza("Szalámis", "", 1350, "szalamis.jpg")
         );
 
-        order = new Order(1, "", "", 2900, cart, user);
+        order = new Order("", "", 2900, cart, user);
 
         Mockito.when(orderDao.findByUser(user)).thenReturn(Collections.singletonList(order));
         Mockito.when(orderDao.findById(1)).thenReturn(order);
@@ -47,19 +47,19 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void testMockCreation() {
+    public void testMockCreation() throws Exception {
         Assert.assertNotNull(orderDao);
         Assert.assertNotNull(orderService);
     }
 
     @Test
-    public void createOrder() {
+    public void createOrder() throws Exception {
         orderService.createOrder(order);
         Mockito.verify(orderDao).create(order);
     }
 
     @Test
-    public void getUserOrder() {
+    public void getUserOrder() throws Exception {
         Assert.assertEquals(1, orderService.getUserOrders(user).size());
     }
 }

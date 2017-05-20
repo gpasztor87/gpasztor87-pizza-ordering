@@ -20,7 +20,7 @@ public class PizzaServiceTest {
     private PizzaService pizzaService;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         pizzaDao = Mockito.mock(PizzaDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
@@ -33,13 +33,13 @@ public class PizzaServiceTest {
     }
 
     @Test
-    public void testMockCreation() {
+    public void testMockCreation() throws Exception {
         Assert.assertNotNull(pizzaDao);
         Assert.assertNotNull(pizzaService);
     }
 
     @Test
-    public void getAllPizza() {
+    public void getAllPizza() throws Exception {
         Assert.assertEquals(2, pizzaService.getAllPizza().size());
     }
 }

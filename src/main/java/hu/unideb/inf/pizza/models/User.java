@@ -60,15 +60,13 @@ public class User implements Serializable {
     /**
      * Konstruktor egy felhasználót reprezentáló objektum létrehozására.
      *
-     * @param id        A felhasználó egyedi azonosítója
      * @param name      A felhasználó neve
      * @param email     A felhasználó email címe
      * @param address   A felhasználó címe
      * @param phone     A felhasználó telefonszáma
      */
-    public User(int id, String name, String email, String address, String phone) {
-        this.id = id;
-		this.name = name;
+    public User(String name, String email, String address, String phone) {
+        this.name = name;
 		this.email = email;
 		this.address = address;
 		this.phone = phone;
