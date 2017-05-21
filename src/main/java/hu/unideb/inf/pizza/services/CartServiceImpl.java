@@ -31,16 +31,18 @@ public class CartServiceImpl implements CartService {
         super();
     }
 
+    public CartServiceImpl(List<Pizza> cart) {
+        this.cart = cart;
+    }
+
     @Override
     public void add(Pizza pizza) {
         getCart().add(pizza);
-        calculateDiscount();
     }
 
     @Override
     public void remove(Pizza pizza) {
         getCart().remove(pizza);
-        calculateDiscount();
     }
 
     @Override
@@ -55,6 +57,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public int getTotal() {
+        calculateDiscount();
         int itemAmount = getSubTotal();
         if (discount != null) {
             return itemAmount - getDiscount().getAmount();
@@ -75,6 +78,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Discount getDiscount() {
+        calculateDiscount();
         if (discount != null) {
             return discount;
         }

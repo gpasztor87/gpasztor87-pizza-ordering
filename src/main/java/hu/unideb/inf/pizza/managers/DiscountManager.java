@@ -52,4 +52,11 @@ public class DiscountManager {
     public List<Discount> getDiscounts() {
         return discounts;
     }
+
+    /**
+     * Törli az összes kedvezményt.
+     */
+    public void clear() {
+        discounts.clear();
+    }
 }
