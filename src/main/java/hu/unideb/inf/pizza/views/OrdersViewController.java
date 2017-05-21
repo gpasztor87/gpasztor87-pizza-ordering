@@ -100,7 +100,7 @@ public class OrdersViewController implements Initializable {
         orderTableView.setItems(userOrders);
 
         orderDateTableColumn.setCellValueFactory(new PropertyValueFactory<Order, Date>("orderDate"));
-        orderPriceTableColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
+        orderPriceTableColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("paymentTotal"));
         orderAddressTableColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("address"));
     }
 
@@ -129,6 +129,7 @@ public class OrdersViewController implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
         } catch (IOException e) {
+            e.printStackTrace();
             logger.error(
                     "IO exception has occurred in " + OrdersViewController.class + " loading ordersDialog: " + e.getMessage()
             );

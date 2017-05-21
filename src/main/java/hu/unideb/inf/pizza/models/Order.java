@@ -30,7 +30,17 @@ public class Order implements Serializable {
     /**
      * A rendelés végösszege.
      */
-    private double totalPrice;
+    private int paymentTotal;
+
+    /**
+     * A rendeléshez tartozó szállítási költség.
+     */
+    private int shippingTotal;
+
+    /**
+     * A rendeléshez tartozó kedvezmény.
+     */
+    private int discountTotal;
 
     /**
      * Rendelés leadásának ideje.
@@ -57,16 +67,16 @@ public class Order implements Serializable {
     /**
      * Konstruktor egy rendelést reprezentáló osztály létrehozására.
      *
-     * @param comment    A rendeléshez tartozó megjegyzés
-     * @param address    A rendeléshez tartozó cím
-     * @param totalPrice A rendelés végösszege
-     * @param pizzas     A rendeléshez tartozó pizzák
-     * @param user       A rendeléshez tartozó felhasználó
+     * @param comment      A rendeléshez tartozó megjegyzés
+     * @param address      A rendeléshez tartozó cím
+     * @param paymentTotal A rendelés végösszege
+     * @param pizzas       A rendeléshez tartozó pizzák
+     * @param user         A rendeléshez tartozó felhasználó
      */
-    public Order(String comment, String address, double totalPrice, Collection<Pizza> pizzas, User user) {
+    public Order(String comment, String address, int paymentTotal, Collection<Pizza> pizzas, User user) {
         this.comment = comment;
         this.address = address;
-        this.totalPrice = totalPrice;
+        this.paymentTotal = paymentTotal;
         this.pizzas = pizzas;
         this.user = user;
     }
@@ -138,18 +148,58 @@ public class Order implements Serializable {
      * @return A rendelés végösszege
      */
     @Basic
-    @Column(name = "total_price")
-    public double getTotalPrice() {
-        return totalPrice;
+    @Column(name = "payment_total")
+    public int getPaymentTotal() {
+        return paymentTotal;
     }
 
     /**
      * Beállítja a rendelés végösszegét.
      *
-     * @param totalPrice A rendelés végösszege
+     * @param paymentTotal A rendelés végösszege
      */
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setPaymentTotal(int paymentTotal) {
+        this.paymentTotal = paymentTotal;
+    }
+
+    /**
+     * Visszaadja a rendelés szállítási költségét.
+     *
+     * @return A rendelés szállítási költsége
+     */
+    @Basic
+    @Column(name = "shipping_total")
+    public int getShippingTotal() {
+        return shippingTotal;
+    }
+
+    /**
+     * Beállítja a rendelés szállítási költségét.
+     *
+     * @param shippingTotal A rendelés szállítási költsége
+     */
+    public void setShippingTotal(int shippingTotal) {
+        this.shippingTotal = shippingTotal;
+    }
+
+    /**
+     * Visszaadja a rendeléshez tartozó kedvezményt.
+     *
+     * @return A rendeléshez tartozó kedvezmény
+     */
+    @Basic
+    @Column(name = "discount_total")
+    public int getDiscountTotal() {
+        return discountTotal;
+    }
+
+    /**
+     * Beállítjaja rendeléshez tartozó kedvezményt.
+     *
+     * @param discountTotal A rendeléshez tartozó kedvezmény
+     */
+    public void setDiscountTotal(int discountTotal) {
+        this.discountTotal = discountTotal;
     }
 
     /**
@@ -159,7 +209,6 @@ public class Order implements Serializable {
      */
     @Basic
     @Column(name = "order_date")
-
     public Date getOrderDate() {
         return orderDate;
     }

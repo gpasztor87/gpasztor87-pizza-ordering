@@ -126,7 +126,7 @@ public class PayViewController implements Initializable {
         order.setUser(currentUser);
         order.setAddress(addressField.getText());
         order.setComment(messageField.getText());
-        order.setTotalPrice(mainViewController.getCartSummary());
+        order.setPaymentTotal(mainViewController.getCartSummary());
         order.setPizzas(mainViewController.getCart());
 
         orderService.createOrder(order);
