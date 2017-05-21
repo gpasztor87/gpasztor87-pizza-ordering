@@ -1,5 +1,7 @@
 package hu.unideb.inf.pizza;
 
+import hu.unideb.inf.pizza.managers.DiscountManager;
+import hu.unideb.inf.pizza.models.Discount;
 import hu.unideb.inf.pizza.views.MainViewController;
 
 import javafx.application.Application;
@@ -25,6 +27,11 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         logger.info("The application is running.");
+
+        DiscountManager discountManager = DiscountManager.getInstance();
+
+        discountManager.add(new Discount(500, 2000));
+        discountManager.add(new Discount(1000, 5000));
 
         launch(args);
     }

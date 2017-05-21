@@ -2,6 +2,7 @@ package hu.unideb.inf.pizza.views;
 
 import hu.unideb.inf.pizza.dao.PizzaDaoImpl;
 import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
+import hu.unideb.inf.pizza.managers.DiscountManager;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;

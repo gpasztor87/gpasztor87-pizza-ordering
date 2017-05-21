@@ -1,5 +1,6 @@
 package hu.unideb.inf.pizza.services.interfaces;
 
+import hu.unideb.inf.pizza.models.Discount;
 import hu.unideb.inf.pizza.models.Pizza;
 
 import java.util.List;
@@ -48,5 +49,19 @@ public interface CartService {
      * @return A kosárban levő pizzák listája
      */
     List<Pizza> getCart();
+
+    /**
+     * Visszadja a kosár tartalmához kapott {@link Discount} kedvezményt.
+     *
+     * @return A kosár kedvezménye
+     */
+    Discount getDiscount();
+
+    /**
+     * Beállítja a kosárhoz a paraméterül kapott kedvezményt.
+     *
+     * @param discount A beállítandó kedvezmény
+     */
+    void setDiscount(Discount discount);
 
 }
