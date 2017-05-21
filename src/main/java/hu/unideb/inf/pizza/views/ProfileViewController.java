@@ -102,7 +102,7 @@ public class ProfileViewController implements Initializable {
         addressField.setText(currentUser.getAddress());
         phoneField.setText(currentUser.getPhone());
 
-        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        JpaConnectionManager connectionManager = new JpaConnectionManager();
         UserDao userDao = new UserDaoImpl(connectionManager.getEntityManager());
 
         userService = new UserServiceImpl(connectionManager, userDao);

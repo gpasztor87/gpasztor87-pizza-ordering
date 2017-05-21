@@ -17,15 +17,16 @@ public class JpaConnectionManager implements ConnectionManager {
     /**
      * Az EntityManagerFactory egy példánya.
      */
-    private EntityManagerFactory factory;
+    private static final EntityManagerFactory factory;
+
+    static {
+        factory = Persistence.createEntityManagerFactory("production");
+    }
 
     /**
      * Az osztály konstruktora inicializálja az EntityManagert.
-     *
-     * @param persistenceUnitName A perzisztens adattároló neve
      */
-    public JpaConnectionManager(String persistenceUnitName) {
-        factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+    public JpaConnectionManager() {
         this.entityManager = factory.createEntityManager();
     }
 

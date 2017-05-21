@@ -88,7 +88,7 @@ public class RegisterViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         messageLabel.setText("");
 
-        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        JpaConnectionManager connectionManager = new JpaConnectionManager();
         UserDaoImpl userDao = new UserDaoImpl(connectionManager.getEntityManager());
 
         userService = new UserServiceImpl(connectionManager, userDao);

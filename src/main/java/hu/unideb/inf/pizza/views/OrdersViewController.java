@@ -91,7 +91,7 @@ public class OrdersViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         currentUser = mainViewController.getCurrentUser();
 
-        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        JpaConnectionManager connectionManager = new JpaConnectionManager();
         OrderDao orderDao = new OrderDaoImpl(connectionManager.getEntityManager());
 
         orderService = new OrderServiceImpl(connectionManager, orderDao);

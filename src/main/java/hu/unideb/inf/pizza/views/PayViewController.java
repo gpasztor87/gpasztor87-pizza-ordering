@@ -79,7 +79,7 @@ public class PayViewController implements Initializable {
         addressField.setText(currentUser.getAddress());
         totalPriceLabel.setText(String.format("%d Ft", mainViewController.getCartSummary()));
 
-        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        JpaConnectionManager connectionManager = new JpaConnectionManager();
         OrderDao orderDao = new OrderDaoImpl(connectionManager.getEntityManager());
 
         orderService = new OrderServiceImpl(connectionManager, orderDao);

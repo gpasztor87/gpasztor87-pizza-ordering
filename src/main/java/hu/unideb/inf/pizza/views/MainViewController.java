@@ -166,7 +166,7 @@ public class MainViewController implements Initializable {
 
         cartService = new CartServiceImpl();
 
-        JpaConnectionManager connectionManager = new JpaConnectionManager("production");
+        JpaConnectionManager connectionManager = new JpaConnectionManager();
         PizzaDao pizzaDao = new PizzaDaoImpl(connectionManager.getEntityManager());
 
         pizzaService = new PizzaServiceImpl(connectionManager, pizzaDao);
