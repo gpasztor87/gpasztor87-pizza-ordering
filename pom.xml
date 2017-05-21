@@ -7,12 +7,18 @@
     <groupId>hu.unideb.inf</groupId>
     <artifactId>pizza</artifactId>
     <version>1.0</version>
-	<name>PizzaRendelő alkalmazás</name>
+    <name>PizzaRendelő</name>
 	<description>
-
+        Pizza rendelő alkalmazás.
+        Beadandó feladat Programozási technológiák és Programozási környezetek tárgyból.
 	</description>
 
-	<licenses>
+    <organization>
+        <name>DE IK</name>
+    </organization>
+    <inceptionYear>2017</inceptionYear>
+
+    <licenses>
 		<license>
 			<name>GNU General Public License v3.0</name>
 			<url>http://www.gnu.org/copyleft/gpl.html</url>
