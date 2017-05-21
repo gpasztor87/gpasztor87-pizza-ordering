@@ -33,11 +33,6 @@ public class Order implements Serializable {
     private int paymentTotal;
 
     /**
-     * A rendeléshez tartozó szállítási költség.
-     */
-    private int shippingTotal;
-
-    /**
      * A rendeléshez tartozó kedvezmény.
      */
     private int discountTotal;
@@ -160,26 +155,6 @@ public class Order implements Serializable {
      */
     public void setPaymentTotal(int paymentTotal) {
         this.paymentTotal = paymentTotal;
-    }
-
-    /**
-     * Visszaadja a rendelés szállítási költségét.
-     *
-     * @return A rendelés szállítási költsége
-     */
-    @Basic
-    @Column(name = "shipping_total")
-    public int getShippingTotal() {
-        return shippingTotal;
-    }
-
-    /**
-     * Beállítja a rendelés szállítási költségét.
-     *
-     * @param shippingTotal A rendelés szállítási költsége
-     */
-    public void setShippingTotal(int shippingTotal) {
-        this.shippingTotal = shippingTotal;
     }
 
     /**

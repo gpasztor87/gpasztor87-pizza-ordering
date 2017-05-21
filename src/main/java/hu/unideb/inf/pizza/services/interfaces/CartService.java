@@ -37,11 +37,18 @@ public interface CartService {
     int count();
 
     /**
+     * Visszaadja a kosár tartalmának összegét, levonva a kedvezményt, ha van.
+     *
+     * @return A kosár tartalmának összege
+     */
+    int getTotal();
+
+    /**
      * Visszaadja a kosárban levő pizzák összértékét.
      *
      * @return A kosárban levő pizzák összértéke
      */
-    int sum();
+    int getSubTotal();
 
     /**
      * Visszaadja a kosárban levő {@link Pizza} pizzák listáját.

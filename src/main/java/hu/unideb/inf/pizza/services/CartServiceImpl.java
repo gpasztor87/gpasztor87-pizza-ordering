@@ -54,13 +54,18 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public int sum() {
-        int itemAmount = getCart().stream().mapToInt(Pizza::getPrice).sum();
+    public int getTotal() {
+        int itemAmount = getSubTotal();
         if (discount != null) {
             return itemAmount - getDiscount().getAmount();
         }
 
         return itemAmount;
+    }
+
+    @Override
+    public int getSubTotal() {
+        return getCart().stream().mapToInt(Pizza::getPrice).sum();
     }
 
     @Override
@@ -70,7 +75,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Discount getDiscount() {
-        return discount;
+        if (discount != null) {
+            return discount;
+        }
+
+        return new Discount(0, 0);
     }
 
     @Override
@@ -82,7 +91,7 @@ public class CartServiceImpl implements CartService {
      * Beállítja, hogy az aktuális kosár tartalmához milyen kedvezmény társul.
      */
     private void calculateDiscount() {
-        int sumOfItems = cart.stream().mapToInt(Pizza::getPrice).sum();
+        int sumOfItems = getSubTotal();
 
         List<Discount> discounts = DiscountManager.getInstance().getDiscounts();
         Optional<Discount> discount = discounts.stream()

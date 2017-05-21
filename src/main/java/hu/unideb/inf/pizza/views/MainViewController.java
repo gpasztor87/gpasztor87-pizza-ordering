@@ -2,7 +2,6 @@ package hu.unideb.inf.pizza.views;
 
 import hu.unideb.inf.pizza.dao.PizzaDaoImpl;
 import hu.unideb.inf.pizza.dao.interfaces.PizzaDao;
-import hu.unideb.inf.pizza.managers.DiscountManager;
 import hu.unideb.inf.pizza.managers.JpaConnectionManager;
 import hu.unideb.inf.pizza.models.Pizza;
 import hu.unideb.inf.pizza.models.User;
@@ -134,6 +133,12 @@ public class MainViewController implements Initializable {
     private Label cartSumAttribute;
 
     /**
+     * A kosár kedvezményt tartalmazó címke.
+     */
+    @FXML
+    private Label cartDiscountAttribute;
+
+    /**
      * A megrendelést elindító gomb.
      */
     @FXML
@@ -226,7 +231,7 @@ public class MainViewController implements Initializable {
 
                                     logger.info("A pizza has been added to the cart: " + getItem().getName());
 
-                                    updateCartSummaryAttribute();
+                                    updateLabels();
                                     payButton.setDisable(false);
                                 }
                             });
@@ -327,12 +332,17 @@ public class MainViewController implements Initializable {
         logger.info("The cart has been emptied.");
     }
 
+
+    CartService getCart() {
+        return cartService;
+    }
+
     /**
      * Visszaadja a kosár tartalmát.
      *
      * @return A kosárban levő pizzákat tartalmazó lista
      */
-    List<Pizza> getCart() {
+    List<Pizza> getCartContent() {
         return cartService.getCart();
     }
 
@@ -369,31 +379,38 @@ public class MainViewController implements Initializable {
     }
 
     /**
-     * Visszaadja a kosár tartalmának végösszegét.
-     *
-     * @return A kosár végösszege
-     */
-    int getCartSummary() {
-        return cartService.sum();
-    }
-
-    /**
      * Törli a kosár tartalmát.
      */
     void clearCart() {
         cartService.clear();
         cartTable.getItems().clear();
 
-        updateCartSummaryAttribute();
+        updateLabels();
         payButton.setDisable(true);
+    }
+
+    /**
+     * Frissíti a végösszeg és kedvezmény címkéket.
+     */
+    private void updateLabels() {
+        updateCartSummaryAttribute();
+        updateCartDiscountAttribute();
     }
 
     /**
      * Frissíti a végösszeg címkét.
      */
     private void updateCartSummaryAttribute() {
-        int cartSummary = cartService.sum();
+        int cartSummary = cartService.getTotal();
         cartSumAttribute.setText(String.format("%d Ft", cartSummary));
+    }
+
+    /**
+     * Frissíti a kedvezmény címkét.
+     */
+    private void updateCartDiscountAttribute() {
+        int cartDiscount = cartService.getDiscount().getAmount();
+        cartDiscountAttribute.setText(String.format("%d Ft", cartDiscount));
     }
 
     /**

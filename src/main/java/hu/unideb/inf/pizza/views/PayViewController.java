@@ -77,7 +77,7 @@ public class PayViewController implements Initializable {
         currentUser = mainViewController.getCurrentUser();
 
         addressField.setText(currentUser.getAddress());
-        totalPriceLabel.setText(String.format("%d Ft", mainViewController.getCartSummary()));
+        totalPriceLabel.setText(String.format("%d Ft", mainViewController.getCart().getTotal()));
 
         JpaConnectionManager connectionManager = new JpaConnectionManager();
         OrderDao orderDao = new OrderDaoImpl(connectionManager.getEntityManager());
@@ -126,8 +126,9 @@ public class PayViewController implements Initializable {
         order.setUser(currentUser);
         order.setAddress(addressField.getText());
         order.setComment(messageField.getText());
-        order.setPaymentTotal(mainViewController.getCartSummary());
-        order.setPizzas(mainViewController.getCart());
+        order.setPaymentTotal(mainViewController.getCart().getTotal());
+        order.setDiscountTotal(mainViewController.getCart().getDiscount().getAmount());
+        order.setPizzas(mainViewController.getCartContent());
 
         orderService.createOrder(order);
 
