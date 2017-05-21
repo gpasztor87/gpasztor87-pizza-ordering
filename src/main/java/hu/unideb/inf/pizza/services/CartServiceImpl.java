@@ -86,10 +86,7 @@ public class CartServiceImpl implements CartService {
 
         List<Discount> discounts = DiscountManager.getInstance().getDiscounts();
         Optional<Discount> discount = discounts.stream()
-                .filter(d -> {
-                    System.out.println(d.getMinimumAmount() <= sumOfItems);
-                    return d.getMinimumAmount() <= sumOfItems;
-                })
+                .filter(d -> d.getMinimumAmount() <= sumOfItems)
                 .reduce((d1, d2) -> d1.getAmount() > d2.getAmount() ? d1 : d2);
 
         if (discount.isPresent()) {
