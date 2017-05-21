@@ -1,5 +1,3 @@
-.idea
-
 lib/
 target/
 pom.xml.tag
@@ -10,6 +8,16 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+# IntelliJ
+.idea
+
+# Netbeans
+nbproject/
+
+# Eclipse
+.classpath
+.project
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
