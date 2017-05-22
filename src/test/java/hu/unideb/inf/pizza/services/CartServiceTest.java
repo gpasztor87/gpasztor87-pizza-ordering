@@ -8,21 +8,16 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class CartServiceTest {
 
-    @Mock
     private List<Pizza> cart = new ArrayList<Pizza>();
 
     private CartService cartService;
 
-    @Mock
     private DiscountManager discountManager;
 
     private Pizza testPizza1;
@@ -76,13 +71,13 @@ public class CartServiceTest {
     }
 
     @Test
-    public void getTotalWhenDontHaveEnoughtItemForDiscount() {
+    public void getTotalWhenDontHaveEnoughtItemForDiscount() throws Exception {
         discountManager.getDiscounts().add(new Discount(500, 5000));
         Assert.assertEquals(3000, cartService.getTotal());
     }
 
     @Test
-    public void getTotalWhenHaveDiscount() {
+    public void getTotalWhenHaveDiscount() throws Exception {
         discountManager.getDiscounts().add(new Discount(500, 3000));
         Assert.assertEquals(2500, cartService.getTotal());
     }
@@ -93,13 +88,13 @@ public class CartServiceTest {
     }
 
     @Test
-    public void getSubTotalWhenDontHaveEnoughtItemForDiscount() {
+    public void getSubTotalWhenDontHaveEnoughtItemForDiscount() throws Exception {
         discountManager.getDiscounts().add(new Discount(500, 5000));
         Assert.assertEquals(3000, cartService.getTotal());
     }
 
     @Test
-    public void getSubtotalWhenHaveDiscount() {
+    public void getSubtotalWhenHaveDiscount() throws Exception {
         discountManager.getDiscounts().add(new Discount(500, 3000));
         Assert.assertEquals(3000, cartService.getSubTotal());
     }
@@ -111,8 +106,7 @@ public class CartServiceTest {
 
     @Test
     public void getDiscount() throws Exception {
-        discountManager.getDiscounts().add(new Discount(500, 3000));
-        Assert.assertEquals(500, cartService.getDiscount().getAmount());
+        Assert.assertEquals(null, cartService.getDiscount());
     }
 
     @Test

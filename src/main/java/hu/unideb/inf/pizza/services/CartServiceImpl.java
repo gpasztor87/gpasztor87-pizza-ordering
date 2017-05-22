@@ -59,11 +59,8 @@ public class CartServiceImpl implements CartService {
     public int getTotal() {
         calculateDiscount();
         int itemAmount = getSubTotal();
-        if (discount != null) {
-            return itemAmount - getDiscount().getAmount();
-        }
 
-        return itemAmount;
+        return itemAmount - getDiscount().getAmount();
     }
 
     @Override
@@ -78,12 +75,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Discount getDiscount() {
-        calculateDiscount();
-        if (discount != null) {
-            return discount;
-        }
-
-        return new Discount(0, 0);
+        return discount;
     }
 
     @Override
@@ -104,6 +96,8 @@ public class CartServiceImpl implements CartService {
 
         if (discount.isPresent()) {
             setDiscount(discount.get());
+        } else {
+            setDiscount(new Discount(0, 0));
         }
     }
 }
