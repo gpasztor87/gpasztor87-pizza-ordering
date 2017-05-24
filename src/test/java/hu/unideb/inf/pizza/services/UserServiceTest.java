@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
+
 public class UserServiceTest {
 
     private UserDao userDao;
@@ -26,7 +28,7 @@ public class UserServiceTest {
 
         user = new User("Teszt Elek", "teszt@elek.org", "Debrecen", "06201234567");
         user.setId(1);
-        user.setPassword("123456");
+        user.setPassword(sha256Hex("123456"));
 
         Mockito.when(userDao.findByEmail("teszt@elek.org")).thenReturn(user);
         Mockito.when(userDao.findById(1)).thenReturn(user);
@@ -60,6 +62,21 @@ public class UserServiceTest {
     public void updateUser() throws Exception {
         userService.updateUser(user);
         Mockito.verify(userDao).update(user);
+    }
+
+    @Test
+    public void validateUserSuccessful() throws Exception {
+        Assert.assertEquals(true, userService.validateUser("teszt@elek.org", "123456"));
+    }
+
+    @Test
+    public void validateUserWithWrongEmail() throws Exception {
+        Assert.assertEquals(false, userService.validateUser("teszt@elek.com", "123456"));
+    }
+
+    @Test
+    public void validateUserWithWrongPassword() throws Exception {
+        Assert.assertEquals(false, userService.validateUser("teszt@elek.org", "12345"));
     }
 
 }
