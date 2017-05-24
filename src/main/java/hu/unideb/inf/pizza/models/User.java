@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -100,7 +100,7 @@ public class User implements Serializable {
      */
     @Basic
     @Column(name = "name")
-    @NotNull(message = "A név mező nem lehet üres.")
+    @NotEmpty(message = "A név mező nem lehet üres.")
     public String getName() {
         return name;
     }
@@ -122,6 +122,7 @@ public class User implements Serializable {
     @Basic
     @Column(name = "email", unique = true)
     @Email(message = "Helytelen email címet adott meg.")
+    @NotEmpty(message = "Az email cím mező nem lehet üres.")
     public String getEmail() {
         return email;
     }
@@ -143,6 +144,7 @@ public class User implements Serializable {
     @Basic
     @Column(name = "password")
     @Length(min = 5, message = "Minimum 5 karakter hosszú jelszót válasszon.")
+    @NotEmpty(message = "A jelszó mező nem lehet üres.")
     public String getPassword() {
         return password;
     }
@@ -173,7 +175,7 @@ public class User implements Serializable {
      */
     @Basic
     @Column(name = "address")
-    @NotNull(message = "A cím mező nem lehet üres.")
+    @NotEmpty(message = "A cím mező nem lehet üres.")
     public String getAddress() {
         return address;
     }
@@ -194,6 +196,7 @@ public class User implements Serializable {
      */
     @Basic
     @Column(name = "phone")
+    @NotEmpty(message = "A telefonszám mező nem lehet üres.")
     public String getPhone() {
         return phone;
     }

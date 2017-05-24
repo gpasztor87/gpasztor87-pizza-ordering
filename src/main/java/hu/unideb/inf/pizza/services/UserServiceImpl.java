@@ -39,15 +39,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) throws ValidationException {
-        String encryptedPassword = sha256Hex(user.getPassword());
-        user.setPassword(encryptedPassword);
-
-        connectionManager.beginTransaction();
-
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
 
         if (constraintViolations.isEmpty()) {
+            String encryptedPassword = sha256Hex(user.getPassword());
+            user.setPassword(encryptedPassword);
+
+            connectionManager.beginTransaction();
             userDao.create(user);
             connectionManager.commit();
         } else {
@@ -59,15 +58,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) throws ValidationException {
-        String encryptedPassword = sha256Hex(user.getPassword());
-        user.setPassword(encryptedPassword);
-
-        connectionManager.beginTransaction();
-
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
 
         if (constraintViolations.isEmpty()) {
+            String encryptedPassword = sha256Hex(user.getPassword());
+            user.setPassword(encryptedPassword);
+
+            connectionManager.beginTransaction();
             userDao.update(user);
             connectionManager.commit();
         } else {
