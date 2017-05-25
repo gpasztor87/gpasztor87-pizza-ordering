@@ -113,19 +113,15 @@ public class LoginViewController implements Initializable {
      */
     @FXML
     private void loginButtonHandler() {
-        if (emailField.getText().isEmpty() || passwordField.getText().isEmpty()) {
-            messageLabel.setText("Az email cím és jelszó kitöltése kötelező.");
+        if (!authenticate(emailField.getText(), passwordField.getText())) {
+            messageLabel.setText("Rossz email cím vagy jelszó.");
         } else {
-            if (!authenticate(emailField.getText(), passwordField.getText())) {
-                messageLabel.setText("Rossz email cím vagy jelszó.");
-            } else {
-                User user = userService.getUserByEmail(emailField.getText());
-                mainViewController.setCurrentUser(user);
-                mainViewController.switchMenuLoggedIn();
+            User user = userService.getUserByEmail(emailField.getText());
+            mainViewController.setCurrentUser(user);
+            mainViewController.switchMenuLoggedIn();
 
-                logger.info("User has logged in with the following email address: " + emailField.getText());
-                stage.close();
-            }
+            logger.info("User has logged in with the following email address: " + emailField.getText());
+            stage.close();
         }
     }
 

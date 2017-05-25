@@ -145,23 +145,19 @@ public class ProfileViewController implements Initializable {
      */
     @FXML
     private void updateButtonHandler() {
-        if (nameField.getText().isEmpty() || phoneField.getText().isEmpty() || addressField.getText().isEmpty()) {
-            messageLabel.setText("Minden mező kitöltése kötelező.");
-        } else {
-            currentUser.setName(nameField.getText());
-            currentUser.setPhone(phoneField.getText());
-            currentUser.setAddress(addressField.getText());
-            currentUser.setPassword(passwordField.getText());
+        currentUser.setName(nameField.getText());
+        currentUser.setPhone(phoneField.getText());
+        currentUser.setAddress(addressField.getText());
+        currentUser.setPassword(passwordField.getText());
 
-            try {
-                userService.updateUser(currentUser);
+        try {
+            userService.updateUser(currentUser);
 
-                logger.info("The current user has been updated.");
-                stage.close();
-            } catch (ValidationException e) {
-                messageLabel.setText(e.getMessage());
-                logger.error(e.getMessage());
-            }
+            logger.info("The current user has been updated.");
+            stage.close();
+        } catch (ValidationException e) {
+            messageLabel.setText(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
