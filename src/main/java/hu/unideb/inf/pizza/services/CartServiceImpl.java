@@ -31,6 +31,11 @@ public class CartServiceImpl implements CartService {
         super();
     }
 
+    /**
+     * Az osztály egy konstruktora, mely paraméterül kap egy {@link Pizza} pizzákat tartalmazó listát.
+     *
+     * @param cart Egy pizzákat tartalmazó lista
+     */
     public CartServiceImpl(List<Pizza> cart) {
         this.cart = cart;
     }

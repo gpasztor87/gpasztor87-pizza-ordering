@@ -9,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+
+import javax.validation.ValidationException;
+
 import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
 
 public class UserServiceTest {
@@ -58,10 +61,40 @@ public class UserServiceTest {
         Mockito.verify(userDao).create(user);
     }
 
+    @Test(expected = ValidationException.class)
+    public void createUserWithInvalidEmail() throws Exception {
+        userService.createUser(new User("Teszt Elek", "asdf1234", "Debrecen", "06201234567"));
+    }
+
+    @Test(expected = ValidationException.class)
+    public void createUserWithEmptyAddress() throws Exception {
+        userService.createUser(new User("Teszt Elek", "teszt@elek.com", "", "06201234567"));
+    }
+
+    @Test(expected = ValidationException.class)
+    public void createUserWithEmptyPhone() throws Exception {
+        userService.createUser(new User("Teszt Elek", "teszt@elek.com", "Debrecen", ""));
+    }
+
     @Test
     public void updateUser() throws Exception {
         userService.updateUser(user);
         Mockito.verify(userDao).update(user);
+    }
+
+    @Test(expected = ValidationException.class)
+    public void updateUserWithInvalidEmail() throws Exception {
+        userService.updateUser(new User("Teszt Elek", "asdf1234", "Debrecen", "06201234567"));
+    }
+
+    @Test(expected = ValidationException.class)
+    public void updateUserWithEmptyAddress() throws Exception {
+        userService.updateUser(new User("Teszt Elek", "teszt@elek.com", "", "06201234567"));
+    }
+
+    @Test(expected = ValidationException.class)
+    public void updateUserWithEmptyPhone() throws Exception {
+        userService.updateUser(new User("Teszt Elek", "teszt@elek.com", "Debrecen", ""));
     }
 
     @Test
