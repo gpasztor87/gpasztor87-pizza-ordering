@@ -7,10 +7,10 @@
         <class>hu.unideb.inf.pizza.models.Order</class>
         <class>hu.unideb.inf.pizza.models.Pizza</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/pizza_ordering"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://80.249.163.182:33306/pizza_ordering"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="root"/>
+            <property name="hibernate.connection.username" value="pizza_order"/>
+            <property name="hibernate.connection.password" value="dk4NYRXW"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="false"/>

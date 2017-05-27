@@ -62,16 +62,18 @@ public class Order implements Serializable {
     /**
      * Konstruktor egy rendelést reprezentáló osztály létrehozására.
      *
-     * @param comment      A rendeléshez tartozó megjegyzés
-     * @param address      A rendeléshez tartozó cím
-     * @param paymentTotal A rendelés végösszege
-     * @param pizzas       A rendeléshez tartozó pizzák
-     * @param user         A rendeléshez tartozó felhasználó
+     * @param comment       A rendeléshez tartozó megjegyzés
+     * @param address       A rendeléshez tartozó cím
+     * @param paymentTotal  A rendelés végösszege
+     * @param discountTotal A rendelésnél igénybe vett kedvezmény
+     * @param pizzas        A rendeléshez tartozó pizzák
+     * @param user          A rendeléshez tartozó felhasználó
      */
-    public Order(String comment, String address, int paymentTotal, Collection<Pizza> pizzas, User user) {
+    public Order(String comment, String address, int paymentTotal, int discountTotal, Collection<Pizza> pizzas, User user) {
         this.comment = comment;
         this.address = address;
         this.paymentTotal = paymentTotal;
+        this.discountTotal = discountTotal;
         this.pizzas = pizzas;
         this.user = user;
     }

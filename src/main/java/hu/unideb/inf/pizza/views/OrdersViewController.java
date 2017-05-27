@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -73,6 +74,18 @@ public class OrdersViewController implements Initializable {
     private TableColumn<Order, String> orderAddressTableColumn;
 
     /**
+     * A felhasználó összes kedvezményének összegét tartalmazó címke.
+     */
+    @FXML
+    private Label sumOfDiscountAttribute;
+
+    /**
+     * A felhasználó legnagyobb rendelésének végösszegét tartalmazó címke.
+     */
+    @FXML
+    private Label maxOrderAttribute;
+
+    /**
      * A bejelentkezett felhasználó.
      */
     private User currentUser;
@@ -98,6 +111,9 @@ public class OrdersViewController implements Initializable {
 
         userOrders.addAll(orderService.getUserOrders(currentUser));
         orderTableView.setItems(userOrders);
+
+        sumOfDiscountAttribute.setText(String.format("%d Ft", orderService.getUserTotalDiscount(currentUser)));
+        maxOrderAttribute.setText(String.format("%d Ft", orderService.getUserHighestOrderPrice(currentUser)));
 
         orderDateTableColumn.setCellValueFactory(new PropertyValueFactory<Order, Date>("orderDate"));
         orderPriceTableColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("paymentTotal"));
@@ -134,5 +150,13 @@ public class OrdersViewController implements Initializable {
                     "IO exception has occurred in " + OrdersViewController.class + " loading ordersDialog: " + e.getMessage()
             );
         }
+    }
+
+    /**
+     * Lekezeli a bezárás gomb eseményét.
+     */
+    @FXML
+    private void cancelButtonHandler() {
+        stage.close();
     }
 }

@@ -7,6 +7,7 @@ import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.OrderService;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 /**
  * Az OrderService interfészt megvalósító osztály.
@@ -48,5 +49,24 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getUserOrders(User user) {
         return orderDao.findByUser(user);
+    }
+
+    @Override
+    public int getUserHighestOrderPrice(User user) {
+        List<Order> orders = this.getUserOrders(user);
+
+        OptionalInt orderTotal = orders.stream().mapToInt(Order::getPaymentTotal).max();
+
+        if (orderTotal.isPresent()) {
+            return orderTotal.getAsInt();
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int getUserTotalDiscount(User user) {
+        List<Order> orders = this.getUserOrders(user);
+        return orders.stream().mapToInt(Order::getDiscountTotal).sum();
     }
 }

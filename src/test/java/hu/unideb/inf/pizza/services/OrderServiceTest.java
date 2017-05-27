@@ -21,7 +21,9 @@ public class OrderServiceTest {
 
     private OrderService orderService;
 
-    private User user;
+    private User user1;
+
+    private User user2;
 
     private List<Pizza> cart;
 
@@ -32,15 +34,17 @@ public class OrderServiceTest {
         orderDao = Mockito.mock(OrderDao.class);
         connectionManager = Mockito.mock(ConnectionManager.class);
 
-        user = new User("Teszt Elek", "teszt@elek.org", "Debrecen", "");
+        user1 = new User("Teszt Elek", "teszt@elek.org", "Debrecen", "");
+
+        user2 = new User("Teszt Elek", "teszt2@elek.org", "Debrecen", "");
         cart = Arrays.asList(
                 new Pizza("Margarita", "", 1550, "margarita.jpg"),
                 new Pizza("Szalámis", "", 1350, "szalamis.jpg")
         );
 
-        order = new Order("", "", 2900, cart, user);
+        order = new Order("", "", 2900, 500, cart, user1);
 
-        Mockito.when(orderDao.findByUser(user)).thenReturn(Collections.singletonList(order));
+        Mockito.when(orderDao.findByUser(user1)).thenReturn(Collections.singletonList(order));
         Mockito.when(orderDao.findById(1)).thenReturn(order);
 
         orderService = new OrderServiceImpl(connectionManager, orderDao);
@@ -60,6 +64,26 @@ public class OrderServiceTest {
 
     @Test
     public void getUserOrder() throws Exception {
-        Assert.assertEquals(1, orderService.getUserOrders(user).size());
+        Assert.assertEquals(1, orderService.getUserOrders(user1).size());
+    }
+
+    @Test
+    public void getUserHighestOrderPrice() throws Exception {
+        Assert.assertEquals(2900, orderService.getUserHighestOrderPrice(user1));
+    }
+
+    @Test
+    public void getUserHighestOrderPriceWhenDontHaveOrder() throws Exception {
+        Assert.assertEquals(0, orderService.getUserHighestOrderPrice(user2));
+    }
+
+    @Test
+    public void getUserTotalDiscount() throws Exception {
+        Assert.assertEquals(500, orderService.getUserTotalDiscount(user1));
+    }
+
+    @Test
+    public void getUserTotalDiscountWhenDontHaveOrder() throws Exception {
+        Assert.assertEquals(0, orderService.getUserTotalDiscount(user2));
     }
 }

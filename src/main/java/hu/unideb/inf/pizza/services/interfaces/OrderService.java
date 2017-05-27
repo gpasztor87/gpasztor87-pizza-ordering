@@ -25,4 +25,20 @@ public interface OrderService {
      */
     List<Order> getUserOrders(User user);
 
+    /**
+     * Visszaadja a paraméterül kapott {@link User} felhasználó legnagyobb összegű rendelését.
+     *
+     * @param user Egy {@link User} felhasználó
+     * @return A legnagyobb összértékű rendelés
+     */
+    int getUserHighestOrderPrice(User user);
+
+    /**
+     * Visszaadja a paraméterül kapott {@link User} felhasználó összes kedvezményének összegét.
+     *
+     * @param user Egy {@link User} felhasználó
+     * @return Az összes kedvezmény összege
+     */
+    int getUserTotalDiscount(User user);
+
 }
