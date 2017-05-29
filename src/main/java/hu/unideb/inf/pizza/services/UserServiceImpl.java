@@ -4,6 +4,8 @@ import hu.unideb.inf.pizza.dao.interfaces.UserDao;
 import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.*;
 
@@ -27,6 +29,11 @@ public class UserServiceImpl implements UserService {
     private ConnectionManager connectionManager;
 
     /**
+     * A logger egy példánya.
+     */
+    private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    /**
      * Az osztály konstruktora inicializálja a userDao objektumot.
      *
      * @param connectionManager A connectionManager interfész egy implementációjának példánya
@@ -46,9 +53,15 @@ public class UserServiceImpl implements UserService {
             String encryptedPassword = sha256Hex(user.getPassword());
             user.setPassword(encryptedPassword);
 
-            connectionManager.beginTransaction();
-            userDao.create(user);
-            connectionManager.commit();
+            try {
+                connectionManager.beginTransaction();
+                userDao.create(user);
+                connectionManager.commit();
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            } finally {
+                connectionManager.close();
+            }
         } else {
             throw new ValidationException(constraintViolations.iterator().next().getMessage());
         }
@@ -65,9 +78,15 @@ public class UserServiceImpl implements UserService {
             String encryptedPassword = sha256Hex(user.getPassword());
             user.setPassword(encryptedPassword);
 
-            connectionManager.beginTransaction();
-            userDao.update(user);
-            connectionManager.commit();
+            try {
+                connectionManager.beginTransaction();
+                userDao.update(user);
+                connectionManager.commit();
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            } finally {
+                connectionManager.close();
+            }
         } else {
             throw new ValidationException(constraintViolations.iterator().next().getMessage());
         }

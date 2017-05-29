@@ -5,6 +5,8 @@ import hu.unideb.inf.pizza.managers.ConnectionManager;
 import hu.unideb.inf.pizza.models.Order;
 import hu.unideb.inf.pizza.models.User;
 import hu.unideb.inf.pizza.services.interfaces.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.OptionalInt;
@@ -25,6 +27,11 @@ public class OrderServiceImpl implements OrderService {
     private ConnectionManager connectionManager;
 
     /**
+     * A logger egy példánya.
+     */
+    private static Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
+
+    /**
      * Az osztály konstruktora inicializálja az orderDao objektumot.
      *
      * @param connectionManager A connectionManager interfész egy implementációjnak példánya
@@ -42,7 +49,9 @@ public class OrderServiceImpl implements OrderService {
             orderDao.create(order);
             connectionManager.commit();
         } catch (Exception e) {
-            connectionManager.rollback();
+            logger.error(e.getMessage());
+        } finally {
+            connectionManager.close();
         }
     }
 
