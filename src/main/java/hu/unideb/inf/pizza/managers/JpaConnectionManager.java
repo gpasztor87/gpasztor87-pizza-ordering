@@ -43,7 +43,6 @@ public class JpaConnectionManager implements ConnectionManager {
     @Override
     public void close() {
         entityManager.close();
-        factory.close();
     }
 
     @Override
